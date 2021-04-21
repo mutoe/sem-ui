@@ -1,11 +1,16 @@
-:root {
-  // Colors
-  --color-text-default: rgba(#000, 0.87);
+// Colors
+$color-text = var(--color-text, rgba(#000, 0.87))
+$color-text-inverse = var(--color-text-inverse, #fff)
+$color-primary = var(--color-primary, #2185d0)
+$color-secondary = var(--color-secondary, #1b1c1d)
 
-  // Font size
-  --font-size-basic: 14px
-}
+// Font size
+$font-size-basic = var(--font-size-basic, 14px)
 
-$color-text-default = var(--color-text-default, rgba(#000, 0.87))
+// Border
+$border-color = var(--border-color, rgba(34,36,38,.15))
+$border-radius = var(--border-radius, 4px)
 
-$font-size-md = var(--font-size-basic, 14px)
+// Animation
+$default-duration = var(--default-duration, .1s)
+$default-easing = var(--default-easing, ease)

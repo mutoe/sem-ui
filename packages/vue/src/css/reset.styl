@@ -1,10 +1,24 @@
-@import "variables"
+@import 'variables'
+
+*, *::before, *::after {
+  box-sizing inherit
+}
+
+html {
+  box-sizing border-box;
+  font-size $font-size-basic
+  -webkit-text-size-adjust 100%
+}
 
 body {
+  font-size $font-size-basic
   font-family: Lato, 'Helvetica Neue', Arial, Helvetica, sans-serif
-  font-size: 14px
-  line-height 1em / 7
-  color: $color-text-default;
-  box-sizing border-box;
+  line-height (1 / 7) em
+  color: $color-text;
   margin: 0
+}
+
+button {
+  font-size 100%
+  line-height 1.15
 }
