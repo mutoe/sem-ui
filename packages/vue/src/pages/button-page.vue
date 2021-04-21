@@ -20,6 +20,25 @@
       </div>
     </div>
 
+    <div class="field">
+      <h3>Animated</h3>
+      <p>A button can animate to show hidden content</p>
+
+      <div>
+        <Button animated>
+          Next
+          <template v-slot:animated>👉</template>
+        </Button>
+        <Button animated="vertical">
+          🛒
+          <template v-slot:animated>Shop</template>
+        </Button>
+        <Button animated="fade">
+          Sign-up for a Pro account
+          <template v-slot:animated>$12.99 a month</template>
+        </Button>
+      </div>
+    </div>
   </section>
 </template>
 
