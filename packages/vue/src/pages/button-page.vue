@@ -72,6 +72,15 @@
         </Button>
       </div>
     </div>
+
+    <div class="field">
+      <h3>Fluid</h3>
+      <p>A button can take the width of its container.</p>
+
+      <div>
+        <Button fluid>Fits to Container</Button>
+      </div>
+    </div>
   </section>
 </template>
 

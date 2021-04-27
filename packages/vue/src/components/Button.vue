@@ -34,6 +34,8 @@ const props = defineProps<{
   disabled?: boolean
   loading?: boolean
 
+  fluid?: boolean
+
   color?: ButtonColor
   red?: boolean
   orange?: boolean
@@ -54,10 +56,11 @@ const props = defineProps<{
 
 const classes = [
   'sui-button',
-  props.theme,
   props.animated === true ? 'horizontal' : props.animated,
-  pick(props, ['animated', 'primary', 'secondary', 'active', 'loading']),
+  pick(props, 'animated', 'active', 'loading', 'fluid'),
 
+  props.theme,
+  pick(props, ['primary', 'secondary', 'active', 'loading']),
   props.color,
   pick(props, ['red', 'orange', 'yellow', 'olive', 'green', 'teal', 'blue', 'violet', 'purple', 'pink', 'brown', 'grey', 'black'])
 ]
@@ -93,6 +96,11 @@ $animate-duration = 0.3s
   transition-duration $default-duration
   transition-timing-function $default-easing
   transition-property $transition-property
+
+  &.fluid {
+    display block
+    width 100%
+  }
 
   &:hover,
   &:focus,
