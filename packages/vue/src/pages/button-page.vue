@@ -6,17 +6,29 @@
       <h3>Button</h3>
       <p>A standard button</p>
 
-      <Button>Follow</Button>
-    </div>
+      <div>
+        <Button>Follow</Button>
+        <Button active>Active</Button>
+        <Button disabled>Disabled</Button>
+        <Button loading>Loading</Button>
+      </div>
 
-    <div class="field">
-      <h3>Emphasis</h3>
-      <p>A button can be formatted to show different levels of emphasis</p>
+      <br>
 
       <div>
-        <Button theme="primary">Save</Button>
-        <Button theme="secondary">Okay</Button>
-        <Button>Cancel</Button>
+        <Button primary>Follow</Button>
+        <Button primary active>Active</Button>
+        <Button primary disabled>Disabled</Button>
+        <Button primary loading>Loading</Button>
+      </div>
+
+      <br>
+
+      <div>
+        <Button secondary>Follow</Button>
+        <Button secondary active>Active</Button>
+        <Button secondary disabled>Disabled</Button>
+        <Button secondary loading>Loading</Button>
       </div>
     </div>
 
@@ -27,15 +39,15 @@
       <div>
         <Button animated>
           Next
-          <template v-slot:animated>👉</template>
+          <template #animated>👉</template>
         </Button>
         <Button animated="vertical">
           🛒
-          <template v-slot:animated>Shop</template>
+          <template #animated>Shop</template>
         </Button>
         <Button animated="fade">
           Sign-up for a Pro account
-          <template v-slot:animated>$12.99 a month</template>
+          <template #animated>$12.99 a month</template>
         </Button>
       </div>
     </div>

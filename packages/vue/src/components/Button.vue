@@ -1,5 +1,5 @@
 <template>
-  <button :class="classes">
+  <button :class="classes" :disabled="props.disabled || props.loading">
     <template v-if="!props.animated">
       <slot>{{ props.content }}</slot>
     </template>
@@ -16,6 +16,7 @@
 </template>
 
 <script lang="ts" setup>
+import pick from 'src/utils/pick'
 import { defineProps } from 'vue'
 
 export type ButtonTheme = 'primary' | 'secondary' | 'default'
@@ -23,7 +24,15 @@ export type ButtonAnimated = true | 'horizontal' | 'vertical' | 'fade'
 
 const props = defineProps<{
   content?: string
+
   theme?: ButtonTheme
+  primary?: boolean
+  secondary?: boolean
+
+  active?: boolean
+  disabled?: boolean
+  loading?: boolean
+
   animated?: ButtonAnimated
 }>()
 
@@ -31,7 +40,7 @@ const classes = [
   'sui-button',
   props.theme,
   props.animated === true ? 'horizontal' : props.animated,
-  { animated: props.animated },
+  pick(props, ['animated', 'primary', 'secondary', 'active', 'loading']),
 ]
 
 </script>
@@ -69,10 +78,12 @@ $animate-duration = 0.3s
   &:hover,
   &:focus,
   &.active {
-    background-color #c0c1c2
-    background-image none
+    filter brightness(0.9)
     box-shadow $border-box-shadow
-    color rgba(#000, 0.95)
+  }
+
+  &:active:not(:disabled) {
+    filter brightness(0.85)
   }
 
   &.primary {
@@ -85,6 +96,47 @@ $animate-duration = 0.3s
     box-shadow $border-box-shadow
     background-color $color-secondary
     color $color-text-inverse
+
+    &:hover,
+    &:focus,
+    &.active {
+      filter brightness(1.5)
+    }
+
+    &:active:not(:disabled) {
+      filter brightness(2)
+    }
+  }
+
+  &:disabled:not(.loading) {
+    cursor: default
+    opacity: 0.45
+    box-shadow none
+  }
+
+  &.loading {
+    position: relative
+    cursor: default
+    color: transparent
+    transition all 0 linear, opacity $default-duration $default-easing
+
+    &::before
+    &::after {
+      position absolute
+      content ""
+      top: 50%
+      left: 50%
+      margin $loader-margin
+      height: $loader-size
+      width $loader-size
+      border-radius 500rem
+      border .2em solid rgba(#000, .15)
+    }
+
+    &::after {
+      animation button-spin .6s linear infinite
+      border-color #fff transparent transparent
+    }
   }
 
   &.animated {
@@ -176,6 +228,16 @@ $animate-duration = 0.3s
         }
       }
     }
+  }
+}
+
+@keyframes button-spin {
+  0% {
+    transform rotateZ(0)
+  }
+
+  100% {
+    transform rotateZ(360deg)
   }
 }
 </style>
