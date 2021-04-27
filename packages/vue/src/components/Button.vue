@@ -17,10 +17,11 @@
 
 <script lang="ts" setup>
 import pick from 'src/utils/pick'
-import { defineProps } from 'vue'
+import {defineProps} from 'vue'
 
 export type ButtonTheme = 'primary' | 'secondary' | 'default'
 export type ButtonAnimated = true | 'horizontal' | 'vertical' | 'fade'
+export type ButtonColor = 'red' | 'orange' | 'yellow' | 'olive' | 'green' | 'teal' | 'blue' | 'violet' | 'purple' | 'pink' | 'brown' | 'grey' | 'black'
 
 const props = defineProps<{
   content?: string
@@ -33,6 +34,21 @@ const props = defineProps<{
   disabled?: boolean
   loading?: boolean
 
+  color?: ButtonColor
+  red?: boolean
+  orange?: boolean
+  yellow?: boolean
+  olive?: boolean
+  green?: boolean
+  teal?: boolean
+  blue?: boolean
+  violet?: boolean
+  purple?: boolean
+  pink?: boolean
+  brown?: boolean
+  grey?: boolean
+  black?: boolean
+
   animated?: ButtonAnimated
 }>()
 
@@ -41,6 +57,9 @@ const classes = [
   props.theme,
   props.animated === true ? 'horizontal' : props.animated,
   pick(props, ['animated', 'primary', 'secondary', 'active', 'loading']),
+
+  props.color,
+  pick(props, ['red', 'orange', 'yellow', 'olive', 'green', 'teal', 'blue', 'violet', 'purple', 'pink', 'brown', 'grey', 'black'])
 ]
 
 </script>
@@ -97,8 +116,8 @@ $animate-duration = 0.3s
     background-color $color-secondary
     color $color-text-inverse
 
-    &:hover,
-    &:focus,
+    &:hover
+    &:focus
     &.active {
       filter brightness(1.5)
     }
@@ -107,6 +126,25 @@ $animate-duration = 0.3s
       filter brightness(2)
     }
   }
+
+  for c in 'red' 'orange' 'yellow' 'olive' 'green' 'teal' 'blue' 'violet' 'purple' 'pink' 'brown' 'grey' 'black' {
+    &.{c} {
+      background-color lookup('$color-' + c)
+      color $color-text-inverse
+
+      &:hover
+      &:focus
+      &.active {
+        filter brightness(0.9)
+        box-shadow $border-box-shadow
+      }
+
+      &:active:not(:disabled) {
+        filter brightness(0.85)
+      }
+    }
+  }
+
 
   &:disabled:not(.loading) {
     cursor: default

@@ -33,6 +33,27 @@
     </div>
 
     <div class="field">
+      <h3>Colored</h3>
+      <p>A button can have different containers.</p>
+
+      <div>
+        <Button red>red</Button>
+        <Button orange>orange</Button>
+        <Button yellow>yellow</Button>
+        <Button olive>olive</Button>
+        <Button green>green</Button>
+        <Button teal>teal</Button>
+        <Button blue>blue</Button>
+        <Button violet>violet</Button>
+        <Button purple>purple</Button>
+        <Button pink>pink</Button>
+        <Button brown>brown</Button>
+        <Button grey>grey</Button>
+        <Button black>black</Button>
+      </div>
+    </div>
+
+    <div class="field">
       <h3>Animated</h3>
       <p>A button can animate to show hidden content</p>
 
