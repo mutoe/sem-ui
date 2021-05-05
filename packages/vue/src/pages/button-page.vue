@@ -1,9 +1,9 @@
 <template>
   <section>
-    <h2>Types</h2>
+    <h2>Button</h2>
 
     <div class="field">
-      <h3>Button</h3>
+      <h3>Basic button</h3>
       <p>A standard button</p>
 
       <div>

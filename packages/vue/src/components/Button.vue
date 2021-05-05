@@ -17,7 +17,7 @@
 
 <script lang="ts" setup>
 import pick from 'src/utils/pick'
-import {defineProps} from 'vue'
+import { defineProps } from 'vue'
 
 export type ButtonTheme = 'primary' | 'secondary' | 'default'
 export type ButtonAnimated = true | 'horizontal' | 'vertical' | 'fade'
@@ -62,7 +62,7 @@ const classes = [
   props.theme,
   pick(props, ['primary', 'secondary', 'active', 'loading']),
   props.color,
-  pick(props, ['red', 'orange', 'yellow', 'olive', 'green', 'teal', 'blue', 'violet', 'purple', 'pink', 'brown', 'grey', 'black'])
+  pick(props, ['red', 'orange', 'yellow', 'olive', 'green', 'teal', 'blue', 'violet', 'purple', 'pink', 'brown', 'grey', 'black']),
 ]
 
 </script>
