@@ -60,10 +60,12 @@
       <div>
         <Button animated>
           Next
-          <template #animated>👉</template>
+          <template #animated>
+            <Icon :icon="faArrowRight"/>
+          </template>
         </Button>
         <Button animated="vertical">
-          🛒
+          <Icon :icon="faShoppingCart"/>
           <template #animated>Shop</template>
         </Button>
         <Button animated="fade">
@@ -86,4 +88,5 @@
 
 <script lang="ts" setup>
 import Button from 'src/components/Button.vue'
+import { faArrowRight, faShoppingCart } from '@fortawesome/free-solid-svg-icons'
 </script>
