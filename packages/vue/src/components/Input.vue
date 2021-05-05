@@ -8,6 +8,7 @@
     </div>
 
     <input
+      ref="inputRef"
       v-model="value"
       :maxlength="props.maxLength"
       :placeholder="props.placeholder"
@@ -23,7 +24,7 @@
 
 <script lang="ts" setup>
 import type { IconDefinition } from '@fortawesome/fontawesome-svg-core'
-import { computed, defineEmit, defineProps, useContext } from 'vue'
+import { computed, defineEmit, defineProps, ref, useContext } from 'vue'
 import pick from '../utils/pick'
 
 export type InputType = 'text' | 'number' | 'tel' | 'url' | 'email'
@@ -57,7 +58,7 @@ const value = computed<string>({
   set: (val) => void emit('update:modelValue', val),
 })
 
-const { slots } = useContext()
+const { slots, expose } = useContext()
 
 const classes = [
   'sui-input',
@@ -76,6 +77,12 @@ const inputType = props.type
   || (props.email && 'email')
   || (props.email && 'email')
   || undefined
+
+ref: inputRef = ref<HTMLInputElement | null>(null)
+
+expose({
+  focus: () => void inputRef.focus(),
+})
 
 </script>
 

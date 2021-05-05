@@ -11,10 +11,18 @@
     </div>
 
     <div class="field">
+      <h3>Focus</h3>
+
+      <div>
+        <Input ref="focusRef" placeholder="Focus action"/> <Button @click="focusRef.focus()">Focus</Button>
+      </div>
+    </div>
+
+    <div class="field">
       <h3>Typed inputs</h3>
 
       <div>
-        <Input placeholder="Text" />
+        <Input :maxLength="6" placeholder="Text (with max length 6)" />
         <Input email placeholder="Email" />
         <Input number placeholder="Number" />
         <Input tel placeholder="Telephone" />
@@ -26,8 +34,10 @@
       <h3>Status</h3>
 
       <div>
+        <Input focus placeholder="Focus"/>
         <Input disabled placeholder="Disabled"/>
         <Input error placeholder="Error"/>
+        <br>
         <Input :icon="faUser" placeholder="Icon" />
         <Input loading :icon="faUser" placeholder="Loading" />
       </div>
@@ -57,8 +67,10 @@
 
 <script lang="ts" setup>
 import Input from 'src/components/Input.vue'
+import Button from 'src/components/Button.vue'
 import { faUser } from '@fortawesome/free-solid-svg-icons'
 import { ref } from 'vue'
 
 ref: input1 = ref('Hello')
+ref: focusRef = ref(null)
 </script>
