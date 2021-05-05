@@ -42,6 +42,7 @@ const props = defineProps<{
   focus?: boolean
   loading?: boolean
   disabled?: boolean
+  error?: boolean
   icon?: IconDefinition
 }>()
 
@@ -59,7 +60,7 @@ const { slots } = useContext()
 const classes = [
   'sui-input',
   pick(props, 'focus'),
-  { disabled: props.disabled },
+  { disabled: props.disabled, error: props.error },
 ]
 
 const inputType = props.type
@@ -93,10 +94,11 @@ $input-padding-horizontal = 1em;
     font-size 100%
     outline 0
     padding 0 ($input-padding-horizontal/ 2)
-    background-color #fff
+    background-color transparent
     border none
     line-height 1.21em
     transition .1s ease, border-color .1s ease, box-shadow .1s ease
+    color inherit
 
     &::placeholder {
       color: $color-placeholder
@@ -112,6 +114,16 @@ $input-padding-horizontal = 1em;
 
   &.disabled {
     opacity: 0.45
+  }
+
+  &.error {
+    background-color #fff6f6
+    border-color #e0b4b4
+    color #9f3a38
+
+    input::placeholder {
+      color #e7bdbc
+    }
   }
 
   .prepend

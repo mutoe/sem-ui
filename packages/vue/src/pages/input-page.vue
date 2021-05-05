@@ -27,6 +27,7 @@
 
       <div>
         <Input disabled placeholder="Disabled"/>
+        <Input error placeholder="Error"/>
         <Input :icon="faUser" placeholder="Icon" />
         <Input loading :icon="faUser" placeholder="Loading" />
       </div>
