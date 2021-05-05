@@ -1,8 +1,11 @@
 loading() {
+  display inline-block
   position: relative
   cursor: default
   color: transparent
   transition all 0 linear, opacity $default-duration $default-easing
+  width: $loader-size
+  height: $loader-size
 
   &::before
   &::after {

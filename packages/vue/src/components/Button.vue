@@ -1,6 +1,8 @@
 <template>
   <button :class="classes" :disabled="props.disabled || props.loading">
-    <template v-if="!props.animated">
+    <div v-if="props.loading" class="loading"></div>
+
+    <template v-else-if="!props.animated">
       <slot>{{ props.content }}</slot>
     </template>
 
@@ -57,7 +59,7 @@ const props = defineProps<{
 const classes = [
   'sui-button',
   props.animated === true ? 'horizontal' : props.animated,
-  pick(props, 'animated', 'active', 'loading', 'fluid'),
+  pick(props, 'animated', 'active', 'fluid'),
 
   props.theme,
   pick(props, ['primary', 'secondary']),
@@ -71,7 +73,6 @@ const classes = [
 <style lang="stylus" scoped>
 $shadow-distance = 0px
 $shadow-offset = ($shadow-distance / 2)
-$vertical-padding = (4 / 7 + 1 / 4) em
 $horizontal-padding = 1.5em
 $vertical-margin = 0
 $horizontal-margin = 0.25em
@@ -84,19 +85,22 @@ $animate-duration = 0.3s
 .sui-button {
   color $color-text
   cursor pointer
-  display: inline-block;
-  min-height 1em
+  display: inline-flex
+  justify-content center
+  align-items center
+  min-height $input-min-height
   font-size $font-size-basic
   outline none
   border none
   margin: 0 $horizontal-margin $vertical-margin 0
-  padding $vertical-padding $horizontal-padding ($vertical-padding + $shadow-offset)
+  padding 0 $horizontal-padding
   border-radius $border-radius
   box-shadow $box-shadow
   transition $transition
   transition-duration $default-duration
   transition-timing-function $default-easing
   transition-property $transition-property
+  vertical-align middle
 
   &.fluid {
     display block
@@ -161,8 +165,9 @@ $animate-duration = 0.3s
     box-shadow none
   }
 
-  &.loading {
+  .loading {
     loading()
+    min-width 4em
   }
 
   &.animated {
