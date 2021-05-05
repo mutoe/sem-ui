@@ -60,7 +60,8 @@ const classes = [
   pick(props, 'animated', 'active', 'loading', 'fluid'),
 
   props.theme,
-  pick(props, ['primary', 'secondary', 'active', 'loading']),
+  pick(props, ['primary', 'secondary']),
+
   props.color,
   pick(props, ['red', 'orange', 'yellow', 'olive', 'green', 'teal', 'blue', 'violet', 'purple', 'pink', 'brown', 'grey', 'black']),
 ]
