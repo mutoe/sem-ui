@@ -23,11 +23,12 @@
     </div>
 
     <div class="field">
-      <h3>Input with icon</h3>
+      <h3>Status</h3>
 
       <div>
-        <Input :icon="faUser" placeholder="Username" />
-        <Input loading :icon="faUser" placeholder="Username" />
+        <Input disabled placeholder="Disabled"/>
+        <Input :icon="faUser" placeholder="Icon" />
+        <Input loading :icon="faUser" placeholder="Loading" />
       </div>
     </div>
 

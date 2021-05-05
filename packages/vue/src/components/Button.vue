@@ -1,5 +1,5 @@
 <template>
-  <button :class="classes" :disabled="props.disabled || props.loading">
+  <button :class="classes" :disabled="props.disabled || props.loading" :aria-disabled="props.disabled || props.loading">
     <div v-if="props.loading" class="loading"></div>
 
     <template v-else-if="!props.animated">
@@ -157,7 +157,6 @@ $animate-duration = 0.3s
       }
     }
   }
-
 
   &:disabled:not(.loading) {
     cursor: default

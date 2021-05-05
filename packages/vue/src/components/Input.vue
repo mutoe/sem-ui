@@ -1,5 +1,5 @@
 <template>
-  <div :class="classes">
+  <label :class="classes">
     <div v-if="slots.prepend || props.icon || props.loading" class="prepend">
       <slot name="prepend">
         <span v-if="loading" class="loading" />
@@ -12,12 +12,13 @@
       :maxlength="props.maxLength"
       :placeholder="props.placeholder"
       :type="inputType"
+      :disabled="props.disabled"
     />
 
     <div v-if="slots.append" class="append">
       <slot name="append"></slot>
     </div>
-  </div>
+  </label>
 </template>
 
 <script lang="ts" setup>
@@ -40,6 +41,7 @@ const props = defineProps<{
   placeholder?: string
   focus?: boolean
   loading?: boolean
+  disabled?: boolean
   icon?: IconDefinition
 }>()
 
@@ -57,6 +59,7 @@ const { slots } = useContext()
 const classes = [
   'sui-input',
   pick(props, 'focus'),
+  { disabled: props.disabled },
 ]
 
 const inputType = props.type
@@ -107,6 +110,9 @@ $input-padding-horizontal = 1em;
     box-shadow none
   }
 
+  &.disabled {
+    opacity: 0.45
+  }
 
   .prepend
   .append {
