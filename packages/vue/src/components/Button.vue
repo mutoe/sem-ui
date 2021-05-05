@@ -162,28 +162,7 @@ $animate-duration = 0.3s
   }
 
   &.loading {
-    position: relative
-    cursor: default
-    color: transparent
-    transition all 0 linear, opacity $default-duration $default-easing
-
-    &::before
-    &::after {
-      position absolute
-      content ""
-      top: 50%
-      left: 50%
-      margin $loader-margin
-      height: $loader-size
-      width $loader-size
-      border-radius 500rem
-      border .2em solid rgba(#000, .15)
-    }
-
-    &::after {
-      animation button-spin .6s linear infinite
-      border-color #fff transparent transparent
-    }
+    loading()
   }
 
   &.animated {
@@ -275,16 +254,6 @@ $animate-duration = 0.3s
         }
       }
     }
-  }
-}
-
-@keyframes button-spin {
-  0% {
-    transform rotateZ(0)
-  }
-
-  100% {
-    transform rotateZ(360deg)
   }
 }
 </style>
