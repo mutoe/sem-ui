@@ -44,6 +44,14 @@
       </div>
     </div>
 
+    <div class="field">
+      <h3>Fluid</h3>
+
+      <div>
+        <Input fluid placeholder="Fluid" />
+      </div>
+    </div>
+
   </section>
 </template>
 

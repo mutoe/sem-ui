@@ -30,6 +30,8 @@ export type InputType = 'text' | 'number' | 'tel' | 'url' | 'email'
 
 const props = defineProps<{
   modelValue?: string
+  maxLength?: number
+  placeholder?: string
 
   type?: InputType
   number?: boolean
@@ -37,12 +39,12 @@ const props = defineProps<{
   url?: boolean
   email?: boolean
 
-  maxLength?: number
-  placeholder?: string
   focus?: boolean
-  loading?: boolean
   disabled?: boolean
   error?: boolean
+  fluid?: boolean
+
+  loading?: boolean
   icon?: IconDefinition
 }>()
 
@@ -60,7 +62,11 @@ const { slots } = useContext()
 const classes = [
   'sui-input',
   pick(props, 'focus'),
-  { disabled: props.disabled, error: props.error },
+  {
+    disabled: props.disabled,
+    error: props.error,
+    fluid: props.fluid,
+  },
 ]
 
 const inputType = props.type
@@ -87,6 +93,10 @@ $input-padding-horizontal = 1em;
   transition box-shadow .1s ease, border-color .1s ease
   vertical-align middle
   min-height $input-min-height
+
+  &.fluid {
+    width: 100%
+  }
 
   input {
     display block
@@ -121,7 +131,9 @@ $input-padding-horizontal = 1em;
     border-color #e0b4b4
     color #9f3a38
 
-    input::placeholder {
+    input:
+
+    :placeholder {
       color #e7bdbc
     }
   }
