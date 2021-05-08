@@ -96,10 +96,10 @@ $input-padding-horizontal = 1em;
   color $color-text
   padding: $input-padding-vertical ($input-padding-horizontal/ 2);
   border: 1px solid $border-color
-  border-radius 0.218rem
+  border-radius 0.28571429rem
   transition box-shadow .1s ease, border-color .1s ease
   vertical-align middle
-  min-height $input-min-height
+  line-height 1.21428571em
 
   &.fluid {
     width: 100%

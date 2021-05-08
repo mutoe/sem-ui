@@ -1,6 +1,6 @@
 <template>
   <button :class="classes" :disabled="props.disabled || props.loading" :aria-disabled="props.disabled || props.loading">
-    <div v-if="props.loading" class="loading"></div>
+    <div v-if="props.loading" class="loading">Loading</div>
 
     <template v-else-if="!props.animated">
       <slot>{{ props.content }}</slot>
@@ -11,7 +11,7 @@
         <slot>{{ props.content }}</slot>
       </div>
       <div class="hidden">
-        <slot name="animated"/>
+        <slot name="animated" />
       </div>
     </template>
   </button>
@@ -24,10 +24,16 @@ import { defineProps } from 'vue'
 export type ButtonTheme = 'primary' | 'secondary' | 'default'
 export type ButtonAnimated = true | 'horizontal' | 'vertical' | 'fade'
 export type ButtonColor = 'red' | 'orange' | 'yellow' | 'olive' | 'green' | 'teal' | 'blue' | 'violet' | 'purple' | 'pink' | 'brown' | 'grey' | 'black'
+export type ButtonSize = 'mini' | 'small' | 'default' | 'large' | 'massive'
 
 const props = defineProps<{
   content?: string
 
+  size?: ButtonSize
+  mini?: boolean
+  small?: boolean
+  large?: boolean
+  massive?: boolean
 
   active?: boolean
   disabled?: boolean
@@ -69,6 +75,9 @@ const classes = [
 
   props.color,
   pick(props, ['red', 'orange', 'yellow', 'olive', 'green', 'teal', 'blue', 'violet', 'purple', 'pink', 'brown', 'grey', 'black', 'basic', 'positive', 'negative']),
+
+  props.size,
+  pick(props, 'mini', 'small', 'large', 'massive'),
 ]
 
 </script>
@@ -91,12 +100,12 @@ $animate-duration = 0.3s
   display: inline-flex
   justify-content center
   align-items center
-  min-height $input-min-height
-  font-size $font-size-basic
+  min-height 1em
+  font-size 1rem
   outline none
   border none
   margin: 0 $horizontal-margin $vertical-margin 0
-  padding 0 $horizontal-padding
+  padding .78571429em $horizontal-padding
   border-radius $border-radius
   box-shadow $box-shadow
   transition $transition
@@ -108,6 +117,22 @@ $animate-duration = 0.3s
   &.fluid {
     display block
     width 100%
+  }
+
+  &.mini {
+    font-size (1 - 1.5 / 7) rem
+  }
+
+  &.small {
+    font-size (1 - 0.75 / 7) rem
+  }
+
+  &.large {
+    font-size (1 + 2 / 7) rem
+  }
+
+  &.massive {
+    font-size (1 + 4 / 7) rem
   }
 
   &:hover,

@@ -97,11 +97,11 @@
         <Button animated>
           Next
           <template #animated>
-            <Icon :icon="faArrowRight"/>
+            <Icon :icon="faArrowRight" />
           </template>
         </Button>
         <Button animated="vertical">
-          <Icon :icon="faShoppingCart"/>
+          <Icon :icon="faShoppingCart" />
           <template #animated>Shop</template>
         </Button>
         <Button animated="fade">
@@ -117,6 +117,18 @@
 
       <div>
         <Button fluid>Fits to Container</Button>
+      </div>
+    </div>
+
+    <div class="field">
+      <h3>Size</h3>
+
+      <div>
+        <Button mini>Mini</Button>
+        <Button small>Small</Button>
+        <Button>Default</Button>
+        <Button large>Large</Button>
+        <Button massive>Massive</Button>
       </div>
     </div>
   </section>
