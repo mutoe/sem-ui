@@ -138,9 +138,7 @@ $input-padding-horizontal = 1em;
     border-color #e0b4b4
     color #9f3a38
 
-    input:
-
-    :placeholder {
+    input::placeholder {
       color #e7bdbc
     }
   }

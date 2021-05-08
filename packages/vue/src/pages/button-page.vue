@@ -90,6 +90,15 @@
     </div>
 
     <div class="field">
+      <h3>Icon</h3>
+
+      <div>
+        <Button :icon="faShoppingCart" />
+        <Button :icon="faShoppingCart" content="Shopping cart" />
+      </div>
+    </div>
+
+    <div class="field">
       <h3>Animated</h3>
       <p>A button can animate to show hidden content</p>
 

@@ -3,6 +3,7 @@
     <div v-if="props.loading" class="loading">Loading</div>
 
     <template v-else-if="!props.animated">
+      <Icon v-if="props.icon" :class="{gutter: props.content || slots.default}" :icon="props.icon" />
       <slot>{{ props.content }}</slot>
     </template>
 
@@ -18,8 +19,9 @@
 </template>
 
 <script lang="ts" setup>
+import type { IconDefinition } from '@fortawesome/fontawesome-svg-core'
 import pick from 'src/utils/pick'
-import { defineProps } from 'vue'
+import { defineProps, useContext } from 'vue'
 
 export type ButtonTheme = 'primary' | 'secondary' | 'default'
 export type ButtonAnimated = true | 'horizontal' | 'vertical' | 'fade'
@@ -28,6 +30,7 @@ export type ButtonSize = 'mini' | 'small' | 'default' | 'large' | 'massive'
 
 const props = defineProps<{
   content?: string
+  icon?: IconDefinition
 
   size?: ButtonSize
   mini?: boolean
@@ -64,6 +67,8 @@ const props = defineProps<{
 
   animated?: ButtonAnimated
 }>()
+
+const { slots } = useContext()
 
 const classes = [
   'sui-button',
@@ -113,6 +118,10 @@ $animate-duration = 0.3s
   transition-timing-function $default-easing
   transition-property $transition-property
   vertical-align middle
+
+  .gutter {
+    margin-right: (4 / 7) em;
+  }
 
   &.fluid {
     display block
