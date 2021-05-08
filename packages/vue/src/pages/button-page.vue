@@ -37,19 +37,55 @@
       <p>A button can have different containers.</p>
 
       <div>
-        <Button red>red</Button>
-        <Button orange>orange</Button>
-        <Button yellow>yellow</Button>
-        <Button olive>olive</Button>
-        <Button green>green</Button>
-        <Button teal>teal</Button>
-        <Button blue>blue</Button>
-        <Button violet>violet</Button>
-        <Button purple>purple</Button>
-        <Button pink>pink</Button>
-        <Button brown>brown</Button>
-        <Button grey>grey</Button>
-        <Button black>black</Button>
+        <Button>Basic button</Button>
+        <Button primary>Primary</Button>
+        <Button secondary>Secondary</Button>
+        <Button positive>Positive</Button>
+        <Button negative>Negative</Button>
+        <br>
+        <br>
+
+        <Button red>Red</Button>
+        <Button orange>Orange</Button>
+        <Button yellow>Yellow</Button>
+        <Button olive>Olive</Button>
+        <Button green>Green</Button>
+        <Button teal>Teal</Button>
+        <Button blue>Blue</Button>
+        <Button violet>Violet</Button>
+        <Button purple>Purple</Button>
+        <Button pink>Pink</Button>
+        <Button brown>Brown</Button>
+        <Button grey>Grey</Button>
+        <Button black>Black</Button>
+      </div>
+    </div>
+
+    <div class="field">
+      <h3>Basic</h3>
+
+      <div>
+        <Button basic>Basic button</Button>
+        <Button basic primary>Primary</Button>
+        <Button basic secondary>Secondary</Button>
+        <Button basic positive>Positive</Button>
+        <Button basic negative>Negative</Button>
+        <br>
+        <br>
+
+        <Button basic red>Red</Button>
+        <Button basic orange>Orange</Button>
+        <Button basic yellow>Yellow</Button>
+        <Button basic olive>Olive</Button>
+        <Button basic green>Green</Button>
+        <Button basic teal>Teal</Button>
+        <Button basic blue>Blue</Button>
+        <Button basic violet>Violet</Button>
+        <Button basic purple>Purple</Button>
+        <Button basic pink>Pink</Button>
+        <Button basic brown>Brown</Button>
+        <Button basic grey>Grey</Button>
+        <Button basic black>Black</Button>
       </div>
     </div>
 

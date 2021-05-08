@@ -28,9 +28,6 @@ export type ButtonColor = 'red' | 'orange' | 'yellow' | 'olive' | 'green' | 'tea
 const props = defineProps<{
   content?: string
 
-  theme?: ButtonTheme
-  primary?: boolean
-  secondary?: boolean
 
   active?: boolean
   disabled?: boolean
@@ -38,6 +35,12 @@ const props = defineProps<{
 
   fluid?: boolean
 
+  theme?: ButtonTheme
+  primary?: boolean
+  secondary?: boolean
+  positive?: boolean
+  negative?: boolean
+  basic?: boolean
   color?: ButtonColor
   red?: boolean
   orange?: boolean
@@ -65,7 +68,7 @@ const classes = [
   pick(props, ['primary', 'secondary']),
 
   props.color,
-  pick(props, ['red', 'orange', 'yellow', 'olive', 'green', 'teal', 'blue', 'violet', 'purple', 'pink', 'brown', 'grey', 'black']),
+  pick(props, ['red', 'orange', 'yellow', 'olive', 'green', 'teal', 'blue', 'violet', 'purple', 'pink', 'brown', 'grey', 'black', 'basic', 'positive', 'negative']),
 ]
 
 </script>
@@ -118,10 +121,27 @@ $animate-duration = 0.3s
     filter brightness(0.85)
   }
 
+  &.basic {
+    color rgba(#000, 0.6)
+    background: transparent
+    border 1px solid currentColor
+
+    &:active:not(:disabled) {
+      background-color rgba(#f8f8f8, 0.2)
+      box-shadow 0 0 0 1px rgba(#000, 0.15) inset, 0 1px 4px 0 rgba(34, 36, 38, .15) inset
+    }
+  }
+
   &.primary {
     box-shadow $border-box-shadow
     background-color $color-primary
     color $color-text-inverse
+
+    &.basic {
+      box-shadow none
+      background-color transparent
+      color $color-primary
+    }
   }
 
   &.secondary {
@@ -138,9 +158,25 @@ $animate-duration = 0.3s
     &:active:not(:disabled) {
       filter brightness(2)
     }
+
+    &.basic {
+      color $color-secondary
+      background-color transparent
+
+      &:hover
+      &:focus
+      &.active {
+        filter brightness(2.5)
+      }
+
+      &:active:not(:disabled) {
+        background-color $color-secondary, rgba(#fff, 0.2)
+        box-shadow 0 0 0 1px rgba(#000, 0.15) inset, 0 1px 4px 0 rgba(34, 36, 38, .15) inset
+      }
+    }
   }
 
-  for c in 'red' 'orange' 'yellow' 'olive' 'green' 'teal' 'blue' 'violet' 'purple' 'pink' 'brown' 'grey' 'black' {
+  for c in 'red' 'orange' 'yellow' 'olive' 'green' 'teal' 'blue' 'violet' 'purple' 'pink' 'brown' 'grey' 'black' 'positive' 'negative' {
     &.{c} {
       background-color lookup('$color-' + c)
       color $color-text-inverse
@@ -154,6 +190,23 @@ $animate-duration = 0.3s
 
       &:active:not(:disabled) {
         filter brightness(0.85)
+      }
+
+      &.basic {
+        background-color #fff
+        color: lookup('$color-' + c)
+        border: 1px solid currentColor
+
+        &:hover
+        &:focus
+        &.active {
+          filter brightness(1.1)
+        }
+
+        &:active:not(:disabled) {
+          background-color lookup('$color-' + c), rgba(#fff, 0.2)
+          box-shadow 0 0 0 1px rgba(#000, 0.15) inset, 0 1px 4px 0 rgba(34, 36, 38, .15) inset
+        }
       }
     }
   }
