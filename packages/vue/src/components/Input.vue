@@ -81,7 +81,7 @@ const inputType = props.type
 ref: inputRef = ref<HTMLInputElement | null>(null)
 
 expose({
-  focus: () => void inputRef.focus(),
+  focus: () => void $inputRef.value?.focus(),
 })
 
 </script>

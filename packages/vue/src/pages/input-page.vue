@@ -14,7 +14,7 @@
       <h3>Focus</h3>
 
       <div>
-        <Input ref="focusRef" placeholder="Focus action"/> <Button @click="focusRef.focus()">Focus</Button>
+        <Input ref="focusRef" placeholder="Focus action" /> <Button @click="focusRef?.focus()">Focus</Button>
       </div>
     </div>
 
@@ -34,9 +34,9 @@
       <h3>Status</h3>
 
       <div>
-        <Input focus placeholder="Focus"/>
-        <Input disabled placeholder="Disabled"/>
-        <Input error placeholder="Error"/>
+        <Input focus placeholder="Focus" />
+        <Input disabled placeholder="Disabled" />
+        <Input error placeholder="Error" />
         <br>
         <Input :icon="faUser" placeholder="Icon" />
         <Input loading :icon="faUser" placeholder="Loading" />
@@ -72,5 +72,5 @@ import { faUser } from '@fortawesome/free-solid-svg-icons'
 import { ref } from 'vue'
 
 ref: input1 = ref('Hello')
-ref: focusRef = ref(null)
+ref: focusRef = ref<{ focus: () => void } | null>(null)
 </script>
