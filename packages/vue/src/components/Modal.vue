@@ -2,7 +2,7 @@
   <teleport v-if="show" to="body">
     <div class="sui-modal" @click="show = false">
       <div class="container">
-        <Button v-if="props.closeIcon" :icon="faTimes" basic class="close-icon"></Button>
+        <Button v-if="displayCloseIcon" :icon="faTimes" basic class="close-icon"></Button>
         <header class="header">
           <slot name="header">
             <h2>{{ props.title || 'Title' }}</h2>
@@ -27,6 +27,10 @@ import { defineEmit, defineProps, ref, useContext, watch, watchEffect } from 'vu
 import Button from 'src/components/Button.vue'
 import { faTimes } from '@fortawesome/free-solid-svg-icons'
 
+const modalConfig: SemModalConfig = window.__SEM_CONFIG?.modal ?? {
+  closeIcon: false
+}
+
 export interface ModalRef {
   open: () => void
   close: () => void
@@ -49,6 +53,8 @@ ref: show = false
 watch($show, show => {
   document.body.style.overflow = show ? 'hidden' : 'visible'
 })
+
+const displayCloseIcon = props.closeIcon || modalConfig.closeIcon
 
 expose({
   open: () => void (show = true),
