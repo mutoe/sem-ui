@@ -1,5 +1,5 @@
 <template>
-  <teleport v-if="show" to="body">
+  <Teleport v-if="show" to="body">
     <div class="sui-modal" @click="show = false">
       <div class="container">
         <Button v-if="displayCloseIcon" :icon="faTimes" basic class="close-icon"></Button>
@@ -19,18 +19,17 @@
         </div>
       </div>
     </div>
-  </teleport>
+  </Teleport>
 </template>
 
 <script lang="ts" setup>
 import Button from 'src/components/Button.vue'
 import { faTimes } from '@fortawesome/free-solid-svg-icons'
-import { useSlots } from '@vue/runtime-core'
 import { watch, watchEffect } from 'vue'
 
-const modalConfig: SemModalConfig = window.__SEM_CONFIG?.modal ?? {
+const modalConfig: SemModalConfig = Object.assign({
   closeIcon: false
-}
+}, window.__SEM_CONFIG?.modal)
 
 export interface ModalRef {
   open: () => void
@@ -47,7 +46,7 @@ const props = defineProps<{
 }>()
 const emit = defineEmits<{
   (e: 'confirm'): void
-  (e: 'cancel'): void
+  (e: 'close'): void
 }>()
 
 let show = $ref(false)
@@ -56,13 +55,13 @@ watch($raw(show), show => {
   document.body.style.overflow = show ? 'hidden' : 'visible'
 })
 
-const displayCloseIcon = props.closeIcon || modalConfig.closeIcon
+const displayCloseIcon = props.closeIcon ?? modalConfig.closeIcon
 
 watchEffect(() => {
   if (show) {
-    document.querySelector('[data-v-app]')?.classList.add('blurring dimmed')
+    document.querySelector('[data-v-app]')?.classList.add('blurring', 'dimmed')
   } else {
-    document.querySelector('[data-v-app]')?.classList.remove('blurring dimmed')
+    document.querySelector('[data-v-app]')?.classList.remove('blurring', 'dimmed')
   }
 })
 
