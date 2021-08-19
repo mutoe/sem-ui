@@ -111,6 +111,7 @@ const classes = [
   pick(props, "animated", "active", "fluid"),
 
   { "with-label": props.leftLabelIcon ?? props.rightLabelIcon ?? slots.leftLabel ?? slots.rightLabel },
+  { icon: props.icon },
 
   props.theme,
   props.color,
@@ -165,20 +166,10 @@ $animate-duration = 0.3s
     width 100%
   }
 
-  &.mini {
-    font-size (1 - 1.5 / 7) rem
-  }
-
-  &.small {
-    font-size (1 - 0.75 / 7) rem
-  }
-
-  &.large {
-    font-size (1 + 2 / 7) rem
-  }
-
-  &.massive {
-    font-size (1 + 4 / 7) rem
+  for $size in $size-list {
+    &.{$size} {
+      size($size)
+    }
   }
 
   &:hover,

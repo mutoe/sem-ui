@@ -303,6 +303,27 @@
           <Button>Two</Button>
           <Button>Three</Button>
         </ButtonGroup>
+        <ButtonGroup vertical>
+          <Button>One</Button>
+          <Button>Two</Button>
+          <Button :rightLabelIcon="faArrowRight">Three</Button>
+        </ButtonGroup>
+        <ButtonGroup>
+          <Button :icon="faAlignLeft"></Button>
+          <Button :icon="faAlignCenter"></Button>
+          <Button :icon="faAlignRight"></Button>
+          <Button :icon="faAlignJustify"></Button>
+        </ButtonGroup>
+        <ButtonGroup>
+          <Button :icon="faBold"></Button>
+          <Button :icon="faUnderline"></Button>
+          <Button :icon="faStrikethrough"></Button>
+        </ButtonGroup>
+        <ButtonGroup size="large">
+          <Button>One</Button>
+          <Button>Two</Button>
+          <Button>Three</Button>
+        </ButtonGroup>
       </div>
     </div>
   </section>
@@ -311,5 +332,19 @@
 <script lang="ts" setup>
 import Button from "src/components/Button.vue";
 import ButtonGroup from "src/components/ButtonGroup.vue";
-import { faCodeBranch, faHeart, faArrowRight, faArrowLeft, faShoppingCart, faPause } from "@fortawesome/free-solid-svg-icons";
+import {
+  faAlignLeft,
+  faAlignRight,
+  faAlignCenter,
+  faAlignJustify,
+  faBold,
+  faUnderline,
+  faStrikethrough,
+  faCodeBranch,
+  faHeart,
+  faArrowRight,
+  faArrowLeft,
+  faShoppingCart,
+  faPause,
+} from "@fortawesome/free-solid-svg-icons";
 </script>

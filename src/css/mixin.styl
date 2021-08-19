@@ -24,3 +24,17 @@ loading() {
     border-color #fff transparent transparent
   }
 }
+
+size($size = "middle") {
+  if $size == "mini" {
+    font-size (1 - 1.5 / 7) rem
+  } else if $size == "small" {
+    font-size (1 - 0.75 / 7) rem
+  } else if $size == "large" {
+    font-size (1 + 2 / 7) rem
+  } else if $size == "massive" {
+    font-size (1 + 4 / 7) rem
+  } else {
+    font-size 1rem
+  }
+}
