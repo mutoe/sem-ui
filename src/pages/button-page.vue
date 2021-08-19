@@ -293,10 +293,23 @@
         </Button>
       </div>
     </div>
+
+    <div class="field">
+      <h3>Button group</h3>
+
+      <div>
+        <ButtonGroup>
+          <Button>One</Button>
+          <Button>Two</Button>
+          <Button>Three</Button>
+        </ButtonGroup>
+      </div>
+    </div>
   </section>
 </template>
 
 <script lang="ts" setup>
-import Button from 'src/components/Button.vue'
-import { faCodeBranch, faHeart, faArrowRight, faArrowLeft, faShoppingCart, faPause } from '@fortawesome/free-solid-svg-icons'
+import Button from "src/components/Button.vue";
+import ButtonGroup from "src/components/ButtonGroup.vue";
+import { faCodeBranch, faHeart, faArrowRight, faArrowLeft, faShoppingCart, faPause } from "@fortawesome/free-solid-svg-icons";
 </script>
