@@ -7,6 +7,7 @@
 </template>
 
 <script lang="ts" setup>
+import { provide, ref } from 'vue'
 import ButtonPage from './pages/button-page.vue'
 import InputPage from './pages/input-page.vue'
 import ModalPage from './pages/modal-page.vue'

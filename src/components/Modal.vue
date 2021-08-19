@@ -23,7 +23,7 @@
 </template>
 
 <script lang="ts" setup>
-import { defineEmit, defineProps, ref, useContext, watch, watchEffect } from 'vue'
+import { defineEmit, defineProps, inject, ref, useContext, watch, watchEffect } from 'vue'
 import Button from 'src/components/Button.vue'
 import { faTimes } from '@fortawesome/free-solid-svg-icons'
 
@@ -41,6 +41,8 @@ const props = defineProps<{
   title?: string
   content?: string
 
+  dimmerInverted?: boolean
+  dimmerBlurring?: boolean
   closeIcon?: boolean
 }>()
 const emit = defineEmit<{
@@ -55,6 +57,14 @@ watch($show, show => {
 })
 
 const displayCloseIcon = props.closeIcon || modalConfig.closeIcon
+
+watchEffect(() => {
+  if (show) {
+    document.querySelector('[data-v-app]')?.classList.add('blurring dimmed')
+  } else {
+    document.querySelector('[data-v-app]')?.classList.remove('blurring dimmed')
+  }
+})
 
 expose({
   open: () => void (show = true),
@@ -129,4 +139,11 @@ expose({
   }
 
 }
+
+</style>
+
+<style lang="stylus">
+.blurring
+  filter blur(5px) grayscale(.7)
+
 </style>
