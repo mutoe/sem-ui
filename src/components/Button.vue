@@ -12,107 +12,113 @@
     </template>
 
     <template v-else>
-      <Icon v-if="props.icon" :class="{ gutter: props.content || slots.default }" :icon="props.icon" />
-      <span v-if="props.leftLabelIcon" class="label left">
-        <Icon :icon="props.leftLabelIcon" />
+      <span v-if="slots.leftLabel ?? props.leftLabelIcon" :class="['label', 'left', { icon: props.leftLabelIcon }]">
+        <slot name="leftLabel">
+          <Icon :icon="props.leftLabelIcon" />
+        </slot>
       </span>
       <span class="content">
+        <Icon v-if="props.icon" :class="{ gutter: props.content || slots.default }" :icon="props.icon" />
         <slot>{{ props.content }}</slot>
       </span>
-      <span v-if="props.rightLabelIcon" class="label right">
-        <Icon :icon="props.rightLabelIcon" />
+      <span v-if="slots.rightLabel ?? props.rightLabelIcon" :class="['label', 'right', { icon: props.rightLabelIcon }]">
+        <slot name="rightLabel">
+          <Icon :icon="props.rightLabelIcon" />
+        </slot>
       </span>
     </template>
   </button>
 </template>
 
 <script lang="ts" setup>
-import type { IconDefinition } from '@fortawesome/fontawesome-svg-core'
-import { useSlots } from 'vue'
-import pick from 'src/utils/pick'
+import type { IconDefinition } from "@fortawesome/fontawesome-svg-core";
+import { useSlots } from "vue";
+import pick from "src/utils/pick";
 
-export type ButtonTheme = 'primary' | 'secondary' | 'default'
-export type ButtonAnimated = true | 'horizontal' | 'vertical' | 'fade'
-export type ButtonColor = 'red' | 'orange' | 'yellow' | 'olive' | 'green' | 'teal' | 'blue' | 'violet' | 'purple' | 'pink' | 'brown' | 'grey' | 'black'
-export type ButtonSize = 'mini' | 'small' | 'default' | 'large' | 'massive'
+export type ButtonTheme = "primary" | "secondary" | "default";
+export type ButtonAnimated = true | "horizontal" | "vertical" | "fade";
+export type ButtonColor = "light" | "red" | "orange" | "yellow" | "olive" | "green" | "teal" | "blue" | "violet" | "purple" | "pink" | "brown" | "grey" | "black";
+export type ButtonSize = "mini" | "small" | "middle" | "large" | "massive";
 
 const props = defineProps<{
-  content?: string
-  icon?: IconDefinition
-  leftLabelIcon?: IconDefinition
-  rightLabelIcon?: IconDefinition
+  content?: string;
+  icon?: IconDefinition;
+  leftLabelIcon?: IconDefinition;
+  rightLabelIcon?: IconDefinition;
 
-  size?: ButtonSize
-  mini?: boolean
-  small?: boolean
-  large?: boolean
-  massive?: boolean
+  size?: ButtonSize;
+  mini?: boolean;
+  small?: boolean;
+  large?: boolean;
+  massive?: boolean;
 
-  active?: boolean
-  disabled?: boolean
-  loading?: boolean
+  active?: boolean;
+  disabled?: boolean;
+  loading?: boolean;
 
-  fluid?: boolean
+  fluid?: boolean;
 
-  theme?: ButtonTheme
-  primary?: boolean
-  secondary?: boolean
-  positive?: boolean
-  negative?: boolean
-  basic?: boolean
-  color?: ButtonColor
-  red?: boolean
-  orange?: boolean
-  yellow?: boolean
-  olive?: boolean
-  green?: boolean
-  teal?: boolean
-  blue?: boolean
-  violet?: boolean
-  purple?: boolean
-  pink?: boolean
-  brown?: boolean
-  grey?: boolean
-  black?: boolean
+  theme?: ButtonTheme;
+  primary?: boolean;
+  secondary?: boolean;
+  positive?: boolean;
+  negative?: boolean;
+  basic?: boolean;
+  color?: ButtonColor;
+  red?: boolean;
+  orange?: boolean;
+  yellow?: boolean;
+  olive?: boolean;
+  green?: boolean;
+  teal?: boolean;
+  blue?: boolean;
+  violet?: boolean;
+  purple?: boolean;
+  pink?: boolean;
+  brown?: boolean;
+  grey?: boolean;
+  black?: boolean;
 
-  animated?: ButtonAnimated
-}>()
+  animated?: ButtonAnimated;
+}>();
 
-const slots = useSlots()
+const slots = useSlots();
+
+const colors: (keyof typeof props)[] = [
+  "red",
+  "orange",
+  "yellow",
+  "olive",
+  "green",
+  "teal",
+  "blue",
+  "violet",
+  "purple",
+  "pink",
+  "brown",
+  "grey",
+  "black",
+  "basic",
+  "positive",
+  "negative",
+  "primary",
+  "secondary",
+];
 
 const classes = [
-  'sui-button',
-  props.animated === true ? 'horizontal' : props.animated,
-  pick(props, 'animated', 'active', 'fluid'),
+  "sui-button",
+  props.animated === true ? "horizontal" : props.animated,
+  pick(props, "animated", "active", "fluid"),
 
-  { 'with-label': props.leftLabelIcon ?? props.rightLabelIcon },
+  { "with-label": props.leftLabelIcon ?? props.rightLabelIcon ?? slots.leftLabel ?? slots.rightLabel },
 
   props.theme,
-  pick(props, ['primary', 'secondary']),
-
   props.color,
-  pick(props, [
-    'red',
-    'orange',
-    'yellow',
-    'olive',
-    'green',
-    'teal',
-    'blue',
-    'violet',
-    'purple',
-    'pink',
-    'brown',
-    'grey',
-    'black',
-    'basic',
-    'positive',
-    'negative',
-  ]),
+  pick(props, colors),
 
   props.size,
-  pick(props, 'mini', 'small', 'large', 'massive'),
-]
+  pick(props, "mini", "small", "large", "massive"),
+];
 </script>
 
 <style lang="stylus" scoped>
@@ -147,6 +153,7 @@ $animate-duration = 0.3s
   transition-timing-function $default-easing
   transition-property $transition-property
   vertical-align middle
+  background-color $color-light
 
   .gutter {
     margin-right: (4 / 7) em;
@@ -187,11 +194,7 @@ $animate-duration = 0.3s
 
   &:active:not(:disabled) {
     filter brightness(0.8)
-
-    .content,
-    svg {
-      transform translate(1px, 1px)
-    }
+    transform translate(1px, 1px)
   }
 
   &.basic {
@@ -253,9 +256,100 @@ $animate-duration = 0.3s
     }
   }
 
-  for c in 'red' 'orange' 'yellow' 'olive' 'green' 'teal' 'blue' 'violet' 'purple' 'pink' 'brown' 'grey' 'black' 'positive' 'negative' {
+  &.with-label {
+    padding 0
+    align-items stretch
+
+    $decorator-size = .8em
+
+    .content {
+      padding $vertical-padding $horizontal-padding
+    }
+
+    .label {
+      display flex
+      align-items center
+      padding 0 1em
+      font-weight bold
+      position relative
+
+
+      &:not(.icon) {
+        background-color #fff
+
+        &::before {
+          content ""
+          position absolute
+          display block
+          top 50%
+          background-color #fff
+          width $decorator-size
+          height $decorator-size
+          transform translateY($decorator-size / -2) rotateZ(45deg)
+        }
+      }
+
+      &.icon {
+        background-color rgba(#000, .15)
+      }
+
+      &.left {
+        border-top-left-radius $border-radius
+        border-bottom-left-radius $border-radius
+
+        &::before{
+          right: ($decorator-size / -2)
+        }
+      }
+      &.right {
+        border-top-right-radius $border-radius
+        border-bottom-right-radius $border-radius
+
+        &::before{
+          left: ($decorator-size / -2)
+        }
+      }
+    }
+
+    &:not(.basic) .label:not(.icon) {
+      border 1px solid $color-light
+    }
+
+    &.secondary {
+      .label {
+        background-color rgba(#fff, .2)
+      }
+    }
+
+    &.basic {
+      .label {
+        background-color transparent
+
+        &:not(.icon) {
+          background-color #fff
+
+          &::before {
+            border 1px solid currentColor
+            border-right none
+            border-top none
+          }
+        }
+
+        &.left {
+          border-right 1px solid currentColor
+        }
+        &.right {
+          border-left 1px solid currentColor
+        }
+      }
+    }
+  }
+
+  for c in 'red' 'orange' 'yellow' 'olive' 'green' 'teal' 'blue' 'violet' 'purple' 'pink' 'brown' 'grey' 'black' 'positive' 'negative' 'primary' 'secondary' {
+    $current-color = lookup('$color-' + c)
+
     &.{c} {
-      background-color lookup('$color-' + c)
+      background-color $current-color
       color $color-text-inverse
 
       &:hover
@@ -271,7 +365,7 @@ $animate-duration = 0.3s
 
       &.basic {
         background-color transparent
-        color: lookup('$color-' + c)
+        color: $current-color
         border: 1px solid currentColor
 
         &:hover
@@ -281,9 +375,15 @@ $animate-duration = 0.3s
         }
 
         &:active:not(:disabled) {
-          background-color lookup('$color-' + c), rgba(#fff, 0.2)
+          background-color $current-color, rgba(#fff, 0.2)
           box-shadow 0 0 0 1px rgba(#000, 0.15) inset, 0 1px 4px 0 rgba(34, 36, 38, .15) inset
         }
+      }
+
+      &.with-label:not(.basic) .label:not(.icon) {
+        color $current-color
+        background-color #fff
+        border 1px solid currentColor
       }
     }
   }
@@ -391,47 +491,5 @@ $animate-duration = 0.3s
   }
 
 
-  &.with-label {
-    padding 0
-    align-items stretch
-
-    .content {
-      padding $vertical-padding $horizontal-padding
-    }
-
-    .label {
-      display flex
-      align-items center
-      padding 0 1em
-      background-color rgba(#000, .15)
-
-      &.left {
-        border-top-left-radius $border-radius
-        border-bottom-left-radius $border-radius
-      }
-      &.right {
-        border-top-right-radius $border-radius
-        border-bottom-right-radius $border-radius
-      }
-    }
-
-    &.secondary {
-      .label {
-        background-color rgba(#fff, .2)
-      }
-    }
-
-    &.basic {
-      .label {
-        background-color transparent
-        &.left {
-          border-right 1px solid currentColor
-        }
-        &.right {
-          border-left 1px solid currentColor
-        }
-      }
-    }
-  }
 }
 </style>
