@@ -1,19 +1,27 @@
 <template>
-  <button :class="classes" :disabled="props.disabled || props.loading" :aria-disabled="props.disabled || props.loading">
+  <button role="button" :class="classes" :disabled="props.disabled || props.loading" :aria-disabled="props.disabled || props.loading">
     <div v-if="props.loading" class="loading">Loading</div>
 
-    <template v-else-if="!props.animated">
-      <Icon v-if="props.icon" :class="{gutter: props.content || slots.default}" :icon="props.icon" />
-      <slot>{{ props.content }}</slot>
+    <template v-else-if="props.animated">
+      <div class="content visible">
+        <slot>{{ props.content }}</slot>
+      </div>
+      <div class="content hidden">
+        <slot name="animated" />
+      </div>
     </template>
 
     <template v-else>
-      <div class="visible">
+      <Icon v-if="props.icon" :class="{ gutter: props.content || slots.default }" :icon="props.icon" />
+      <span v-if="props.leftLabelIcon" class="label left">
+        <Icon :icon="props.leftLabelIcon" />
+      </span>
+      <span class="content">
         <slot>{{ props.content }}</slot>
-      </div>
-      <div class="hidden">
-        <slot name="animated" />
-      </div>
+      </span>
+      <span v-if="props.rightLabelIcon" class="label right">
+        <Icon :icon="props.rightLabelIcon" />
+      </span>
     </template>
   </button>
 </template>
@@ -31,6 +39,8 @@ export type ButtonSize = 'mini' | 'small' | 'default' | 'large' | 'massive'
 const props = defineProps<{
   content?: string
   icon?: IconDefinition
+  leftLabelIcon?: IconDefinition
+  rightLabelIcon?: IconDefinition
 
   size?: ButtonSize
   mini?: boolean
@@ -75,21 +85,40 @@ const classes = [
   props.animated === true ? 'horizontal' : props.animated,
   pick(props, 'animated', 'active', 'fluid'),
 
+  { 'with-label': props.leftLabelIcon ?? props.rightLabelIcon },
+
   props.theme,
   pick(props, ['primary', 'secondary']),
 
   props.color,
-  pick(props, ['red', 'orange', 'yellow', 'olive', 'green', 'teal', 'blue', 'violet', 'purple', 'pink', 'brown', 'grey', 'black', 'basic', 'positive', 'negative']),
+  pick(props, [
+    'red',
+    'orange',
+    'yellow',
+    'olive',
+    'green',
+    'teal',
+    'blue',
+    'violet',
+    'purple',
+    'pink',
+    'brown',
+    'grey',
+    'black',
+    'basic',
+    'positive',
+    'negative',
+  ]),
 
   props.size,
   pick(props, 'mini', 'small', 'large', 'massive'),
 ]
-
 </script>
 
 <style lang="stylus" scoped>
 $shadow-distance = 0px
 $shadow-offset = ($shadow-distance / 2)
+$vertical-padding = .78571429em
 $horizontal-padding = 1.5em
 $vertical-margin = 0
 $horizontal-margin = 0.25em
@@ -110,7 +139,7 @@ $animate-duration = 0.3s
   outline none
   border none
   margin: 0 $horizontal-margin $vertical-margin 0
-  padding .78571429em $horizontal-padding
+  padding $vertical-padding $horizontal-padding
   border-radius $border-radius
   box-shadow $box-shadow
   transition $transition
@@ -124,7 +153,8 @@ $animate-duration = 0.3s
   }
 
   &.fluid {
-    display block
+    display flex
+    justify-content center
     width 100%
   }
 
@@ -151,8 +181,17 @@ $animate-duration = 0.3s
     box-shadow $border-box-shadow
   }
 
+  &:focus {
+    outline auto
+  }
+
   &:active:not(:disabled) {
-    filter brightness(0.85)
+    filter brightness(0.8)
+
+    .content,
+    svg {
+      transform translate(1px, 1px)
+    }
   }
 
   &.basic {
@@ -163,6 +202,10 @@ $animate-duration = 0.3s
     &:active:not(:disabled) {
       background-color rgba(#f8f8f8, 0.2)
       box-shadow 0 0 0 1px rgba(#000, 0.15) inset, 0 1px 4px 0 rgba(34, 36, 38, .15) inset
+    }
+
+    &:focus {
+      outline double 3px currentColor
     }
   }
 
@@ -227,7 +270,7 @@ $animate-duration = 0.3s
       }
 
       &.basic {
-        background-color #fff
+        background-color transparent
         color: lookup('$color-' + c)
         border: 1px solid currentColor
 
@@ -253,7 +296,7 @@ $animate-duration = 0.3s
 
   .loading {
     loading()
-    min-width 4em
+    min-width 3em
   }
 
   &.animated {
@@ -342,6 +385,50 @@ $animate-duration = 0.3s
         .hidden {
           opacity 1
           transform: scale(1)
+        }
+      }
+    }
+  }
+
+
+  &.with-label {
+    padding 0
+    align-items stretch
+
+    .content {
+      padding $vertical-padding $horizontal-padding
+    }
+
+    .label {
+      display flex
+      align-items center
+      padding 0 1em
+      background-color rgba(#000, .15)
+
+      &.left {
+        border-top-left-radius $border-radius
+        border-bottom-left-radius $border-radius
+      }
+      &.right {
+        border-top-right-radius $border-radius
+        border-bottom-right-radius $border-radius
+      }
+    }
+
+    &.secondary {
+      .label {
+        background-color rgba(#fff, .2)
+      }
+    }
+
+    &.basic {
+      .label {
+        background-color transparent
+        &.left {
+          border-right 1px solid currentColor
+        }
+        &.right {
+          border-left 1px solid currentColor
         }
       }
     }

@@ -13,7 +13,7 @@
         <Button loading>Loading</Button>
       </div>
 
-      <br>
+      <br />
 
       <div>
         <Button primary>Follow</Button>
@@ -22,7 +22,7 @@
         <Button primary loading>Loading</Button>
       </div>
 
-      <br>
+      <br />
 
       <div>
         <Button secondary>Follow</Button>
@@ -42,9 +42,25 @@
         <Button secondary>Secondary</Button>
         <Button positive>Positive</Button>
         <Button negative>Negative</Button>
-        <br>
-        <br>
-
+      </div>
+      <br />
+      <div>
+        <Button :icon="faPause">Basic button</Button>
+        <Button :icon="faPause" primary>Primary</Button>
+        <Button :icon="faPause" secondary>Secondary</Button>
+        <Button :icon="faPause" positive>Positive</Button>
+        <Button :icon="faPause" negative>Negative</Button>
+      </div>
+      <br />
+      <div>
+        <Button :leftLabelIcon="faPause">Basic button</Button>
+        <Button :leftLabelIcon="faPause" primary>Primary</Button>
+        <Button :leftLabelIcon="faPause" secondary>Secondary</Button>
+        <Button :leftLabelIcon="faPause" positive>Positive</Button>
+        <Button :leftLabelIcon="faPause" negative>Negative</Button>
+      </div>
+      <br />
+      <div>
         <Button red>Red</Button>
         <Button orange>Orange</Button>
         <Button yellow>Yellow</Button>
@@ -70,9 +86,25 @@
         <Button basic secondary>Secondary</Button>
         <Button basic positive>Positive</Button>
         <Button basic negative>Negative</Button>
-        <br>
-        <br>
-
+      </div>
+      <br />
+      <div>
+        <Button basic :icon="faPause">Basic button</Button>
+        <Button basic :icon="faPause" primary>Primary</Button>
+        <Button basic :icon="faPause" secondary>Secondary</Button>
+        <Button basic :icon="faPause" positive>Positive</Button>
+        <Button basic :icon="faPause" negative>Negative</Button>
+      </div>
+      <br />
+      <div>
+        <Button basic :leftLabelIcon="faPause">Basic button</Button>
+        <Button basic :leftLabelIcon="faPause" primary>Primary</Button>
+        <Button basic :leftLabelIcon="faPause" secondary>Secondary</Button>
+        <Button basic :leftLabelIcon="faPause" positive>Positive</Button>
+        <Button basic :leftLabelIcon="faPause" negative>Negative</Button>
+      </div>
+      <br />
+      <div>
         <Button basic red>Red</Button>
         <Button basic orange>Orange</Button>
         <Button basic yellow>Yellow</Button>
@@ -95,6 +127,16 @@
       <div>
         <Button :icon="faShoppingCart" />
         <Button :icon="faShoppingCart" content="Shopping cart" />
+      </div>
+    </div>
+
+    <div class="field">
+      <h3>Labeled icon</h3>
+
+      <div>
+        <Button :leftLabelIcon="faArrowLeft" content="Prev" />
+        <Button :leftLabelIcon="faPause" content="Pause" />
+        <Button :rightLabelIcon="faArrowRight" content="Next" />
       </div>
     </div>
 
@@ -125,7 +167,11 @@
       <p>A button can take the width of its container.</p>
 
       <div>
-        <Button fluid>Fits to Container</Button>
+        <Button fluid mini>Fits to Container</Button>
+        <Button fluid small primary>Fits to Container</Button>
+        <Button fluid secondary>Fits to Container</Button>
+        <Button fluid basic large positive :icon="faPause">Fits to Container</Button>
+        <Button fluid massive negative :icon="faPause">Fits to Container</Button>
       </div>
     </div>
 
@@ -134,10 +180,32 @@
 
       <div>
         <Button mini>Mini</Button>
+        <Button mini orange :leftLabelIcon="faPause">Pause</Button>
+        <Button mini loading></Button>
+      </div>
+      <br />
+      <div>
         <Button small>Small</Button>
+        <Button small orange :leftLabelIcon="faPause">Pause</Button>
+        <Button small loading></Button>
+      </div>
+      <br />
+      <div>
         <Button>Default</Button>
+        <Button orange :leftLabelIcon="faPause">Pause</Button>
+        <Button loading></Button>
+      </div>
+      <br />
+      <div>
         <Button large>Large</Button>
+        <Button large orange :leftLabelIcon="faPause">Pause</Button>
+        <Button large loading></Button>
+      </div>
+      <br />
+      <div>
         <Button massive>Massive</Button>
+        <Button massive orange :leftLabelIcon="faPause">Pause</Button>
+        <Button massive loading></Button>
       </div>
     </div>
   </section>
@@ -145,5 +213,5 @@
 
 <script lang="ts" setup>
 import Button from 'src/components/Button.vue'
-import { faArrowRight, faShoppingCart } from '@fortawesome/free-solid-svg-icons'
+import { faArrowRight, faArrowLeft, faShoppingCart, faPause } from '@fortawesome/free-solid-svg-icons'
 </script>
