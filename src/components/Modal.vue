@@ -1,8 +1,8 @@
 <template>
   <Teleport v-if="show" to="body">
-    <div class="sui-modal" @click="show = false">
-      <div class="container">
-        <Button v-if="displayCloseIcon" :icon="faTimes" basic class="close-icon"></Button>
+    <div class="sui-modal">
+      <div class="container" v-click-outside="onClickBackdrop">
+        <Button v-if="displayCloseIcon" :icon="faTimes" basic class="close-icon" @click="onClickCloseIcon"></Button>
         <header class="header">
           <slot name="header">
             <h2>{{ props.title || 'Title' }}</h2>
@@ -13,8 +13,8 @@
         </div>
         <div class="actions">
           <slot name="actions">
-            <Button>Nope</Button>
-            <Button positive>Yep, that's me</Button>
+            <Button @click="onCancel">Cancel</Button>
+            <Button positive @click="emit('confirm')">OK</Button>
           </slot>
         </div>
       </div>
@@ -24,12 +24,16 @@
 
 <script lang="ts" setup>
 import Button from 'src/components/Button.vue'
+import vClickOutside from 'src/directives/vClickOutside'
 import { faTimes } from '@fortawesome/free-solid-svg-icons'
-import { watch, watchEffect } from 'vue'
+import { watchEffect } from 'vue'
 
-const modalConfig: SemModalConfig = Object.assign({
-  closeIcon: false
-}, window.__SEM_CONFIG?.modal)
+const modalConfig: SemModalConfig = Object.assign(
+  {
+    closeIcon: false,
+  },
+  window.__SEM_CONFIG?.modal,
+)
 
 export interface ModalRef {
   open: () => void
@@ -46,24 +50,35 @@ const props = defineProps<{
 }>()
 const emit = defineEmits<{
   (e: 'confirm'): void
-  (e: 'close'): void
+  (e: 'close', reason: 'backdrop' | 'closeIcon' | 'cancel'): void
 }>()
 
 let show = $ref(false)
-
-watch($raw(show), show => {
-  document.body.style.overflow = show ? 'hidden' : 'visible'
-})
 
 const displayCloseIcon = props.closeIcon ?? modalConfig.closeIcon
 
 watchEffect(() => {
   if (show) {
     document.querySelector('[data-v-app]')?.classList.add('blurring', 'dimmed')
+    document.body.style.overflow = 'hidden'
   } else {
+    document.body.style.overflow = 'visible'
     document.querySelector('[data-v-app]')?.classList.remove('blurring', 'dimmed')
   }
 })
+
+const onClickBackdrop = (event: Event) => {
+  show = false
+  emit('close', 'backdrop')
+}
+const onClickCloseIcon = () => {
+  show = false
+  emit('close', 'closeIcon')
+}
+const onCancel = () => {
+  show = false
+  emit('close', 'cancel')
+}
 
 defineExpose({
   open: () => void (show = true),
@@ -138,11 +153,9 @@ defineExpose({
   }
 
 }
-
 </style>
 
 <style lang="stylus">
 .blurring
   filter blur(5px) grayscale(.7)
-
 </style>
