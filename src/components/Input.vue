@@ -24,7 +24,8 @@
 
 <script lang="ts" setup>
 import type { IconDefinition } from '@fortawesome/fontawesome-svg-core'
-import { computed, defineEmit, defineProps, ref, useContext } from 'vue'
+import { useSlots } from '@vue/runtime-core'
+import { computed } from 'vue'
 import pick from '../utils/pick'
 
 export type InputType = 'text' | 'number' | 'tel' | 'url' | 'email'
@@ -49,16 +50,16 @@ const props = defineProps<{
   icon?: IconDefinition
 }>()
 
-const emit = defineEmit<{
+const emit = defineEmits<{
   (e: 'update:modelValue', value: any): void
 }>()
 
 const value = computed<string>({
   get: () => props.modelValue || '',
-  set: (val) => void emit('update:modelValue', val),
+  set: val => void emit('update:modelValue', val),
 })
 
-const { slots, expose } = useContext()
+const slots = useSlots()
 
 const classes = [
   'sui-input',
@@ -78,10 +79,10 @@ const inputType = props.type
   || (props.email && 'email')
   || undefined
 
-ref: inputRef = ref<HTMLInputElement | null>(null)
+let inputRef = $ref<HTMLInputElement | null>(null)
 
-expose({
-  focus: () => void $inputRef.value?.focus(),
+defineExpose({
+  focus: () => void inputRef?.focus(),
 })
 
 </script>

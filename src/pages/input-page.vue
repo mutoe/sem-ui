@@ -69,8 +69,7 @@
 import Input from 'src/components/Input.vue'
 import Button from 'src/components/Button.vue'
 import { faUser } from '@fortawesome/free-solid-svg-icons'
-import { ref } from 'vue'
 
-ref: input1 = ref('Hello')
-ref: focusRef = ref<{ focus: () => void } | null>(null)
+let input1 = $ref('Hello')
+let focusRef = $ref<{ focus: () => void } | null>(null)
 </script>

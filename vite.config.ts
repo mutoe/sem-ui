@@ -17,6 +17,10 @@ export default defineConfig({
     },
   },
   plugins: [
-    vue(),
+    vue({
+      script: {
+        refSugar: true
+      }
+    }),
   ],
 })

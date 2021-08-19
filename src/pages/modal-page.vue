@@ -19,7 +19,6 @@
 import type { ModalRef } from 'src/components/Modal.vue'
 import Modal from 'src/components/Modal.vue'
 import Button from 'src/components/Button.vue'
-import { ref } from 'vue'
 
-ref: modal1 = ref<ModalRef | null>(null)
+let modal1 = $ref<ModalRef | null>(null)
 </script>

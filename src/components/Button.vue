@@ -20,8 +20,8 @@
 
 <script lang="ts" setup>
 import type { IconDefinition } from '@fortawesome/fontawesome-svg-core'
+import { useSlots } from 'vue'
 import pick from 'src/utils/pick'
-import { defineProps, useContext } from 'vue'
 
 export type ButtonTheme = 'primary' | 'secondary' | 'default'
 export type ButtonAnimated = true | 'horizontal' | 'vertical' | 'fade'
@@ -68,7 +68,7 @@ const props = defineProps<{
   animated?: ButtonAnimated
 }>()
 
-const { slots } = useContext()
+const slots = useSlots()
 
 const classes = [
   'sui-button',

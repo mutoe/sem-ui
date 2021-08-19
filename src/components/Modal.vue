@@ -23,9 +23,10 @@
 </template>
 
 <script lang="ts" setup>
-import { defineEmit, defineProps, inject, ref, useContext, watch, watchEffect } from 'vue'
 import Button from 'src/components/Button.vue'
 import { faTimes } from '@fortawesome/free-solid-svg-icons'
+import { useSlots } from '@vue/runtime-core'
+import { watch, watchEffect } from 'vue'
 
 const modalConfig: SemModalConfig = window.__SEM_CONFIG?.modal ?? {
   closeIcon: false
@@ -36,7 +37,6 @@ export interface ModalRef {
   close: () => void
 }
 
-const { slots, expose } = useContext()
 const props = defineProps<{
   title?: string
   content?: string
@@ -45,14 +45,14 @@ const props = defineProps<{
   dimmerBlurring?: boolean
   closeIcon?: boolean
 }>()
-const emit = defineEmit<{
+const emit = defineEmits<{
   (e: 'confirm'): void
   (e: 'cancel'): void
 }>()
 
-ref: show = false
+let show = $ref(false)
 
-watch($show, show => {
+watch($raw(show), show => {
   document.body.style.overflow = show ? 'hidden' : 'visible'
 })
 
@@ -66,7 +66,7 @@ watchEffect(() => {
   }
 })
 
-expose({
+defineExpose({
   open: () => void (show = true),
   close: () => void (show = false),
 })

@@ -5,7 +5,6 @@
 <script lang="ts" setup>
 import type { IconDefinition } from '@fortawesome/fontawesome-svg-core'
 import { FontAwesomeIcon } from '@fortawesome/vue-fontawesome'
-import { defineProps } from 'vue'
 
 const props = defineProps<{
   icon: IconDefinition
