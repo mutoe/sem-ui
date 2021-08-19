@@ -57,6 +57,7 @@ const props = defineProps<{
   loading?: boolean;
 
   fluid?: boolean;
+  circular?: boolean;
 
   theme?: ButtonTheme;
   primary?: boolean;
@@ -64,6 +65,7 @@ const props = defineProps<{
   positive?: boolean;
   negative?: boolean;
   basic?: boolean;
+
   color?: ButtonColor;
   red?: boolean;
   orange?: boolean;
@@ -108,10 +110,10 @@ const colors: (keyof typeof props)[] = [
 const classes = [
   "sui-button",
   props.animated === true ? "horizontal" : props.animated,
-  pick(props, "animated", "active", "fluid"),
+  pick(props, "animated", "active", "fluid", "circular"),
 
   { "with-label": props.leftLabelIcon ?? props.rightLabelIcon ?? slots.leftLabel ?? slots.rightLabel },
-  { icon: props.icon },
+  { icon: props.icon && !(props.content ?? slots.default) },
 
   props.theme,
   props.color,
@@ -158,6 +160,25 @@ $animate-duration = 0.3s
 
   .gutter {
     margin-right: (4 / 7) em;
+  }
+
+  &.circular {
+    border-radius 3em
+
+    &.with-label .label {
+      &.left {
+        border-top-left-radius 3em
+        border-bottom-left-radius 3em
+      }
+      &.right {
+        border-top-right-radius 3em
+        border-bottom-right-radius 3em
+      }
+    }
+  }
+
+  &.icon {
+    padding $vertical-padding
   }
 
   &.fluid {
@@ -297,7 +318,7 @@ $animate-duration = 0.3s
         border-bottom-right-radius $border-radius
 
         &::before{
-          left: ($decorator-size / -2)
+          left: "calc(%s - 0.01em)" % ($decorator-size/-2)
         }
       }
     }

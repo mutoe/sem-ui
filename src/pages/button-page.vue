@@ -176,12 +176,23 @@
     </div>
 
     <div class="field">
+      <h3>Circular</h3>
+
+      <div>
+        <Button circular :icon="faShoppingCart" />
+        <Button circular :icon="faShoppingCart" content="Shopping cart" />
+      </div>
+    </div>
+
+    <div class="field">
       <h3>Labeled icon</h3>
 
       <div>
         <Button :leftLabelIcon="faArrowLeft" content="Prev" />
         <Button :leftLabelIcon="faPause" content="Pause" />
         <Button :rightLabelIcon="faArrowRight" content="Next" />
+        <Button circular :leftLabelIcon="faAlignLeft" content="Prev" />
+        <Button circular :rightLabelIcon="faArrowRight" content="Next" />
       </div>
     </div>
 
