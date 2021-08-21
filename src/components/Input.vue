@@ -1,9 +1,12 @@
 <template>
   <label :class="classes">
-    <div v-if="slots.prepend || props.icon || props.loading" class="prepend">
+    <div v-if="slots.prepend || (props.icon || props.loading) && iconPosition === 'left'"
+         :class="['prepend', { icon: props.icon ?? props.loading }]">
       <slot name="prepend">
-        <span v-if="loading" class="loading" />
-        <Icon v-else :icon="props.icon" />
+        <template v-if="iconPosition === 'left'">
+          <span v-if="loading" class="loading" />
+          <Icon v-else :icon="props.icon" />
+        </template>
       </slot>
     </div>
 
@@ -17,8 +20,14 @@
       :disabled="props.disabled"
     />
 
-    <div v-if="slots.append" class="append">
-      <slot name="append"></slot>
+    <div v-if="slots.append || (props.icon || props.loading) && iconPosition === 'right'"
+         :class="['append', { icon: props.icon ?? props.loading }]">
+      <slot name="append">
+        <template v-if="iconPosition === 'right'">
+          <span v-if="loading" class="loading" />
+          <Icon v-else :icon="props.icon" />
+        </template>
+      </slot>
     </div>
   </label>
 </template>
@@ -27,7 +36,16 @@
 import type { IconDefinition } from '@fortawesome/fontawesome-svg-core'
 import { useSlots } from '@vue/runtime-core'
 import { computed } from 'vue'
-import pick from '../utils/pick'
+import pick from 'src/utils/pick'
+
+const defaultConfig: SemInputConfig = {
+  iconPosition: 'left',
+}
+const inputConfig: SemInputConfig = Object.assign(defaultConfig, window.__SEM_CONFIG?.input)
+
+export interface InputRef {
+  focus: () => void
+}
 
 export type InputType = 'text' | 'number' | 'tel' | 'url' | 'email'
 
@@ -48,9 +66,12 @@ const props = defineProps<{
   error?: boolean
   fluid?: boolean
 
+  iconPosition?: SemInputConfig['iconPosition']
   loading?: boolean
   icon?: IconDefinition
 }>()
+
+const iconPosition: SemInputConfig['iconPosition'] = props.iconPosition ?? inputConfig.iconPosition
 
 const emit = defineEmits<{
   (e: 'update:modelValue', value: any): void
@@ -68,7 +89,7 @@ const classes = [
   pick(props, ['focus', 'disabled', 'fluid', 'error']),
 ]
 
-const inputType = props.type
+const inputType: InputType = props.type
   || (props.number && 'number')
   || (props.tel && 'tel')
   || (props.url && 'url')
@@ -80,8 +101,7 @@ let inputRef = $ref<HTMLInputElement | null>(null)
 
 defineExpose({
   focus: () => void inputRef?.focus(),
-})
-
+} as InputRef)
 </script>
 
 <style lang="stylus" scoped>
@@ -157,9 +177,27 @@ $input-padding-horizontal = 1em;
   .prepend
   .append {
     display flex
-    padding 0 ($input-padding-horizontal/ 2)
+    flex none
+    padding 0
     align-items center
     color #909090
+  }
+
+  .prepend {
+    padding-left ($input-padding-horizontal / 2)
+
+    &.icon {
+      padding-right ($input-padding-horizontal / 2)
+    }
+
+    &:not(.icon) + .sui-input-element {
+      padding-left 0
+    }
+  }
+
+  .append {
+    padding-right ($input-padding-horizontal / 2)
+    margin-left -($input-padding-horizontal / 2)
   }
 
   .loading {

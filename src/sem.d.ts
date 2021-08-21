@@ -4,4 +4,5 @@ declare interface Window {
 
 declare interface SemConfig {
   modal?: SemModalConfig
+  input?: SemInputConfig
 }

@@ -28,12 +28,10 @@ import vClickOutside from 'src/directives/vClickOutside'
 import { faTimes } from '@fortawesome/free-solid-svg-icons'
 import { watchEffect } from 'vue'
 
-const modalConfig: SemModalConfig = Object.assign(
-  {
-    closeIcon: false,
-  },
-  window.__SEM_CONFIG?.modal,
-)
+const defaultConfig: SemModalConfig = {
+  closeIcon: false,
+}
+const modalConfig: SemModalConfig = Object.assign(defaultConfig, window.__SEM_CONFIG?.modal)
 
 export interface ModalRef {
   open: () => void
@@ -67,7 +65,7 @@ watchEffect(() => {
   }
 })
 
-const onClickBackdrop = (event: Event) => {
+const onClickBackdrop = () => {
   show = false
   emit('close', 'backdrop')
 }

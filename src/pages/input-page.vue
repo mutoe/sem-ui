@@ -46,6 +46,9 @@
       <div>
         <Input :icon="faUser" placeholder="Icon" />
         <Input loading :icon="faUser" placeholder="Loading" />
+        <br>
+        <Input icon-position="right" :icon="faSearch" placeholder="Search..." />
+        <Input icon-position="right" loading :icon="faUser" placeholder="Searching..." />
       </div>
     </div>
 
@@ -72,10 +75,11 @@
 </template>
 
 <script lang="ts" setup>
+import type { InputRef } from 'src/components/Input.vue'
 import Input from 'src/components/Input.vue'
 import Button from 'src/components/Button.vue'
-import { faUser } from '@fortawesome/free-solid-svg-icons'
+import { faUser, faSearch } from '@fortawesome/free-solid-svg-icons'
 
 let input1 = $ref('Hello')
-let focusRef = $ref<{ focus: () => void } | null>(null)
+let focusRef = $ref<InputRef | null>(null)
 </script>
