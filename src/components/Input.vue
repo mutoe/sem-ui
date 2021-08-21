@@ -10,6 +10,7 @@
     <input
       ref="inputRef"
       v-model="value"
+      class="sui-input-element"
       :maxlength="props.maxLength"
       :placeholder="props.placeholder"
       :type="inputType"
@@ -36,6 +37,7 @@ const props = defineProps<{
   placeholder?: string
 
   type?: InputType
+  text?: boolean
   number?: boolean
   tel?: boolean
   url?: boolean
@@ -63,12 +65,7 @@ const slots = useSlots()
 
 const classes = [
   'sui-input',
-  pick(props, 'focus'),
-  {
-    disabled: props.disabled,
-    error: props.error,
-    fluid: props.fluid,
-  },
+  pick(props, ['focus', 'disabled', 'fluid', 'error']),
 ]
 
 const inputType = props.type
@@ -76,7 +73,7 @@ const inputType = props.type
   || (props.tel && 'tel')
   || (props.url && 'url')
   || (props.email && 'email')
-  || (props.email && 'email')
+  || (props.text && 'text')
   || undefined
 
 let inputRef = $ref<HTMLInputElement | null>(null)
@@ -97,7 +94,7 @@ $input-padding-horizontal = 1em;
   color $color-text
   padding: $input-padding-vertical ($input-padding-horizontal/ 2);
   border: 1px solid $border-color
-  border-radius 0.28571429rem
+  border-radius $border-radius
   transition box-shadow .1s ease, border-color .1s ease
   vertical-align middle
   line-height 1.21428571em
@@ -106,7 +103,8 @@ $input-padding-horizontal = 1em;
     width: 100%
   }
 
-  input {
+  .sui-input-element {
+    flex auto
     display block
     max-width 100%
     font-size 100%
@@ -121,6 +119,17 @@ $input-padding-horizontal = 1em;
     &::placeholder {
       color: $color-placeholder
     }
+
+    // Hide number input arrow buttons (for Chrome, Safari, Edge, Opera)
+    &::-webkit-outer-spin-button,
+    &::-webkit-inner-spin-button {
+      -webkit-appearance none
+      margin 0
+    }
+    // Hide number input arrow buttons (for Firefox)
+    &[type="number"] {
+      -moz-appearance textfield
+    }
   }
 
   &:focus-within,
@@ -132,6 +141,7 @@ $input-padding-horizontal = 1em;
 
   &.disabled {
     opacity: 0.45
+    background-color $color-disabled-background
   }
 
   &.error {
@@ -139,7 +149,7 @@ $input-padding-horizontal = 1em;
     border-color #e0b4b4
     color #9f3a38
 
-    input::placeholder {
+    .sui-input-element::placeholder {
       color #e7bdbc
     }
   }
