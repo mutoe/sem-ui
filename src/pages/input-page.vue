@@ -37,7 +37,13 @@
         <Input focus placeholder="Focus" />
         <Input disabled placeholder="Disabled" />
         <Input error placeholder="Error" />
-        <br>
+      </div>
+    </div>
+
+    <div class="field">
+      <h3>With icon</h3>
+
+      <div>
         <Input :icon="faUser" placeholder="Icon" />
         <Input loading :icon="faUser" placeholder="Loading" />
       </div>
