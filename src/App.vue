@@ -1,19 +1,53 @@
 <template>
+  <Navigation></Navigation>
+
   <main>
-    <InputPage />
-    <ButtonPage />
-    <ModalPage />
+    <RouterView></RouterView>
   </main>
 </template>
 
 <script lang="ts" setup>
-import ButtonPage from './pages/button-page.vue'
-import InputPage from './pages/input-page.vue'
-import ModalPage from './pages/modal-page.vue'
+import Navigation from 'src/pages/Navigation.vue'
 </script>
 
 <style lang="stylus" scoped>
 main {
   padding 2rem
+}
+
+.bounceInDown {
+  animation-name bounceInDown
+}
+
+@keyframes bounceInDown {
+  from,
+  60%,
+  75%,
+  90%,
+  to {
+    animation-timing-function: cubic-bezier(0.215, 0.61, 0.355, 1);
+  }
+
+  0% {
+    opacity: 0;
+    transform: translate3d(0, -3000px, 0) scaleY(3);
+  }
+
+  60% {
+    opacity: 1;
+    transform: translate3d(0, 25px, 0) scaleY(0.9);
+  }
+
+  75% {
+    transform: translate3d(0, -10px, 0) scaleY(0.95);
+  }
+
+  90% {
+    transform: translate3d(0, 5px, 0) scaleY(0.985);
+  }
+
+  to {
+    transform: translate3d(0, 0, 0);
+  }
 }
 </style>
