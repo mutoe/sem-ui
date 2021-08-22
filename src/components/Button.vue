@@ -75,7 +75,7 @@ const props = defineProps<{
   secondary?: boolean;
   positive?: boolean;
   negative?: boolean;
-  basic?: boolean;
+  ghost?: boolean;
 
   color?: ButtonColor;
   red?: boolean;
@@ -111,7 +111,7 @@ const colors: (keyof typeof props)[] = [
   'brown',
   'grey',
   'black',
-  'basic',
+  'ghost',
   'positive',
   'negative',
   'primary',
@@ -230,7 +230,7 @@ box-shadow-border($color = currentColor, $width = 1px) {
     }
   }
 
-  &.basic {
+  &.ghost {
     color $color-grey
     background: transparent
     box-shadow-border(currentColor)
@@ -314,7 +314,7 @@ box-shadow-border($color = currentColor, $width = 1px) {
       }
     }
 
-    &.basic {
+    &.ghost {
       .label {
         background-color transparent
         box-shadow-border()
@@ -365,7 +365,7 @@ box-shadow-border($color = currentColor, $width = 1px) {
         }
       }
 
-      &.basic {
+      &.ghost {
         background-color transparent
         color: $current-color
         box-shadow-border()
@@ -388,7 +388,7 @@ box-shadow-border($color = currentColor, $width = 1px) {
         }
       }
 
-      &.with-label:not(.basic) .label:not(.icon) {
+      &.with-label:not(.ghost) .label:not(.icon) {
         color $current-color
         background-color #fff
         box-shadow-border()
@@ -402,7 +402,7 @@ box-shadow-border($color = currentColor, $width = 1px) {
       &:focus {
         filter brightness(1.5)
 
-        &.basic {
+        &.ghost {
           filter brightness(2.5)
         }
       }
@@ -411,7 +411,7 @@ box-shadow-border($color = currentColor, $width = 1px) {
       &.active {
         filter brightness(2)
 
-        &.basic {
+        &.ghost {
           filter brightness(2)
         }
       }

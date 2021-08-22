@@ -71,35 +71,35 @@
       </div>
       <br>
       <div>
-        <Button basic blue :icon="faCodeBranch">
+        <Button ghost blue :icon="faCodeBranch">
           <template v-slot:default>Fork</template>
           <template v-slot:rightLabel>12,325</template>
         </Button>
-        <Button active basic blue :icon="faCodeBranch">
+        <Button active ghost blue :icon="faCodeBranch">
           <template v-slot:default>Fork</template>
           <template v-slot:rightLabel>12,325</template>
         </Button>
-        <Button disabled basic blue :icon="faCodeBranch">
+        <Button disabled ghost blue :icon="faCodeBranch">
           <template v-slot:default>Fork</template>
           <template v-slot:rightLabel>12,325</template>
         </Button>
-        <Button loading basic blue :icon="faCodeBranch">
+        <Button loading ghost blue :icon="faCodeBranch">
           <template v-slot:default>Fork</template>
           <template v-slot:rightLabel>12,325</template>
         </Button>
-        <Button basic blue :icon="faCodeBranch">
+        <Button ghost blue :icon="faCodeBranch">
           <template v-slot:default>Fork</template>
           <template v-slot:leftLabel>12,325</template>
         </Button>
-        <Button active basic blue :icon="faCodeBranch">
+        <Button active ghost blue :icon="faCodeBranch">
           <template v-slot:default>Fork</template>
           <template v-slot:leftLabel>12,325</template>
         </Button>
-        <Button disabled basic blue :icon="faCodeBranch">
+        <Button disabled ghost blue :icon="faCodeBranch">
           <template v-slot:default>Fork</template>
           <template v-slot:leftLabel>12,325</template>
         </Button>
-        <Button loading basic blue :icon="faCodeBranch">
+        <Button loading ghost blue :icon="faCodeBranch">
           <template v-slot:default>Fork</template>
           <template v-slot:leftLabel>12,325</template>
         </Button>
@@ -167,91 +167,125 @@
     </div>
 
     <div class="field">
-      <h3>Basic</h3>
+      <h3>Ghost</h3>
 
       <div>
-        <Button basic>Basic button</Button>
-        <Button basic primary>Primary</Button>
-        <Button basic secondary>Secondary</Button>
-        <Button basic positive>Positive</Button>
-        <Button basic negative>Negative</Button>
+        <Button ghost>Ghost button</Button>
+        <Button ghost primary>Primary</Button>
+        <Button ghost secondary>Secondary</Button>
+        <Button ghost positive>Positive</Button>
+        <Button ghost negative>Negative</Button>
+        <Button ghost :icon="faCodeBranch" />
+        <Button ghost circular :icon="faCodeBranch" />
+        <Button ghost circular orange :icon="faUser">Follow</Button>
       </div>
       <br />
       <div>
-        <Button basic :leftLabelIcon="faPause">Basic button</Button>
-        <Button basic :leftLabelIcon="faPause" primary>Primary</Button>
-        <Button basic :leftLabelIcon="faPause" secondary>Secondary</Button>
-        <Button basic :leftLabelIcon="faPause" positive>Positive</Button>
-        <Button basic :leftLabelIcon="faPause" negative>Negative</Button>
+        <Button ghost :leftLabelIcon="faPause">Ghost button</Button>
+        <Button ghost :leftLabelIcon="faPause" primary>Primary</Button>
+        <Button ghost :leftLabelIcon="faPause" secondary>Secondary</Button>
+        <Button ghost :leftLabelIcon="faPause" positive>Positive</Button>
+        <Button ghost :leftLabelIcon="faPause" negative>Negative</Button>
       </div>
       <br />
       <div>
-        <Button basic :icon="faPause">
-          <template v-slot:default>Basic button</template>
+        <Button ghost :icon="faPause">
+          <template v-slot:default>Ghost button</template>
           <template v-slot:rightLabel>12,325</template>
         </Button>
-        <Button basic :icon="faPause" primary>
+        <Button ghost :icon="faPause" primary>
           <template v-slot:default>Primary</template>
           <template v-slot:rightLabel>12,325</template>
         </Button>
-        <Button basic :icon="faPause" secondary>
+        <Button ghost :icon="faPause" secondary>
           <template v-slot:default>Secondary</template>
           <template v-slot:rightLabel>12,325</template>
         </Button>
-        <Button basic :icon="faPause" positive>
+        <Button ghost :icon="faPause" positive>
           <template v-slot:default>Positive</template>
           <template v-slot:rightLabel>12,325</template>
         </Button>
-        <Button basic :icon="faPause" negative>
+        <Button ghost :icon="faPause" negative>
           <template v-slot:default>Negative</template>
           <template v-slot:rightLabel>12,325</template>
         </Button>
       </div>
       <br />
       <div>
-        <Button basic red>Red</Button>
-        <Button basic orange>Orange</Button>
-        <Button basic yellow>Yellow</Button>
-        <Button basic olive>Olive</Button>
-        <Button basic green>Green</Button>
-        <Button basic teal>Teal</Button>
-        <Button basic blue>Blue</Button>
-        <Button basic violet>Violet</Button>
-        <Button basic purple>Purple</Button>
-        <Button basic pink>Pink</Button>
-        <Button basic brown>Brown</Button>
-        <Button basic grey>Grey</Button>
-        <Button basic black>Black</Button>
+        <Button ghost red>Red</Button>
+        <Button ghost orange>Orange</Button>
+        <Button ghost yellow>Yellow</Button>
+        <Button ghost olive>Olive</Button>
+        <Button ghost green>Green</Button>
+        <Button ghost teal>Teal</Button>
+        <Button ghost blue>Blue</Button>
+        <Button ghost violet>Violet</Button>
+        <Button ghost purple>Purple</Button>
+        <Button ghost pink>Pink</Button>
+        <Button ghost brown>Brown</Button>
+        <Button ghost grey>Grey</Button>
+        <Button ghost black>Black</Button>
       </div>
     </div>
 
     <div class="field">
-      <h3>Icon</h3>
+      <h3>Ghost</h3>
 
-      <div>
-        <Button :icon="faShoppingCart" />
-        <Button :icon="faShoppingCart" content="Shopping cart" />
-      </div>
-    </div>
-
-    <div class="field">
-      <h3>Circular</h3>
-
-      <div>
-        <Button circular :icon="faShoppingCart" />
-        <Button circular :icon="faShoppingCart" content="Shopping cart" />
-      </div>
-    </div>
-
-    <div class="field">
-      <h3>Labeled icon</h3>
-
-      <div>
-        <Button :leftLabelIcon="faArrowLeft" content="Prev" />
-        <Button :leftLabelIcon="faPause" content="Pause" />
-        <Button :rightLabelIcon="faArrowRight" content="Next" />
-        <Button circular :leftLabelIcon="faAlignLeft" content="Prev" />
-        <Button circular :rightLabelIcon="faArrowRight" content="Next" />
+      <div class="dark">
+        <div>
+          <Button ghost>Ghost button</Button>
+          <Button ghost primary>Primary</Button>
+          <Button ghost secondary>Secondary</Button>
+          <Button ghost positive>Positive</Button>
+          <Button ghost negative>Negative</Button>
+        </div>
+        <br />
+        <div>
+          <Button ghost :leftLabelIcon="faPause">Ghost button</Button>
+          <Button ghost :leftLabelIcon="faPause" primary>Primary</Button>
+          <Button ghost :leftLabelIcon="faPause" secondary>Secondary</Button>
+          <Button ghost :leftLabelIcon="faPause" positive>Positive</Button>
+          <Button ghost :leftLabelIcon="faPause" negative>Negative</Button>
+        </div>
+        <br />
+        <div>
+          <Button ghost :icon="faPause">
+            <template v-slot:default>Ghost button</template>
+            <template v-slot:rightLabel>12,325</template>
+          </Button>
+          <Button ghost :icon="faPause" primary>
+            <template v-slot:default>Primary</template>
+            <template v-slot:rightLabel>12,325</template>
+          </Button>
+          <Button ghost :icon="faPause" secondary>
+            <template v-slot:default>Secondary</template>
+            <template v-slot:rightLabel>12,325</template>
+          </Button>
+          <Button ghost :icon="faPause" positive>
+            <template v-slot:default>Positive</template>
+            <template v-slot:rightLabel>12,325</template>
+          </Button>
+          <Button ghost :icon="faPause" negative>
+            <template v-slot:default>Negative</template>
+            <template v-slot:rightLabel>12,325</template>
+          </Button>
+        </div>
+        <br />
+        <div>
+          <Button ghost red>Red</Button>
+          <Button ghost orange>Orange</Button>
+          <Button ghost yellow>Yellow</Button>
+          <Button ghost olive>Olive</Button>
+          <Button ghost green>Green</Button>
+          <Button ghost teal>Teal</Button>
+          <Button ghost blue>Blue</Button>
+          <Button ghost violet>Violet</Button>
+          <Button ghost purple>Purple</Button>
+          <Button ghost pink>Pink</Button>
+          <Button ghost brown>Brown</Button>
+          <Button ghost grey>Grey</Button>
+          <Button ghost black>Black</Button>
+        </div>
       </div>
     </div>
 
@@ -285,7 +319,7 @@
         <Button fluid mini>Fits to Container</Button>
         <Button fluid small primary>Fits to Container</Button>
         <Button fluid secondary>Fits to Container</Button>
-        <Button fluid basic large positive :icon="faPause">Fits to Container</Button>
+        <Button fluid ghost large positive :icon="faPause">Fits to Container</Button>
         <Button fluid massive negative :icon="faPause">Fits to Container</Button>
       </div>
     </div>
@@ -295,14 +329,14 @@
 
       <div>
         <Button mini>Mini</Button>
-        <Button mini positive basic>Mini</Button>
+        <Button mini positive ghost>Mini</Button>
         <Button mini orange :leftLabelIcon="faPause">Pause</Button>
         <Button mini loading></Button>
         <Button mini red :icon="faHeart">
           <template v-slot:default>Like</template>
           <template v-slot:rightLabel>12,325</template>
         </Button>
-        <Button mini basic blue :icon="faCodeBranch">
+        <Button mini ghost blue :icon="faCodeBranch">
           <template v-slot:default>Fork</template>
           <template v-slot:rightLabel>12,325</template>
         </Button>
@@ -310,14 +344,14 @@
       <br />
       <div>
         <Button small>Small</Button>
-        <Button small positive basic>Small</Button>
+        <Button small positive ghost>Small</Button>
         <Button small orange :leftLabelIcon="faPause">Pause</Button>
         <Button small loading></Button>
         <Button small red :icon="faHeart">
           <template v-slot:default>Like</template>
           <template v-slot:rightLabel>12,325</template>
         </Button>
-        <Button small basic blue :icon="faCodeBranch">
+        <Button small ghost blue :icon="faCodeBranch">
           <template v-slot:default>Fork</template>
           <template v-slot:rightLabel>12,325</template>
         </Button>
@@ -325,14 +359,14 @@
       <br />
       <div>
         <Button>Default</Button>
-        <Button basic positive>Default</Button>
+        <Button ghost positive>Default</Button>
         <Button orange :leftLabelIcon="faPause">Pause</Button>
         <Button loading></Button>
         <Button red :icon="faHeart">
           <template v-slot:default>Like</template>
           <template v-slot:rightLabel>12,325</template>
         </Button>
-        <Button basic blue :icon="faCodeBranch">
+        <Button ghost blue :icon="faCodeBranch">
           <template v-slot:default>Fork</template>
           <template v-slot:rightLabel>12,325</template>
         </Button>
@@ -340,14 +374,14 @@
       <br />
       <div>
         <Button large>Large</Button>
-        <Button basic large positive>Large</Button>
+        <Button ghost large positive>Large</Button>
         <Button large orange :leftLabelIcon="faPause">Pause</Button>
         <Button large loading></Button>
         <Button large red :icon="faHeart">
           <template v-slot:default>Like</template>
           <template v-slot:rightLabel>12,325</template>
         </Button>
-        <Button large basic blue :icon="faCodeBranch">
+        <Button large ghost blue :icon="faCodeBranch">
           <template v-slot:default>Fork</template>
           <template v-slot:rightLabel>12,325</template>
         </Button>
@@ -355,14 +389,14 @@
       <br />
       <div>
         <Button massive>Massive</Button>
-        <Button massive basic positive>Massive</Button>
+        <Button massive ghost positive>Massive</Button>
         <Button massive orange :leftLabelIcon="faPause">Pause</Button>
         <Button massive loading></Button>
         <Button massive red :icon="faHeart">
           <template v-slot:default>Like</template>
           <template v-slot:rightLabel>12,325</template>
         </Button>
-        <Button massive basic blue :icon="faCodeBranch">
+        <Button massive ghost blue :icon="faCodeBranch">
           <template v-slot:default>Fork</template>
           <template v-slot:rightLabel>12,325</template>
         </Button>
@@ -423,3 +457,10 @@ import {
   faPause,
 } from '@fortawesome/free-solid-svg-icons'
 </script>
+
+<style lang="stylus" scoped>
+.dark {
+  padding 1em
+  background $color-night
+}
+</style>
