@@ -33,6 +33,36 @@
     </div>
 
     <div class="field">
+      <h3>Icon</h3>
+
+      <div>
+        <Button :icon="faShoppingCart" />
+        <Button :icon="faShoppingCart" content="Shopping cart" />
+      </div>
+    </div>
+
+    <div class="field">
+      <h3>Circular</h3>
+
+      <div>
+        <Button circular :icon="faShoppingCart" />
+        <Button circular :icon="faShoppingCart" content="Shopping cart" />
+      </div>
+    </div>
+
+    <div class="field">
+      <h3>Labeled icon</h3>
+
+      <div>
+        <Button :leftLabelIcon="faArrowLeft" content="Prev" />
+        <Button :leftLabelIcon="faPause" content="Pause" />
+        <Button :rightLabelIcon="faArrowRight" content="Next" />
+        <Button circular :leftLabelIcon="faAlignLeft" content="Prev" />
+        <Button circular :rightLabelIcon="faArrowRight" content="Next" />
+      </div>
+    </div>
+
+    <div class="field">
       <h3>Labeled button</h3>
 
       <div>
@@ -340,6 +370,10 @@
           <template v-slot:default>Fork</template>
           <template v-slot:rightLabel>12,325</template>
         </Button>
+        <Button mini :icon="faShoppingCart" />
+        <Button mini ghost :icon="faShoppingCart" />
+        <Button mini circular :icon="faShoppingCart" />
+        <Button mini circular ghost :icon="faShoppingCart" />
       </div>
       <br />
       <div>
@@ -355,6 +389,10 @@
           <template v-slot:default>Fork</template>
           <template v-slot:rightLabel>12,325</template>
         </Button>
+        <Button small :icon="faShoppingCart" />
+        <Button small ghost :icon="faShoppingCart" />
+        <Button small circular :icon="faShoppingCart" />
+        <Button small circular ghost :icon="faShoppingCart" />
       </div>
       <br />
       <div>
@@ -370,6 +408,10 @@
           <template v-slot:default>Fork</template>
           <template v-slot:rightLabel>12,325</template>
         </Button>
+        <Button :icon="faShoppingCart" />
+        <Button ghost :icon="faShoppingCart" />
+        <Button circular :icon="faShoppingCart" />
+        <Button circular ghost :icon="faShoppingCart" />
       </div>
       <br />
       <div>
@@ -385,6 +427,10 @@
           <template v-slot:default>Fork</template>
           <template v-slot:rightLabel>12,325</template>
         </Button>
+        <Button large :icon="faShoppingCart" />
+        <Button large ghost :icon="faShoppingCart" />
+        <Button large circular :icon="faShoppingCart" />
+        <Button large circular ghost :icon="faShoppingCart" />
       </div>
       <br />
       <div>
@@ -400,6 +446,10 @@
           <template v-slot:default>Fork</template>
           <template v-slot:rightLabel>12,325</template>
         </Button>
+        <Button massive :icon="faShoppingCart" />
+        <Button massive ghost :icon="faShoppingCart" />
+        <Button massive circular :icon="faShoppingCart" />
+        <Button massive circular ghost :icon="faShoppingCart" />
       </div>
     </div>
 
@@ -429,9 +479,9 @@
           <Button :icon="faStrikethrough"></Button>
         </ButtonGroup>
         <ButtonGroup size="large">
-          <Button>One</Button>
-          <Button>Two</Button>
-          <Button>Three</Button>
+          <Button>Large</Button>
+          <Button>Whole</Button>
+          <Button>Group</Button>
         </ButtonGroup>
       </div>
     </div>
@@ -455,6 +505,7 @@ import {
   faArrowLeft,
   faShoppingCart,
   faPause,
+  faUser,
 } from '@fortawesome/free-solid-svg-icons'
 </script>
 

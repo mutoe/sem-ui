@@ -196,6 +196,7 @@ box-shadow-border($color = currentColor, $width = 1px) {
 
   &.only-icon {
     padding $vertical-padding
+    width (36/14)em
   }
 
   &.fluid {
