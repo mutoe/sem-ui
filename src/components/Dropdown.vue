@@ -6,13 +6,17 @@
     @click.capture="showList = !showList"
     v-click-outside="() => showList = false"
   >
-    <div
-      role="alert"
-      aria-atomic="true"
-      aria-live="polite"
-      v-text="text"
-    />
-    <Icon class="icon" :icon="faCaretDown"/>
+    <div :class="['content', { outline: !slots.default }]">
+      <slot name="default">
+        <div
+          role="alert"
+          aria-atomic="true"
+          aria-live="polite"
+          v-text="text"
+        />
+        <Icon class="icon" :icon="faCaretDown" />
+      </slot>
+    </div>
 
     <div
       v-show="showList"
@@ -29,19 +33,19 @@
           :value="option.value"
           @click="onChange(option)"
         >
-          <Icon v-if="option.icon" class="icon" :icon="option.icon"/>
+          <Icon v-if="option.icon" class="icon" :icon="option.icon" />
           <span class="text">{{ option.text }}</span>
           <span v-if="option.description" class="description">{{ option.description }}</span>
         </div>
 
-        <hr v-if="option.divider" class="divider"/>
+        <hr v-if="option.divider" class="divider" />
       </template>
     </div>
   </div>
 </template>
 
 <script lang="ts" setup>
-import { watch } from 'vue'
+import { useSlots, watch } from 'vue'
 import pick from 'src/utils/pick'
 import vClickOutside from 'src/directives/vClickOutside'
 import { faCaretDown } from '@fortawesome/free-solid-svg-icons'
@@ -66,13 +70,18 @@ const emit = defineEmits<{
   (e: 'change', value: SemOption): void
 }>()
 
-const classes = [
-  'sem-dropdown',
-  pick(props, ['fluid']),
-]
+const slots = useSlots()
 
 let showList = $ref(false)
 let localValue = $ref(props.value)
+
+const classes = $computed(() => [
+  'sem-dropdown',
+  pick(props, ['fluid']),
+
+  { expanded: showList },
+])
+
 
 const onChange = (option: SemOption) => {
   showList = false
@@ -112,14 +121,25 @@ $horizontal-padding = .78571429rem
     width 100%
   }
 
-  > .icon {
-    margin-left: 1em
+  .content {
+    display inline-flex
+    align-items center
+
+    ^[0].expanded ^[1..-1].outline {
+      outline solid 3px $color-primary
+      border-radius $border-radius
+    }
+
+    > .icon {
+      margin-left: 1em
+    }
   }
 
   .list {
     position absolute
-    top 100%
+    top calc(100% + 0.5em)
     left 0
+    right 0
     min-width max-content
     border 1px solid #22242626
     border-radius $border-radius
@@ -131,7 +151,7 @@ $horizontal-padding = .78571429rem
     will-change transform, opacity
 
     &.upward {
-      bottom 100%
+      bottom calc(100% + 0.5em)
       top unset
     }
 
