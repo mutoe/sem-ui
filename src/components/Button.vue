@@ -1,5 +1,12 @@
 <template>
-  <button role="button" :class="classes" :disabled="props.disabled || props.loading" :aria-disabled="props.disabled || props.loading">
+  <button
+    role="button"
+    :class="classes"
+    :disabled="disabled || loading"
+    :aria-disabled="disabled || loading"
+    @keydown.space.enter="active = true"
+    @keyup.space.enter="active = false"
+  >
     <div v-if="props.loading" class="loading">Loading</div>
 
     <template v-else-if="props.animated">
@@ -17,10 +24,14 @@
           <Icon :icon="props.leftLabelIcon" />
         </slot>
       </span>
-      <span class="content">
+      <span v-if="withLabel" class="content">
         <Icon v-if="props.icon" :class="{ gutter: props.content || slots.default }" :icon="props.icon" />
         <slot>{{ props.content }}</slot>
       </span>
+      <template v-else>
+        <Icon v-if="props.icon" :class="{ gutter: props.content || slots.default }" :icon="props.icon" />
+        <slot>{{ props.content }}</slot>
+      </template>
       <span v-if="slots.rightLabel ?? props.rightLabelIcon" :class="['label', 'right', { icon: props.rightLabelIcon }]">
         <slot name="rightLabel">
           <Icon :icon="props.rightLabelIcon" />
@@ -31,14 +42,14 @@
 </template>
 
 <script lang="ts" setup>
-import type { IconDefinition } from "@fortawesome/fontawesome-svg-core";
-import { useSlots } from "vue";
-import pick from "src/utils/pick";
+import type { IconDefinition } from '@fortawesome/fontawesome-svg-core'
+import { useSlots } from 'vue'
+import pick from 'src/utils/pick'
 
-export type ButtonTheme = "primary" | "secondary" | "default";
-export type ButtonAnimated = true | "horizontal" | "vertical" | "fade";
-export type ButtonColor = "light" | "red" | "orange" | "yellow" | "olive" | "green" | "teal" | "blue" | "violet" | "purple" | "pink" | "brown" | "grey" | "black";
-export type ButtonSize = "mini" | "small" | "middle" | "large" | "massive";
+export type ButtonTheme = 'primary' | 'secondary' | 'default';
+export type ButtonAnimated = true | 'horizontal' | 'vertical' | 'fade';
+export type ButtonColor = 'light' | 'red' | 'orange' | 'yellow' | 'olive' | 'green' | 'teal' | 'blue' | 'violet' | 'purple' | 'pink' | 'brown' | 'grey' | 'black';
+export type ButtonSize = 'mini' | 'small' | 'middle' | 'large' | 'massive';
 
 const props = defineProps<{
   content?: string;
@@ -82,60 +93,65 @@ const props = defineProps<{
   black?: boolean;
 
   animated?: ButtonAnimated;
-}>();
+}>()
 
-const slots = useSlots();
+const slots = useSlots()
 
 const colors: (keyof typeof props)[] = [
-  "red",
-  "orange",
-  "yellow",
-  "olive",
-  "green",
-  "teal",
-  "blue",
-  "violet",
-  "purple",
-  "pink",
-  "brown",
-  "grey",
-  "black",
-  "basic",
-  "positive",
-  "negative",
-  "primary",
-  "secondary",
-];
+  'red',
+  'orange',
+  'yellow',
+  'olive',
+  'green',
+  'teal',
+  'blue',
+  'violet',
+  'purple',
+  'pink',
+  'brown',
+  'grey',
+  'black',
+  'basic',
+  'positive',
+  'negative',
+  'primary',
+  'secondary',
+]
 
-const classes = [
-  "sui-button",
-  props.animated === true ? "horizontal" : props.animated,
-  pick(props, "animated", "active", "fluid", "circular"),
+const withLabel = props.leftLabelIcon ?? props.rightLabelIcon ?? slots.leftLabel ?? slots.rightLabel
+let active = $ref(false)
 
-  { "with-label": props.leftLabelIcon ?? props.rightLabelIcon ?? slots.leftLabel ?? slots.rightLabel },
-  { icon: props.icon && !(props.content ?? slots.default) },
+const classes = $computed(() => [
+  'sui-button',
+  props.animated === true ? 'horizontal' : props.animated,
+  pick(props, 'animated', 'active', 'fluid', 'circular'),
+  { active: !props.disabled && active },
+
+  { 'with-label': withLabel },
+  { 'only-icon': props.icon && !(props.content ?? slots.default) },
 
   props.theme,
   props.color,
   pick(props, colors),
 
   props.size,
-  pick(props, "mini", "small", "large", "massive"),
-];
+  pick(props, 'mini', 'small', 'large', 'massive'),
+])
 </script>
 
 <style lang="stylus" scoped>
 $shadow-distance = 0px
 $shadow-offset = ($shadow-distance / 2)
-$vertical-padding = .78571429em
+$vertical-padding = (2 / 7em + 1 / 2em)
 $horizontal-padding = 1.5em
 $vertical-margin = 0
 $horizontal-margin = 0.25em
-$border-box-shadow = 0 0 0 1px transparent inset
-$shadow-box-shadow = 0px -$shadow-distance 0px 0px $border-color inset
-$box-shadow = $border-box-shadow, $shadow-box-shadow
 $transition-property = opacity, background-color, color, box-shadow, background
 $animate-duration = 0.3s
+
+box-shadow-border($color = currentColor, $width = 1px) {
+  box-shadow 0 0 0 $width $color inset
+}
 
 .sui-button {
   color $color-text
@@ -144,13 +160,13 @@ $animate-duration = 0.3s
   justify-content center
   align-items center
   min-height 1em
+  line-height 1em
   font-size 1rem
   outline none
   border none
   margin: 0 $horizontal-margin $vertical-margin 0
   padding $vertical-padding $horizontal-padding
   border-radius $border-radius
-  box-shadow $box-shadow
   transition $transition
   transition-duration $default-duration
   transition-timing-function $default-easing
@@ -159,7 +175,7 @@ $animate-duration = 0.3s
   background-color $color-light
 
   .gutter {
-    margin-right: (4 / 7) em;
+    margin-right: (4 / 7em);
   }
 
   &.circular {
@@ -170,6 +186,7 @@ $animate-duration = 0.3s
         border-top-left-radius 3em
         border-bottom-left-radius 3em
       }
+
       &.right {
         border-top-right-radius 3em
         border-bottom-right-radius 3em
@@ -177,7 +194,7 @@ $animate-duration = 0.3s
     }
   }
 
-  &.icon {
+  &.only-icon {
     padding $vertical-padding
   }
 
@@ -193,77 +210,44 @@ $animate-duration = 0.3s
     }
   }
 
-  &:hover,
-  &:focus,
-  &.active {
-    filter brightness(0.9)
-    box-shadow $border-box-shadow
-  }
-
-  &:focus {
-    outline auto
-  }
-
-  &:active:not(:disabled) {
-    filter brightness(0.8)
-    transform translate(1px, 1px)
-  }
-
-  &.basic {
-    color rgba(#000, 0.6)
-    background: transparent
-    border 1px solid currentColor
-
-    &:active:not(:disabled) {
-      background-color rgba(#f8f8f8, 0.2)
-      box-shadow 0 0 0 1px rgba(#000, 0.15) inset, 0 1px 4px 0 rgba(34, 36, 38, .15) inset
+  &:not(:disabled) {
+    &:hover,
+    &:focus {
+      filter brightness(0.9)
     }
 
     &:focus {
-      outline double 3px currentColor
+      outline double 3px $color-light
     }
-  }
 
-  &.primary {
-    box-shadow $border-box-shadow
-    background-color $color-primary
-    color $color-text-inverse
-
-    &.basic {
-      box-shadow none
-      background-color transparent
-      color $color-primary
-    }
-  }
-
-  &.secondary {
-    box-shadow $border-box-shadow
-    background-color $color-secondary
-    color $color-text-inverse
-
-    &:hover
-    &:focus
+    &:active,
     &.active {
-      filter brightness(1.5)
+      transform translate(1px, 1px)
+
+      &:not(.with-label) {
+        filter brightness(0.8)
+      }
     }
+  }
 
-    &:active:not(:disabled) {
-      filter brightness(2)
-    }
+  &.basic {
+    color $color-grey
+    background: transparent
+    box-shadow-border(currentColor)
 
-    &.basic {
-      color $color-secondary
-      background-color transparent
-
-      &:hover
-      &:focus
-      &.active {
-        filter brightness(2.5)
+    &:not(:disabled) {
+      &:hover,
+      &:focus {
+        filter brightness(1.3)
       }
 
-      &:active:not(:disabled) {
-        background-color $color-secondary, rgba(#fff, 0.2)
-        box-shadow 0 0 0 1px rgba(#000, 0.15) inset, 0 1px 4px 0 rgba(34, 36, 38, .15) inset
+      &:active,
+      &.active {
+        background-color rgba(#aaa, 0.15)
+      }
+
+      &:focus {
+        outline double 3px currentColor
       }
     }
   }
@@ -281,13 +265,13 @@ $animate-duration = 0.3s
     .label {
       display flex
       align-items center
-      padding 0 1em
+      padding 0 calc(1em - 2px)
       font-weight bold
       position relative
 
-
       &:not(.icon) {
         background-color #fff
+        box-shadow-border($color-light)
 
         &::before {
           content ""
@@ -309,49 +293,50 @@ $animate-duration = 0.3s
         border-top-left-radius $border-radius
         border-bottom-left-radius $border-radius
 
-        &::before{
-          right: ($decorator-size / -2)
+        &::before {
+          right: "calc(%s + 0.1em)" % ($decorator-size/ -2)
         }
       }
+
       &.right {
         border-top-right-radius $border-radius
         border-bottom-right-radius $border-radius
 
-        &::before{
-          left: "calc(%s - 0.01em)" % ($decorator-size/-2)
+        &::before {
+          left: "calc(%s + 0.1em)" % ($decorator-size/ -2)
         }
       }
     }
 
-    &:not(.basic) .label:not(.icon) {
-      border 1px solid $color-light
-    }
-
     &.secondary {
       .label {
-        background-color rgba(#fff, .2)
+        background-color rgba(#fff, .15)
       }
     }
 
     &.basic {
       .label {
         background-color transparent
+        box-shadow-border()
 
         &:not(.icon) {
           background-color #fff
 
           &::before {
             border 1px solid currentColor
+          }
+
+          &.left::before {
+            right: "calc(%s + 0.02em)" % ($decorator-size/ -2)
+            border-left none
+            border-bottom none
+          }
+
+          &.right::before {
+            left: "calc(%s + 0.02em)" % ($decorator-size/ -2)
             border-right none
             border-top none
           }
-        }
-
-        &.left {
-          border-right 1px solid currentColor
-        }
-        &.right {
-          border-left 1px solid currentColor
         }
       }
     }
@@ -364,38 +349,71 @@ $animate-duration = 0.3s
       background-color $current-color
       color $color-text-inverse
 
-      &:hover
-      &:focus
-      &.active {
-        filter brightness(0.9)
-        box-shadow $border-box-shadow
-      }
+      &:not(:disabled) {
+        &:hover
+        &:focus {
+          filter brightness(0.9)
+        }
 
-      &:active:not(:disabled) {
-        filter brightness(0.85)
+        &:focus {
+          outline double 3px $current-color
+        }
+
+        &:active,
+        &.active {
+          filter brightness(0.85)
+        }
       }
 
       &.basic {
         background-color transparent
         color: $current-color
-        border: 1px solid currentColor
+        box-shadow-border()
 
-        &:hover
-        &:focus
-        &.active {
-          filter brightness(1.1)
-        }
+        &:not(:disabled) {
+          &:hover,
+          &:focus {
+            box-shadow-border(currentColor)
+            filter brightness(1.2)
 
-        &:active:not(:disabled) {
-          background-color $current-color, rgba(#fff, 0.2)
-          box-shadow 0 0 0 1px rgba(#000, 0.15) inset, 0 1px 4px 0 rgba(34, 36, 38, .15) inset
+            &.with-label .label {
+              box-shadow-border(currentColor)
+            }
+          }
+
+          &:active,
+          &.active {
+            opacity .7
+          }
         }
       }
 
       &.with-label:not(.basic) .label:not(.icon) {
         color $current-color
         background-color #fff
-        border 1px solid currentColor
+        box-shadow-border()
+      }
+    }
+  }
+
+  &.secondary {
+    &:not(:disabled) {
+      &:hover
+      &:focus {
+        filter brightness(1.5)
+
+        &.basic {
+          filter brightness(2.5)
+        }
+      }
+
+      &:active
+      &.active {
+        filter brightness(2)
+
+        &.basic {
+          filter brightness(2)
+        }
       }
     }
   }
@@ -403,7 +421,6 @@ $animate-duration = 0.3s
   &:disabled:not(.loading) {
     cursor: default
     opacity: 0.45
-    box-shadow none
   }
 
   .loading {
@@ -444,7 +461,8 @@ $animate-duration = 0.3s
       }
 
       &:hover,
-      &:active {
+      &:active,
+      &.active {
         .visible {
           transform: translateX(-200%)
         }
@@ -465,7 +483,8 @@ $animate-duration = 0.3s
       }
 
       &:hover,
-      &:active {
+      &:active,
+      &.active {
         .visible {
           transform: translateY(200%)
         }
@@ -488,7 +507,8 @@ $animate-duration = 0.3s
       }
 
       &:hover,
-      &:active {
+      &:active,
+      &.active {
         .visible {
           opacity 0
           transform: scale(0.75)

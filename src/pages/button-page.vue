@@ -40,9 +40,68 @@
           <template v-slot:default>Like</template>
           <template v-slot:rightLabel>12,325</template>
         </Button>
+        <Button active red :icon="faHeart">
+          <template v-slot:default>Like</template>
+          <template v-slot:rightLabel>12,325</template>
+        </Button>
+        <Button disabled red :icon="faHeart">
+          <template v-slot:default>Like</template>
+          <template v-slot:rightLabel>12,325</template>
+        </Button>
+        <Button loading red :icon="faHeart">
+          <template v-slot:default>Like</template>
+          <template v-slot:rightLabel>12,325</template>
+        </Button>
+        <Button red :icon="faHeart">
+          <template v-slot:default>Like</template>
+          <template v-slot:leftLabel>12,325</template>
+        </Button>
+        <Button active red :icon="faHeart">
+          <template v-slot:default>Like</template>
+          <template v-slot:leftLabel>12,325</template>
+        </Button>
+        <Button disabled red :icon="faHeart">
+          <template v-slot:default>Like</template>
+          <template v-slot:leftLabel>12,325</template>
+        </Button>
+        <Button loading red :icon="faHeart">
+          <template v-slot:default>Like</template>
+          <template v-slot:leftLabel>12,325</template>
+        </Button>
+      </div>
+      <br>
+      <div>
         <Button basic blue :icon="faCodeBranch">
           <template v-slot:default>Fork</template>
           <template v-slot:rightLabel>12,325</template>
+        </Button>
+        <Button active basic blue :icon="faCodeBranch">
+          <template v-slot:default>Fork</template>
+          <template v-slot:rightLabel>12,325</template>
+        </Button>
+        <Button disabled basic blue :icon="faCodeBranch">
+          <template v-slot:default>Fork</template>
+          <template v-slot:rightLabel>12,325</template>
+        </Button>
+        <Button loading basic blue :icon="faCodeBranch">
+          <template v-slot:default>Fork</template>
+          <template v-slot:rightLabel>12,325</template>
+        </Button>
+        <Button basic blue :icon="faCodeBranch">
+          <template v-slot:default>Fork</template>
+          <template v-slot:leftLabel>12,325</template>
+        </Button>
+        <Button active basic blue :icon="faCodeBranch">
+          <template v-slot:default>Fork</template>
+          <template v-slot:leftLabel>12,325</template>
+        </Button>
+        <Button disabled basic blue :icon="faCodeBranch">
+          <template v-slot:default>Fork</template>
+          <template v-slot:leftLabel>12,325</template>
+        </Button>
+        <Button loading basic blue :icon="faCodeBranch">
+          <template v-slot:default>Fork</template>
+          <template v-slot:leftLabel>12,325</template>
         </Button>
       </div>
     </div>
@@ -236,6 +295,7 @@
 
       <div>
         <Button mini>Mini</Button>
+        <Button mini positive basic>Mini</Button>
         <Button mini orange :leftLabelIcon="faPause">Pause</Button>
         <Button mini loading></Button>
         <Button mini red :icon="faHeart">
@@ -250,6 +310,7 @@
       <br />
       <div>
         <Button small>Small</Button>
+        <Button small positive basic>Small</Button>
         <Button small orange :leftLabelIcon="faPause">Pause</Button>
         <Button small loading></Button>
         <Button small red :icon="faHeart">
@@ -264,6 +325,7 @@
       <br />
       <div>
         <Button>Default</Button>
+        <Button basic positive>Default</Button>
         <Button orange :leftLabelIcon="faPause">Pause</Button>
         <Button loading></Button>
         <Button red :icon="faHeart">
@@ -278,6 +340,7 @@
       <br />
       <div>
         <Button large>Large</Button>
+        <Button basic large positive>Large</Button>
         <Button large orange :leftLabelIcon="faPause">Pause</Button>
         <Button large loading></Button>
         <Button large red :icon="faHeart">
@@ -292,6 +355,7 @@
       <br />
       <div>
         <Button massive>Massive</Button>
+        <Button massive basic positive>Massive</Button>
         <Button massive orange :leftLabelIcon="faPause">Pause</Button>
         <Button massive loading></Button>
         <Button massive red :icon="faHeart">
@@ -320,13 +384,13 @@
           <Button :rightLabelIcon="faArrowRight">Three</Button>
         </ButtonGroup>
         <ButtonGroup>
-          <Button :icon="faAlignLeft"></Button>
+          <Button active :icon="faAlignLeft"></Button>
           <Button :icon="faAlignCenter"></Button>
           <Button :icon="faAlignRight"></Button>
           <Button :icon="faAlignJustify"></Button>
         </ButtonGroup>
         <ButtonGroup>
-          <Button :icon="faBold"></Button>
+          <Button active :icon="faBold"></Button>
           <Button :icon="faUnderline"></Button>
           <Button :icon="faStrikethrough"></Button>
         </ButtonGroup>
@@ -341,8 +405,8 @@
 </template>
 
 <script lang="ts" setup>
-import Button from "src/components/Button.vue";
-import ButtonGroup from "src/components/ButtonGroup.vue";
+import Button from 'src/components/Button.vue'
+import ButtonGroup from 'src/components/ButtonGroup.vue'
 import {
   faAlignLeft,
   faAlignRight,
@@ -357,5 +421,5 @@ import {
   faArrowLeft,
   faShoppingCart,
   faPause,
-} from "@fortawesome/free-solid-svg-icons";
+} from '@fortawesome/free-solid-svg-icons'
 </script>
