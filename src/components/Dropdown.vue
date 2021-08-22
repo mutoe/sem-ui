@@ -3,7 +3,11 @@
     role="listbox"
     :class="classes"
     :aria-expanded="showList"
+    :tabindex="tabindex ?? 0"
     @click.capture="showList = !showList"
+    @keydown.space.prevent
+    @keyup.space="showList = !showList"
+    @focusout="showList = false"
     v-click-outside="() => showList = false"
   >
     <div :class="['content', { outline: !slots.default }]">
@@ -64,6 +68,7 @@ const props = defineProps<{
   // TODO: implement auto upward when scroll to bottom of screen
   upward?: boolean
   text?: string
+  tabindex?: number | string
 }>()
 
 const emit = defineEmits<{

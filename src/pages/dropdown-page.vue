@@ -13,11 +13,11 @@
     <div class="field">
       <h3>Slotted dropdown</h3>
       <div>
-        <Dropdown text="File" :options="fileOptions" @change="onSingleChange">
+        <Dropdown text="File" :options="fileOptions" tabindex="-1" @change="onSingleChange">
           <Button :leftLabelIcon="faLanguage">Select Language</Button>
         </Dropdown>
 
-        <Dropdown text="File" :options="fileOptions" @change="onSingleChange">
+        <Dropdown text="File" :options="fileOptions" :tabindex="-1" @change="onSingleChange">
           <Button basic>Select Language <Icon :icon="faCaretDown"></Icon></Button>
         </Dropdown>
       </div>
