@@ -1,7 +1,9 @@
 <template>
   <label :class="classes">
-    <div v-if="slots.prepend || (props.icon || props.loading) && iconPosition === 'left'"
-         :class="['prepend', { icon: props.icon ?? props.loading }]">
+    <div
+      v-if="slots.prepend || (props.icon || props.loading) && iconPosition === 'left'"
+      :class="['prepend', { icon: props.icon ?? props.loading }]"
+    >
       <slot name="prepend">
         <template v-if="iconPosition === 'left'">
           <span v-if="loading" class="loading" />
@@ -20,8 +22,10 @@
       :disabled="props.disabled"
     />
 
-    <div v-if="slots.append || (props.icon || props.loading) && iconPosition === 'right'"
-         :class="['append', { icon: props.icon ?? props.loading }]">
+    <div
+      v-if="slots.append || (props.icon || props.loading) && iconPosition === 'right'"
+      :class="['append', { icon: props.icon ?? props.loading }]"
+    >
       <slot name="append">
         <template v-if="iconPosition === 'right'">
           <span v-if="loading" class="loading" />
@@ -89,7 +93,7 @@ const classes = [
   pick(props, ['focus', 'disabled', 'fluid', 'error']),
 ]
 
-const inputType: InputType = props.type
+const inputType: InputType | undefined = props.type
   || (props.number && 'number')
   || (props.tel && 'tel')
   || (props.url && 'url')
@@ -146,6 +150,7 @@ $input-padding-horizontal = 1em;
       -webkit-appearance none
       margin 0
     }
+
     // Hide number input arrow buttons (for Firefox)
     &[type="number"] {
       -moz-appearance textfield

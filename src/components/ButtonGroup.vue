@@ -5,7 +5,7 @@
 </template>
 
 <script lang="ts" setup>
-import type { ButtonSize } from './Button'
+import type { ButtonSize } from './Button.vue'
 import { useSlots } from 'vue'
 
 const props = defineProps<{

@@ -5,18 +5,18 @@
     <div class="field">
       <h3>A dropdown.</h3>
       <div>
-        <Dropdown text="File" :options="fileOptions" @change="onSingleChange"/>
-        <Dropdown upward text="File (upward)" :options="fileOptions" @change="onSingleChange"/>
+        <Dropdown text="File" :options="fileOptions" @change="onSingleChange" />
+        <Dropdown upward text="File (upward)" :options="fileOptions" @change="onSingleChange" />
       </div>
     </div>
 
-<!--    <div class="field">-->
-<!--      <h3>Fluid</h3>-->
+    <!--    <div class="field">-->
+    <!--      <h3>Fluid</h3>-->
 
-<!--      <div>-->
-<!--        <Dropdown fluid :options="options"/>-->
-<!--      </div>-->
-<!--    </div>-->
+    <!--      <div>-->
+    <!--        <Dropdown fluid :options="options"/>-->
+    <!--      </div>-->
+    <!--    </div>-->
   </section>
 </template>
 
@@ -25,16 +25,16 @@ import Dropdown from 'src/components/Dropdown.vue'
 import { faFolder, faTrash } from '@fortawesome/free-solid-svg-icons'
 
 const fileOptions: SemOption[] = [
-  { text: 'New' },
-  { text: 'Open...', description: 'ctrl + o' },
-  { text: 'Save as...', description: 'ctrl + s' },
-  { text: 'Rename', description: 'ctrl + r' },
-  { text: 'Make a copy' },
-  { text: 'Move to folder', icon: faFolder },
-  { text: 'Move to trash', icon: faTrash, divider: true },
-  { text: 'Download As...' },
-  { text: 'Publish to Web' },
-  { text: 'Email collaborators' },
+  { value: '', text: 'New' },
+  { value: '', text: 'Open...', description: 'ctrl + o' },
+  { value: '', text: 'Save as...', description: 'ctrl + s' },
+  { value: '', text: 'Rename', description: 'ctrl + r' },
+  { value: '', text: 'Make a copy' },
+  { value: '', text: 'Move to folder', icon: faFolder },
+  { value: '', text: 'Move to trash', icon: faTrash, divider: true },
+  { value: '', text: 'Download As...' },
+  { value: '', text: 'Publish to Web' },
+  { value: '', text: 'Email collaborators' },
 ]
 
 const onSingleChange = (option: SemOption) => {
