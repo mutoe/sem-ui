@@ -7,33 +7,38 @@
     @keydown.space.enter="active = true"
     @keyup.space.enter="active = false"
   >
-    <div v-if="props.loading" class="loading">Loading</div>
+    <template v-if="!withLabel">
+      <div v-if="props.loading" class="loading">Loading</div>
 
-    <template v-else-if="props.animated">
-      <div class="content visible">
-        <slot>{{ props.content }}</slot>
-      </div>
-      <div class="content hidden">
-        <slot name="animated" />
-      </div>
-    </template>
+      <template v-else-if="props.animated">
+        <div class="content visible">
+          <slot>{{ props.content }}</slot>
+        </div>
+        <div class="content hidden">
+          <slot name="animated" />
+        </div>
+      </template>
 
-    <template v-else>
-      <span v-if="slots.leftLabel ?? props.leftLabelIcon" :class="['label', 'left', { icon: props.leftLabelIcon }]">
-        <slot name="leftLabel">
-          <Icon :icon="props.leftLabelIcon" />
-        </slot>
-      </span>
-      <span v-if="withLabel" class="content">
-        <Icon v-if="props.icon" :class="{ gutter: props.content || slots.default }" :icon="props.icon" />
-        <slot>{{ props.content }}</slot>
-      </span>
       <template v-else>
         <Icon v-if="props.icon" :class="{ gutter: props.content || slots.default }" :icon="props.icon" />
         <slot>{{ props.content }}</slot>
       </template>
+    </template>
+
+    <template v-else>
+      <div v-if="slots.leftLabel ?? props.leftLabelIcon" :class="['label', 'left', { icon: props.leftLabelIcon }]">
+        <div v-if="props.loading" class="loading">Loading</div>
+        <slot v-else name="leftLabel">
+          <Icon :icon="props.leftLabelIcon" />
+        </slot>
+      </div>
+      <span class="content">
+        <Icon v-if="props.icon" :class="{ gutter: props.content || slots.default }" :icon="props.icon" />
+        <slot>{{ props.content }}</slot>
+      </span>
       <span v-if="slots.rightLabel ?? props.rightLabelIcon" :class="['label', 'right', { icon: props.rightLabelIcon }]">
-        <slot name="rightLabel">
+        <div v-if="props.loading" class="loading">Loading</div>
+        <slot v-else name="rightLabel">
           <Icon :icon="props.rightLabelIcon" />
         </slot>
       </span>
@@ -118,7 +123,7 @@ const colors: (keyof typeof props)[] = [
   'secondary',
 ]
 
-const withLabel = props.leftLabelIcon ?? props.rightLabelIcon ?? slots.leftLabel ?? slots.rightLabel
+const withLabel = $computed(() => props.leftLabelIcon ?? props.rightLabelIcon ?? slots.leftLabel ?? slots.rightLabel)
 let active = $ref(false)
 
 const classes = $computed(() => [
@@ -148,6 +153,7 @@ $vertical-margin = 0
 $horizontal-margin = 0.25em
 $transition-property = opacity, background-color, color, box-shadow, background
 $animate-duration = 0.3s
+$icon-width = (36 / 14em)
 
 box-shadow-border($color = currentColor, $width = 1px) {
   box-shadow 0 0 0 $width $color inset
@@ -196,7 +202,7 @@ box-shadow-border($color = currentColor, $width = 1px) {
 
   &.only-icon {
     padding $vertical-padding
-    width (36/14)em
+    width $icon-width
   }
 
   &.fluid {
@@ -288,6 +294,12 @@ box-shadow-border($color = currentColor, $width = 1px) {
 
       &.icon {
         background-color rgba(#000, .15)
+        padding $vertical-padding
+        width $icon-width
+
+        .loading {
+          min-width 1em
+        }
       }
 
       &.left {

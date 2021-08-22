@@ -38,6 +38,8 @@
       <div>
         <Button :icon="faShoppingCart" />
         <Button :icon="faShoppingCart" content="Shopping cart" />
+        <Button loading :icon="faShoppingCart" />
+        <Button loading :icon="faShoppingCart" content="Shopping cart" />
       </div>
     </div>
 
@@ -47,6 +49,8 @@
       <div>
         <Button circular :icon="faShoppingCart" />
         <Button circular :icon="faShoppingCart" content="Shopping cart" />
+        <Button loading circular :icon="faShoppingCart" />
+        <Button loading circular :icon="faShoppingCart" content="Shopping cart" />
       </div>
     </div>
 
@@ -59,6 +63,10 @@
         <Button :rightLabelIcon="faArrowRight" content="Next" />
         <Button circular :leftLabelIcon="faAlignLeft" content="Prev" />
         <Button circular :rightLabelIcon="faArrowRight" content="Next" />
+        <Button loading :leftLabelIcon="faArrowLeft" content="Prev" />
+        <Button loading :rightLabelIcon="faArrowRight" content="Next" />
+        <Button loading circular :leftLabelIcon="faAlignLeft" content="Prev" />
+        <Button loading circular :rightLabelIcon="faArrowRight" content="Next" />
       </div>
     </div>
 
@@ -74,10 +82,6 @@
           <template v-slot:default>Like</template>
           <template v-slot:rightLabel>12,325</template>
         </Button>
-        <Button disabled red :icon="faHeart">
-          <template v-slot:default>Like</template>
-          <template v-slot:rightLabel>12,325</template>
-        </Button>
         <Button loading red :icon="faHeart">
           <template v-slot:default>Like</template>
           <template v-slot:rightLabel>12,325</template>
@@ -87,10 +91,6 @@
           <template v-slot:leftLabel>12,325</template>
         </Button>
         <Button active red :icon="faHeart">
-          <template v-slot:default>Like</template>
-          <template v-slot:leftLabel>12,325</template>
-        </Button>
-        <Button disabled red :icon="faHeart">
           <template v-slot:default>Like</template>
           <template v-slot:leftLabel>12,325</template>
         </Button>
@@ -109,10 +109,6 @@
           <template v-slot:default>Fork</template>
           <template v-slot:rightLabel>12,325</template>
         </Button>
-        <Button disabled ghost blue :icon="faCodeBranch">
-          <template v-slot:default>Fork</template>
-          <template v-slot:rightLabel>12,325</template>
-        </Button>
         <Button loading ghost blue :icon="faCodeBranch">
           <template v-slot:default>Fork</template>
           <template v-slot:rightLabel>12,325</template>
@@ -125,10 +121,6 @@
           <template v-slot:default>Fork</template>
           <template v-slot:leftLabel>12,325</template>
         </Button>
-        <Button disabled ghost blue :icon="faCodeBranch">
-          <template v-slot:default>Fork</template>
-          <template v-slot:leftLabel>12,325</template>
-        </Button>
         <Button loading ghost blue :icon="faCodeBranch">
           <template v-slot:default>Fork</template>
           <template v-slot:leftLabel>12,325</template>
@@ -138,7 +130,6 @@
 
     <div class="field">
       <h3>Colored</h3>
-      <p>A button can have different containers.</p>
 
       <div>
         <Button>Basic button</Button>
@@ -321,7 +312,6 @@
 
     <div class="field">
       <h3>Animated</h3>
-      <p>A button can animate to show hidden content</p>
 
       <div>
         <Button animated>
@@ -343,7 +333,6 @@
 
     <div class="field">
       <h3>Fluid</h3>
-      <p>A button can take the width of its container.</p>
 
       <div>
         <Button fluid mini>Fits to Container</Button>

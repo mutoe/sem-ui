@@ -10,7 +10,7 @@
     @focusout="showList = false"
     v-click-outside="() => showList = false"
   >
-    <div :class="['content', { outline: !slots.default }]">
+    <div class="content">
       <slot name="default">
         <div
           role="alert"
@@ -84,7 +84,7 @@ const classes = $computed(() => [
   'sem-dropdown',
   pick(props, ['fluid']),
 
-  { expanded: showList },
+  { expanded: showList, outline: !slots.default },
 ])
 
 
@@ -126,17 +126,21 @@ $horizontal-padding = .78571429rem
     width 100%
   }
 
+  &:focus-within {
+    outline solid 3px $color-primary
+    border-radius $border-radius
+  }
+
   .content {
     display inline-flex
     align-items center
 
-    ^[0].expanded ^[1..-1].outline {
-      outline solid 3px $color-primary
-      border-radius $border-radius
-    }
-
     > .icon {
       margin-left: 1em
+    }
+
+    > :slotted(.sem-button) {
+      margin-right: 0
     }
   }
 
