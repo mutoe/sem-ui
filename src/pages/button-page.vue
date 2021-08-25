@@ -468,9 +468,9 @@
           <Button :icon="faStrikethrough"></Button>
         </ButtonGroup>
         <ButtonGroup size="large">
-          <Button>Large</Button>
-          <Button>Whole</Button>
-          <Button>Group</Button>
+          <Button :icon="faArrowLeft"></Button>
+          <Button>2/10</Button>
+          <Button :icon="faArrowRight"></Button>
         </ButtonGroup>
       </div>
     </div>
