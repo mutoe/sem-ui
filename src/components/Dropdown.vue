@@ -54,6 +54,8 @@ import pick from 'src/utils/pick'
 import vClickOutside from 'src/directives/vClickOutside'
 import { faCaretDown } from '@fortawesome/free-solid-svg-icons'
 
+const dropdownConfig: SemDropdownConfig = Object.assign({}, window.__SEM_CONFIG?.common, window.__SEM_CONFIG?.dropdown)
+
 // TODO: accessibility
 
 const props = defineProps<{
@@ -77,6 +79,8 @@ const emit = defineEmits<{
 }>()
 
 const slots = useSlots()
+
+const debug = props.debug ?? dropdownConfig.debug
 
 let showList = $ref(false)
 let localValue = $ref(props.value)

@@ -1,3 +1,3 @@
-declare interface SemModalConfig {
+declare interface SemModalConfig extends SemCommonConfig {
   closeIcon?: boolean
 }

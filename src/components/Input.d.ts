@@ -1,3 +1,3 @@
-declare interface SemInputConfig {
+declare interface SemInputConfig extends SemCommonConfig {
   iconPosition?: 'left' | 'right'
 }

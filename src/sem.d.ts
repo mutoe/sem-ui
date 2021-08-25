@@ -3,8 +3,14 @@ declare interface Window {
 }
 
 declare interface SemConfig {
-  modal?: SemModalConfig
+  common?: SemCommonConfig
+  dropdown?: SemDropdownConfig
   input?: SemInputConfig
+  modal?: SemModalConfig
+}
+
+declare interface SemCommonConfig {
+  debug?: boolean
 }
 
 declare interface SemOption<V = string | number> {
