@@ -7,7 +7,7 @@
     @click.capture="showList = !showList"
     @keydown.space.prevent
     @keyup.space="showList = !showList"
-    @focusout="showList = false"
+    @focusout="!debug && (showList = false)"
     v-click-outside="() => showList = false"
   >
     <div class="content">
@@ -69,6 +69,7 @@ const props = defineProps<{
   upward?: boolean
   text?: string
   tabindex?: number | string
+  debug?: boolean
 }>()
 
 const emit = defineEmits<{

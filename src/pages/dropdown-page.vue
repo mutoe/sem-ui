@@ -11,6 +11,14 @@
     </div>
 
     <div class="field">
+      <h3>Debug dropdown (will not close dropdown list when focus out document)</h3>
+      <div>
+        <Dropdown debug text="with debug" :options="fileOptions" @change="onSingleChange" />
+        <Dropdown text="without debug" :options="fileOptions" @change="onSingleChange" />
+      </div>
+    </div>
+
+    <div class="field">
       <h3>Slotted dropdown</h3>
       <div>
         <Dropdown text="File" :options="fileOptions" tabindex="-1" @change="onSingleChange">
