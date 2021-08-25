@@ -72,6 +72,7 @@ const props = defineProps<{
   text?: string
   tabindex?: number | string
   debug?: boolean
+  compat?: boolean
 }>()
 
 const emit = defineEmits<{
@@ -80,7 +81,8 @@ const emit = defineEmits<{
 
 const slots = useSlots()
 
-const debug = props.debug ?? dropdownConfig.debug
+const debug = props.debug || dropdownConfig.debug
+const compat = props.compat || dropdownConfig.compat
 
 let showList = $ref(false)
 let localValue = $ref(props.value)
@@ -89,7 +91,7 @@ let classes = $computed(() => [
   'sem-dropdown',
   pick(props, ['fluid']),
 
-  { expanded: showList, outline: !slots.default },
+  { expanded: showList, outline: !slots.default, compat },
 ])
 
 
@@ -177,8 +179,12 @@ $horizontal-padding = .78571429rem
     .item {
       position relative
       display flex
-      padding $horizontal-padding (8 / 7rem);
+      padding $horizontal-padding (8 / 7rem)
       line-height 1em
+
+      ^[0].compat ^[2..-1] {
+        padding ($horizontal-padding / 2) (8 / 14rem)
+      }
 
       &:hover {
         background-color #0000000d

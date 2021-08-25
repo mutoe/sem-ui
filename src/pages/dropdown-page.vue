@@ -32,10 +32,10 @@
     </div>
 
     <div class="field">
-      <h3>Inline</h3>
+      <h3>Compat</h3>
 
       <div>
-        <p>Show me posts by <Dropdown text="File" :options="fileOptions" /></p>
+        <p>The user is come from <Dropdown compat text="China" :options="countryOptions" /></p>
       </div>
     </div>
 
@@ -65,6 +65,13 @@ const fileOptions: SemOption[] = [
   { value: '', text: 'Download As...' },
   { value: '', text: 'Publish to Web' },
   { value: '', text: 'Email collaborators' },
+]
+
+const countryOptions: SemOption[] = [
+  {value: 'America', text: 'America' },
+  {value: 'China', text: 'China' },
+  {value: 'Russia', text: 'Russia' },
+  {value: 'Singapore', text: 'Singapore' },
 ]
 
 const onSingleChange = (option: SemOption) => {
