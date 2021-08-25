@@ -106,6 +106,7 @@ $horizontal-padding = .78571429rem
   cursor pointer
   transition box-shadow .1s ease, width .1s ease
   margin-right .5em
+  vertical-align bottom
 
   &.selection {
     word-wrap break-word
@@ -127,9 +128,13 @@ $horizontal-padding = .78571429rem
     width 100%
   }
 
-  &:focus-within {
+  &:not([tabindex="-1"]):focus-within {
     outline solid 3px $color-primary
     border-radius $border-radius
+  }
+
+  :slotted(.sui-button) {
+    margin-right 0
   }
 
   .content {
