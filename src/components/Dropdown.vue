@@ -85,7 +85,7 @@ const debug = props.debug ?? dropdownConfig.debug
 let showList = $ref(false)
 let localValue = $ref(props.value)
 
-const classes = $computed(() => [
+let classes = $computed(() => [
   'sem-dropdown',
   pick(props, ['fluid']),
 

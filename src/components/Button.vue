@@ -123,10 +123,10 @@ const colors: (keyof typeof props)[] = [
   'secondary',
 ]
 
-const withLabel = $computed(() => props.leftLabelIcon ?? props.rightLabelIcon ?? slots.leftLabel ?? slots.rightLabel)
+let withLabel = $computed(() => props.leftLabelIcon ?? props.rightLabelIcon ?? slots.leftLabel ?? slots.rightLabel)
 let active = $ref(false)
 
-const classes = $computed(() => [
+let classes = $computed(() => [
   'sui-button',
   props.animated === true ? 'horizontal' : props.animated,
   pick(props, 'animated', 'active', 'fluid', 'circular'),
