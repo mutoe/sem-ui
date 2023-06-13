@@ -2,6 +2,7 @@
   "name": "@sem-ui/vue",
   "version": "0.0.0",
   "license": "MIT",
+  "type": "module",
   "scripts": {
     "start": "vite",
     "build": "vue-tsc && vite build",
