@@ -1,8 +1,8 @@
 <template>
   <Teleport v-if="show" to="body">
     <div class="sui-modal">
-      <div class="container" v-click-outside="onClickBackdrop">
-        <Button v-if="displayCloseIcon" :icon="faTimes" basic class="close-icon" @click="onClickCloseIcon"></Button>
+      <div v-click-outside="onClickBackdrop" class="container">
+        <Button v-if="displayCloseIcon" :icon="faTimes" basic class="close-icon" @click="onClickCloseIcon" />
         <header class="header">
           <slot name="header">
             <h2>{{ props.title || 'Title' }}</h2>
@@ -23,15 +23,15 @@
 </template>
 
 <script lang="ts" setup>
+import { ref, watchEffect } from 'vue'
+import { faTimes } from '@fortawesome/free-solid-svg-icons'
 import Button from 'src/components/Button.vue'
 import vClickOutside from 'src/directives/vClickOutside'
-import { faTimes } from '@fortawesome/free-solid-svg-icons'
-import { ref, watchEffect } from 'vue'
 
-const defaultConfig: SemModalConfig = {
+const defaultConfig: Sem.ModalConfig = {
   closeIcon: false,
 }
-const modalConfig: SemModalConfig = Object.assign(defaultConfig, window.__SEM_CONFIG?.modal)
+const modalConfig: Sem.ModalConfig = Object.assign(defaultConfig, window.__SEM_CONFIG?.modal)
 
 export interface ModalRef {
   open: () => void
@@ -70,11 +70,11 @@ const onClickBackdrop = () => {
   emit('close', 'backdrop')
 }
 const onClickCloseIcon = () => {
-  show .value= false
+  show.value = false
   emit('close', 'closeIcon')
 }
 const onCancel = () => {
-  show .value= false
+  show.value = false
   emit('close', 'cancel')
 }
 
@@ -83,6 +83,11 @@ defineExpose({
   close: () => void (show.value = false),
 })
 </script>
+
+<style lang="stylus">
+.blurring
+  filter blur(5px) grayscale(.7)
+</style>
 
 <style lang="stylus" scoped>
 .sui-modal {
@@ -99,7 +104,6 @@ defineExpose({
   display: flex
   justify-content center
   align-items center
-
 
   .container {
     position: relative;
@@ -151,9 +155,4 @@ defineExpose({
   }
 
 }
-</style>
-
-<style lang="stylus">
-.blurring
-  filter blur(5px) grayscale(.7)
 </style>

@@ -1,8 +1,8 @@
 <template>
-  <Navigation></Navigation>
+  <Navigation />
 
   <main>
-    <RouterView></RouterView>
+    <RouterView />
   </main>
 </template>
 

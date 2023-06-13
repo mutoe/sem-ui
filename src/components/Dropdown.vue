@@ -1,5 +1,6 @@
 <template>
   <div
+    v-click-outside="() => showList = false"
     role="listbox"
     :class="classes"
     :aria-expanded="showList"
@@ -8,7 +9,6 @@
     @keydown.space.prevent
     @keyup.space="showList = !showList"
     @focusout="!debug && (showList = false)"
-    v-click-outside="() => showList = false"
   >
     <div class="content">
       <slot name="default">
@@ -42,26 +42,26 @@
           <span v-if="option.description" class="description">{{ option.description }}</span>
         </div>
 
-        <hr v-if="option.divider" class="divider" />
+        <hr v-if="option.divider" class="divider">
       </template>
     </div>
   </div>
 </template>
 
 <script lang="ts" setup>
-import { computed, ref, useSlots, watch } from 'vue'
-import pick from 'src/utils/pick'
-import vClickOutside from 'src/directives/vClickOutside'
+import { computed, ref, useSlots } from 'vue'
 import { faCaretDown } from '@fortawesome/free-solid-svg-icons'
+import vClickOutside from 'src/directives/vClickOutside'
+import pick from 'src/utils/pick'
 
-const dropdownConfig: SemDropdownConfig = Object.assign({}, window.__SEM_CONFIG?.common, window.__SEM_CONFIG?.dropdown)
+const dropdownConfig: Sem.DropdownConfig = Object.assign({}, window.__SEM_CONFIG?.common, window.__SEM_CONFIG?.dropdown)
 
 // TODO: accessibility
 
 const props = defineProps<{
-  value?: SemOption['value']
-  values?: SemOption['value'][]
-  options: SemOption[]
+  value?: Sem.Option['value']
+  values?: Sem.Option['value'][]
+  options: Sem.Option[]
   search?: boolean
   fetching?: boolean
   multiple?: boolean
@@ -76,7 +76,7 @@ const props = defineProps<{
 }>()
 
 const emit = defineEmits<{
-  (e: 'change', value: SemOption): void
+  (e: 'change', value: Sem.Option): void
 }>()
 
 const slots = useSlots()
@@ -94,8 +94,7 @@ const classes = computed(() => [
   { expanded: showList.value, outline: !slots.default, compat },
 ])
 
-
-const onChange = (option: SemOption) => {
+const onChange = (option: Sem.Option) => {
   showList.value = false
   localValue.value = option.value
   emit('change', option)

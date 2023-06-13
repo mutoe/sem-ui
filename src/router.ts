@@ -1,9 +1,9 @@
-import { createRouter, createWebHashHistory, RouteMeta, RouteRecord, RouteRecordRaw } from 'vue-router'
-
-import MainPage from 'src/pages/main-page.vue'
+import type { RouteRecordRaw } from 'vue-router'
+import { createRouter, createWebHashHistory } from 'vue-router'
 import ButtonPage from 'src/pages/button-page.vue'
-import InputPage from 'src/pages/input-page.vue'
 import DropdownPage from 'src/pages/dropdown-page.vue'
+import InputPage from 'src/pages/input-page.vue'
+import MainPage from 'src/pages/main-page.vue'
 import ModalPage from 'src/pages/modal-page.vue'
 
 export const routes: RouteRecordRaw[] = [

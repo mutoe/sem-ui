@@ -22,7 +22,7 @@
       <h3>Typed inputs</h3>
 
       <div>
-        <Input :maxLength="6" placeholder="Text (with max length 6)" />
+        <Input :max-length="6" placeholder="Text (with max length 6)" />
         <Input email placeholder="Email" />
         <Input number placeholder="Number" />
         <Input tel placeholder="Telephone" />
@@ -57,8 +57,8 @@
 
       <div>
         <Input url>
-          <template v-slot:prepend>https://</template>
-          <template v-slot:append>.com</template>
+          <template #prepend>https://</template>
+          <template #append>.com</template>
         </Input>
       </div>
     </div>
@@ -70,16 +70,15 @@
         <Input fluid placeholder="Fluid" />
       </div>
     </div>
-
   </section>
 </template>
 
 <script lang="ts" setup>
+import { ref } from 'vue'
+import { faSearch, faUser } from '@fortawesome/free-solid-svg-icons'
+import Button from 'src/components/Button.vue'
 import type { InputRef } from 'src/components/Input.vue'
 import Input from 'src/components/Input.vue'
-import Button from 'src/components/Button.vue'
-import { faUser, faSearch } from '@fortawesome/free-solid-svg-icons'
-import { ref } from 'vue'
 
 const input1 = ref('Hello')
 const focusRef = ref<InputRef | null>(null)

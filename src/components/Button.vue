@@ -1,11 +1,10 @@
 <template>
   <button
-    role="button"
     :class="classes"
     :disabled="disabled || loading"
     :aria-disabled="disabled || loading"
-    @keydown.space.enter="active = true"
-    @keyup.space.enter="active = false"
+    @keydown.space.enter="innerActive = true"
+    @keyup.space.enter="innerActive = false"
   >
     <template v-if="!withLabel">
       <div v-if="props.loading" class="loading">Loading</div>
@@ -47,57 +46,57 @@
 </template>
 
 <script lang="ts" setup>
-import type { IconDefinition } from '@fortawesome/fontawesome-svg-core'
 import { computed, ref, useSlots } from 'vue'
+import type { IconDefinition } from '@fortawesome/fontawesome-svg-core'
 import pick from 'src/utils/pick'
 
-export type ButtonTheme = 'primary' | 'secondary' | 'default';
-export type ButtonAnimated = true | 'horizontal' | 'vertical' | 'fade';
-export type ButtonColor = 'light' | 'red' | 'orange' | 'yellow' | 'olive' | 'green' | 'teal' | 'blue' | 'violet' | 'purple' | 'pink' | 'brown' | 'grey' | 'black';
-export type ButtonSize = 'mini' | 'small' | 'middle' | 'large' | 'massive';
+export type ButtonTheme = 'primary' | 'secondary' | 'default'
+export type ButtonAnimated = true | 'horizontal' | 'vertical' | 'fade'
+export type ButtonColor = 'light' | 'red' | 'orange' | 'yellow' | 'olive' | 'green' | 'teal' | 'blue' | 'violet' | 'purple' | 'pink' | 'brown' | 'grey' | 'black'
+export type ButtonSize = 'mini' | 'small' | 'middle' | 'large' | 'massive'
 
 const props = defineProps<{
-  content?: string;
-  icon?: IconDefinition;
-  leftLabelIcon?: IconDefinition;
-  rightLabelIcon?: IconDefinition;
+  content?: string
+  icon?: IconDefinition
+  leftLabelIcon?: IconDefinition
+  rightLabelIcon?: IconDefinition
 
-  size?: ButtonSize;
-  mini?: boolean;
-  small?: boolean;
-  large?: boolean;
-  massive?: boolean;
+  size?: ButtonSize
+  mini?: boolean
+  small?: boolean
+  large?: boolean
+  massive?: boolean
 
-  active?: boolean;
-  disabled?: boolean;
-  loading?: boolean;
+  active?: boolean
+  disabled?: boolean
+  loading?: boolean
 
-  fluid?: boolean;
-  circular?: boolean;
+  fluid?: boolean
+  circular?: boolean
 
-  theme?: ButtonTheme;
-  primary?: boolean;
-  secondary?: boolean;
-  positive?: boolean;
-  negative?: boolean;
-  ghost?: boolean;
+  theme?: ButtonTheme
+  primary?: boolean
+  secondary?: boolean
+  positive?: boolean
+  negative?: boolean
+  ghost?: boolean
 
-  color?: ButtonColor;
-  red?: boolean;
-  orange?: boolean;
-  yellow?: boolean;
-  olive?: boolean;
-  green?: boolean;
-  teal?: boolean;
-  blue?: boolean;
-  violet?: boolean;
-  purple?: boolean;
-  pink?: boolean;
-  brown?: boolean;
-  grey?: boolean;
-  black?: boolean;
+  color?: ButtonColor
+  red?: boolean
+  orange?: boolean
+  yellow?: boolean
+  olive?: boolean
+  green?: boolean
+  teal?: boolean
+  blue?: boolean
+  violet?: boolean
+  purple?: boolean
+  pink?: boolean
+  brown?: boolean
+  grey?: boolean
+  black?: boolean
 
-  animated?: ButtonAnimated;
+  animated?: ButtonAnimated
 }>()
 
 const slots = useSlots()
@@ -124,13 +123,13 @@ const colors: (keyof typeof props)[] = [
 ]
 
 const withLabel = computed(() => props.leftLabelIcon ?? props.rightLabelIcon ?? slots.leftLabel ?? slots.rightLabel)
-const active = ref(false)
+const innerActive = ref(false)
 
 const classes = computed(() => [
   'sui-button',
   props.animated === true ? 'horizontal' : props.animated,
   pick(props, 'animated', 'active', 'fluid', 'circular'),
-  { active: !props.disabled && active.value },
+  { active: !props.disabled && innerActive.value },
 
   { 'with-label': withLabel.value },
   { 'only-icon': props.icon && !(props.content ?? slots.default) },
@@ -534,7 +533,6 @@ box-shadow-border($color = currentColor, $width = 1px) {
       }
     }
   }
-
 
 }
 </style>

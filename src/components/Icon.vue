@@ -1,9 +1,9 @@
 <template>
-  <FontAwesomeIcon v-if="icon" v-bind="props" :icon="icon"/>
+  <FontAwesomeIcon v-if="icon" v-bind="props" :icon="icon" />
 </template>
 
 <script lang="ts" setup>
-import { IconDefinition } from '@fortawesome/fontawesome-svg-core'
+import type { IconDefinition } from '@fortawesome/fontawesome-svg-core'
 import { FontAwesomeIcon } from '@fortawesome/vue-fontawesome'
 
 const props = defineProps<{

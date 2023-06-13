@@ -20,7 +20,7 @@
       :placeholder="props.placeholder"
       :type="inputType"
       :disabled="props.disabled"
-    />
+    >
 
     <div
       v-if="slots.append || (props.icon || props.loading) && iconPosition === 'right'"
@@ -37,14 +37,14 @@
 </template>
 
 <script lang="ts" setup>
-import type { IconDefinition } from '@fortawesome/fontawesome-svg-core'
 import { computed, ref, useSlots } from 'vue'
+import type { IconDefinition } from '@fortawesome/fontawesome-svg-core'
 import pick from 'src/utils/pick'
 
-const defaultConfig: SemInputConfig = {
+const defaultConfig: Sem.InputConfig = {
   iconPosition: 'left',
 }
-const inputConfig: SemInputConfig = Object.assign(defaultConfig, window.__SEM_CONFIG?.input)
+const inputConfig: Sem.InputConfig = Object.assign(defaultConfig, window.__SEM_CONFIG?.input)
 
 export interface InputRef {
   focus: () => void
@@ -69,12 +69,12 @@ const props = defineProps<{
   error?: boolean
   fluid?: boolean
 
-  iconPosition?: SemInputConfig['iconPosition']
+  iconPosition?: Sem.InputConfig['iconPosition']
   loading?: boolean
   icon?: IconDefinition
 }>()
 
-const iconPosition: SemInputConfig['iconPosition'] = props.iconPosition ?? inputConfig.iconPosition
+const iconPosition: Sem.InputConfig['iconPosition'] = props.iconPosition ?? inputConfig.iconPosition
 
 const emit = defineEmits<{
   (e: 'update:modelValue', value: any): void

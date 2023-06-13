@@ -1,3 +1,5 @@
-declare interface SemModalConfig extends SemCommonConfig {
-  closeIcon?: boolean
+declare namespace Sem {
+  interface ModalConfig extends CommonConfig {
+    closeIcon?: boolean
+  }
 }

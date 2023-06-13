@@ -22,11 +22,11 @@
       <h3>Slotted dropdown</h3>
       <div>
         <Dropdown text="File" :options="fileOptions" tabindex="-1" @change="onSingleChange">
-          <Button :leftLabelIcon="faLanguage">Select Language</Button>
+          <Button :left-label-icon="faLanguage">Select Language</Button>
         </Dropdown>
 
         <Dropdown text="File" :options="fileOptions" :tabindex="-1" @change="onSingleChange">
-          <Button basic>Select Language <Icon :icon="faCaretDown"></Icon></Button>
+          <Button basic>Select Language <Icon :icon="faCaretDown" /></Button>
         </Dropdown>
       </div>
     </div>
@@ -39,22 +39,22 @@
       </div>
     </div>
 
-    <!--    <div class="field">-->
-    <!--      <h3>Fluid</h3>-->
+    <!--    <div class="field"> -->
+    <!--      <h3>Fluid</h3> -->
 
-    <!--      <div>-->
-    <!--        <Dropdown fluid :options="options"/>-->
-    <!--      </div>-->
-    <!--    </div>-->
+    <!--      <div> -->
+    <!--        <Dropdown fluid :options="options"/> -->
+    <!--      </div> -->
+    <!--    </div> -->
   </section>
 </template>
 
 <script lang="ts" setup>
-import Dropdown from 'src/components/Dropdown.vue'
+import { faCaretDown, faFolder, faLanguage, faTrash } from '@fortawesome/free-solid-svg-icons'
 import Button from 'src/components/Button.vue'
-import { faFolder, faTrash, faLanguage, faCaretDown } from '@fortawesome/free-solid-svg-icons'
+import Dropdown from 'src/components/Dropdown.vue'
 
-const fileOptions: SemOption[] = [
+const fileOptions: Sem.Option[] = [
   { value: '', text: 'New' },
   { value: '', text: 'Open...', description: 'ctrl + o' },
   { value: '', text: 'Save as...', description: 'ctrl + s' },
@@ -67,14 +67,14 @@ const fileOptions: SemOption[] = [
   { value: '', text: 'Email collaborators' },
 ]
 
-const countryOptions: SemOption[] = [
-  {value: 'America', text: 'America' },
-  {value: 'China', text: 'China' },
-  {value: 'Russia', text: 'Russia' },
-  {value: 'Singapore', text: 'Singapore' },
+const countryOptions: Sem.Option[] = [
+  { value: 'America', text: 'America' },
+  { value: 'China', text: 'China' },
+  { value: 'Russia', text: 'Russia' },
+  { value: 'Singapore', text: 'Singapore' },
 ]
 
-const onSingleChange = (option: SemOption) => {
+const onSingleChange = (option: Sem.Option) => {
   console.log('onSingleChange', option)
 }
 

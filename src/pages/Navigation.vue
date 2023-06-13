@@ -1,6 +1,6 @@
 <template>
   <nav class="navigation">
-    <RouterLink v-for="route in routes" active-class="active" :to="route.path">{{ route.name }}</RouterLink>
+    <RouterLink v-for="route in routes" :key="route.name" active-class="active" :to="route.path">{{ route.name }}</RouterLink>
   </nav>
 </template>
 

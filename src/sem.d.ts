@@ -1,25 +1,30 @@
+
 declare interface Window {
-  __SEM_CONFIG?: SemConfig
+  __SEM_CONFIG?: Sem.Config
 }
 
-declare interface SemConfig {
-  common?: SemCommonConfig
-  dropdown?: SemDropdownConfig
-  input?: SemInputConfig
-  modal?: SemModalConfig
-}
+declare namespace Sem {
 
-declare interface SemCommonConfig {
-  debug?: boolean
-}
+  interface Config {
+    common?: CommonConfig
+    dropdown?: DropdownConfig
+    input?: InputConfig
+    modal?: ModalConfig
+  }
 
-declare interface SemOption<V = string | number> {
-  value: V
-  onClick?: (event: Event, value: V) => void
-  text?: string
-  description?: string
-  hidden?: boolean
-  disabled?: boolean
-  divider?: boolean
-  icon?: import('@fortawesome/fontawesome-svg-core').IconDefinition
+  interface CommonConfig {
+    debug?: boolean
+  }
+
+  interface Option<V = string | number> {
+    value: V
+    onClick?: (event: Event, value: V) => void
+    text?: string
+    description?: string
+    hidden?: boolean
+    disabled?: boolean
+    divider?: boolean
+    // eslint-disable-next-line @typescript-eslint/consistent-type-imports
+    icon?: import('@fortawesome/fontawesome-svg-core').IconDefinition
+  }
 }

@@ -13,7 +13,7 @@
         <Button loading>Loading</Button>
       </div>
 
-      <br />
+      <br>
 
       <div>
         <Button primary>Follow</Button>
@@ -22,7 +22,7 @@
         <Button primary loading>Loading</Button>
       </div>
 
-      <br />
+      <br>
 
       <div>
         <Button secondary>Follow</Button>
@@ -58,15 +58,15 @@
       <h3>Labeled icon</h3>
 
       <div>
-        <Button :leftLabelIcon="faArrowLeft" content="Prev" />
-        <Button :leftLabelIcon="faPause" content="Pause" />
-        <Button :rightLabelIcon="faArrowRight" content="Next" />
-        <Button circular :leftLabelIcon="faAlignLeft" content="Prev" />
-        <Button circular :rightLabelIcon="faArrowRight" content="Next" />
-        <Button loading :leftLabelIcon="faArrowLeft" content="Prev" />
-        <Button loading :rightLabelIcon="faArrowRight" content="Next" />
-        <Button loading circular :leftLabelIcon="faAlignLeft" content="Prev" />
-        <Button loading circular :rightLabelIcon="faArrowRight" content="Next" />
+        <Button :left-label-icon="faArrowLeft" content="Prev" />
+        <Button :left-label-icon="faPause" content="Pause" />
+        <Button :right-label-icon="faArrowRight" content="Next" />
+        <Button circular :left-label-icon="faAlignLeft" content="Prev" />
+        <Button circular :right-label-icon="faArrowRight" content="Next" />
+        <Button loading :left-label-icon="faArrowLeft" content="Prev" />
+        <Button loading :right-label-icon="faArrowRight" content="Next" />
+        <Button loading circular :left-label-icon="faAlignLeft" content="Prev" />
+        <Button loading circular :right-label-icon="faArrowRight" content="Next" />
       </div>
     </div>
 
@@ -75,55 +75,55 @@
 
       <div>
         <Button red :icon="faHeart">
-          <template v-slot:default>Like</template>
-          <template v-slot:rightLabel>12,325</template>
+          <template #default>Like</template>
+          <template #rightLabel>12,325</template>
         </Button>
         <Button active red :icon="faHeart">
-          <template v-slot:default>Like</template>
-          <template v-slot:rightLabel>12,325</template>
+          <template #default>Like</template>
+          <template #rightLabel>12,325</template>
         </Button>
         <Button loading red :icon="faHeart">
-          <template v-slot:default>Like</template>
-          <template v-slot:rightLabel>12,325</template>
+          <template #default>Like</template>
+          <template #rightLabel>12,325</template>
         </Button>
         <Button red :icon="faHeart">
-          <template v-slot:default>Like</template>
-          <template v-slot:leftLabel>12,325</template>
+          <template #default>Like</template>
+          <template #leftLabel>12,325</template>
         </Button>
         <Button active red :icon="faHeart">
-          <template v-slot:default>Like</template>
-          <template v-slot:leftLabel>12,325</template>
+          <template #default>Like</template>
+          <template #leftLabel>12,325</template>
         </Button>
         <Button loading red :icon="faHeart">
-          <template v-slot:default>Like</template>
-          <template v-slot:leftLabel>12,325</template>
+          <template #default>Like</template>
+          <template #leftLabel>12,325</template>
         </Button>
       </div>
       <br>
       <div>
         <Button ghost blue :icon="faCodeBranch">
-          <template v-slot:default>Fork</template>
-          <template v-slot:rightLabel>12,325</template>
+          <template #default>Fork</template>
+          <template #rightLabel>12,325</template>
         </Button>
         <Button active ghost blue :icon="faCodeBranch">
-          <template v-slot:default>Fork</template>
-          <template v-slot:rightLabel>12,325</template>
+          <template #default>Fork</template>
+          <template #rightLabel>12,325</template>
         </Button>
         <Button loading ghost blue :icon="faCodeBranch">
-          <template v-slot:default>Fork</template>
-          <template v-slot:rightLabel>12,325</template>
+          <template #default>Fork</template>
+          <template #rightLabel>12,325</template>
         </Button>
         <Button ghost blue :icon="faCodeBranch">
-          <template v-slot:default>Fork</template>
-          <template v-slot:leftLabel>12,325</template>
+          <template #default>Fork</template>
+          <template #leftLabel>12,325</template>
         </Button>
         <Button active ghost blue :icon="faCodeBranch">
-          <template v-slot:default>Fork</template>
-          <template v-slot:leftLabel>12,325</template>
+          <template #default>Fork</template>
+          <template #leftLabel>12,325</template>
         </Button>
         <Button loading ghost blue :icon="faCodeBranch">
-          <template v-slot:default>Fork</template>
-          <template v-slot:leftLabel>12,325</template>
+          <template #default>Fork</template>
+          <template #leftLabel>12,325</template>
         </Button>
       </div>
     </div>
@@ -138,38 +138,38 @@
         <Button positive>Positive</Button>
         <Button negative>Negative</Button>
       </div>
-      <br />
+      <br>
       <div>
-        <Button :leftLabelIcon="faPause">Basic button</Button>
-        <Button :leftLabelIcon="faPause" primary>Primary</Button>
-        <Button :leftLabelIcon="faPause" secondary>Secondary</Button>
-        <Button :leftLabelIcon="faPause" positive>Positive</Button>
-        <Button :leftLabelIcon="faPause" negative>Negative</Button>
+        <Button :left-label-icon="faPause">Basic button</Button>
+        <Button :left-label-icon="faPause" primary>Primary</Button>
+        <Button :left-label-icon="faPause" secondary>Secondary</Button>
+        <Button :left-label-icon="faPause" positive>Positive</Button>
+        <Button :left-label-icon="faPause" negative>Negative</Button>
       </div>
-      <br />
+      <br>
       <div>
         <Button :icon="faPause">
-          <template v-slot:default>Basic button</template>
-          <template v-slot:rightLabel>12,325</template>
+          <template #default>Basic button</template>
+          <template #rightLabel>12,325</template>
         </Button>
         <Button :icon="faPause" primary>
-          <template v-slot:default>Primary</template>
-          <template v-slot:rightLabel>12,325</template>
+          <template #default>Primary</template>
+          <template #rightLabel>12,325</template>
         </Button>
         <Button :icon="faPause" secondary>
-          <template v-slot:default>Secondary</template>
-          <template v-slot:rightLabel>12,325</template>
+          <template #default>Secondary</template>
+          <template #rightLabel>12,325</template>
         </Button>
         <Button :icon="faPause" positive>
-          <template v-slot:default>Positive</template>
-          <template v-slot:rightLabel>12,325</template>
+          <template #default>Positive</template>
+          <template #rightLabel>12,325</template>
         </Button>
         <Button :icon="faPause" negative>
-          <template v-slot:default>Negative</template>
-          <template v-slot:rightLabel>12,325</template>
+          <template #default>Negative</template>
+          <template #rightLabel>12,325</template>
         </Button>
       </div>
-      <br />
+      <br>
       <div>
         <Button red>Red</Button>
         <Button orange>Orange</Button>
@@ -200,38 +200,38 @@
         <Button ghost circular :icon="faCodeBranch" />
         <Button ghost circular orange :icon="faUser">Follow</Button>
       </div>
-      <br />
+      <br>
       <div>
-        <Button ghost :leftLabelIcon="faPause">Ghost button</Button>
-        <Button ghost :leftLabelIcon="faPause" primary>Primary</Button>
-        <Button ghost :leftLabelIcon="faPause" secondary>Secondary</Button>
-        <Button ghost :leftLabelIcon="faPause" positive>Positive</Button>
-        <Button ghost :leftLabelIcon="faPause" negative>Negative</Button>
+        <Button ghost :left-label-icon="faPause">Ghost button</Button>
+        <Button ghost :left-label-icon="faPause" primary>Primary</Button>
+        <Button ghost :left-label-icon="faPause" secondary>Secondary</Button>
+        <Button ghost :left-label-icon="faPause" positive>Positive</Button>
+        <Button ghost :left-label-icon="faPause" negative>Negative</Button>
       </div>
-      <br />
+      <br>
       <div>
         <Button ghost :icon="faPause">
-          <template v-slot:default>Ghost button</template>
-          <template v-slot:rightLabel>12,325</template>
+          <template #default>Ghost button</template>
+          <template #rightLabel>12,325</template>
         </Button>
         <Button ghost :icon="faPause" primary>
-          <template v-slot:default>Primary</template>
-          <template v-slot:rightLabel>12,325</template>
+          <template #default>Primary</template>
+          <template #rightLabel>12,325</template>
         </Button>
         <Button ghost :icon="faPause" secondary>
-          <template v-slot:default>Secondary</template>
-          <template v-slot:rightLabel>12,325</template>
+          <template #default>Secondary</template>
+          <template #rightLabel>12,325</template>
         </Button>
         <Button ghost :icon="faPause" positive>
-          <template v-slot:default>Positive</template>
-          <template v-slot:rightLabel>12,325</template>
+          <template #default>Positive</template>
+          <template #rightLabel>12,325</template>
         </Button>
         <Button ghost :icon="faPause" negative>
-          <template v-slot:default>Negative</template>
-          <template v-slot:rightLabel>12,325</template>
+          <template #default>Negative</template>
+          <template #rightLabel>12,325</template>
         </Button>
       </div>
-      <br />
+      <br>
       <div>
         <Button ghost red>Red</Button>
         <Button ghost orange>Orange</Button>
@@ -260,38 +260,38 @@
           <Button ghost positive>Positive</Button>
           <Button ghost negative>Negative</Button>
         </div>
-        <br />
+        <br>
         <div>
-          <Button ghost :leftLabelIcon="faPause">Ghost button</Button>
-          <Button ghost :leftLabelIcon="faPause" primary>Primary</Button>
-          <Button ghost :leftLabelIcon="faPause" secondary>Secondary</Button>
-          <Button ghost :leftLabelIcon="faPause" positive>Positive</Button>
-          <Button ghost :leftLabelIcon="faPause" negative>Negative</Button>
+          <Button ghost :left-label-icon="faPause">Ghost button</Button>
+          <Button ghost :left-label-icon="faPause" primary>Primary</Button>
+          <Button ghost :left-label-icon="faPause" secondary>Secondary</Button>
+          <Button ghost :left-label-icon="faPause" positive>Positive</Button>
+          <Button ghost :left-label-icon="faPause" negative>Negative</Button>
         </div>
-        <br />
+        <br>
         <div>
           <Button ghost :icon="faPause">
-            <template v-slot:default>Ghost button</template>
-            <template v-slot:rightLabel>12,325</template>
+            <template #default>Ghost button</template>
+            <template #rightLabel>12,325</template>
           </Button>
           <Button ghost :icon="faPause" primary>
-            <template v-slot:default>Primary</template>
-            <template v-slot:rightLabel>12,325</template>
+            <template #default>Primary</template>
+            <template #rightLabel>12,325</template>
           </Button>
           <Button ghost :icon="faPause" secondary>
-            <template v-slot:default>Secondary</template>
-            <template v-slot:rightLabel>12,325</template>
+            <template #default>Secondary</template>
+            <template #rightLabel>12,325</template>
           </Button>
           <Button ghost :icon="faPause" positive>
-            <template v-slot:default>Positive</template>
-            <template v-slot:rightLabel>12,325</template>
+            <template #default>Positive</template>
+            <template #rightLabel>12,325</template>
           </Button>
           <Button ghost :icon="faPause" negative>
-            <template v-slot:default>Negative</template>
-            <template v-slot:rightLabel>12,325</template>
+            <template #default>Negative</template>
+            <template #rightLabel>12,325</template>
           </Button>
         </div>
-        <br />
+        <br>
         <div>
           <Button ghost red>Red</Button>
           <Button ghost orange>Orange</Button>
@@ -349,91 +349,91 @@
       <div>
         <Button mini>Mini</Button>
         <Button mini positive ghost>Mini</Button>
-        <Button mini orange :leftLabelIcon="faPause">Pause</Button>
-        <Button mini loading></Button>
+        <Button mini orange :left-label-icon="faPause">Pause</Button>
+        <Button mini loading />
         <Button mini red :icon="faHeart">
-          <template v-slot:default>Like</template>
-          <template v-slot:rightLabel>12,325</template>
+          <template #default>Like</template>
+          <template #rightLabel>12,325</template>
         </Button>
         <Button mini ghost blue :icon="faCodeBranch">
-          <template v-slot:default>Fork</template>
-          <template v-slot:rightLabel>12,325</template>
+          <template #default>Fork</template>
+          <template #rightLabel>12,325</template>
         </Button>
         <Button mini :icon="faShoppingCart" />
         <Button mini ghost :icon="faShoppingCart" />
         <Button mini circular :icon="faShoppingCart" />
         <Button mini circular ghost :icon="faShoppingCart" />
       </div>
-      <br />
+      <br>
       <div>
         <Button small>Small</Button>
         <Button small positive ghost>Small</Button>
-        <Button small orange :leftLabelIcon="faPause">Pause</Button>
-        <Button small loading></Button>
+        <Button small orange :left-label-icon="faPause">Pause</Button>
+        <Button small loading />
         <Button small red :icon="faHeart">
-          <template v-slot:default>Like</template>
-          <template v-slot:rightLabel>12,325</template>
+          <template #default>Like</template>
+          <template #rightLabel>12,325</template>
         </Button>
         <Button small ghost blue :icon="faCodeBranch">
-          <template v-slot:default>Fork</template>
-          <template v-slot:rightLabel>12,325</template>
+          <template #default>Fork</template>
+          <template #rightLabel>12,325</template>
         </Button>
         <Button small :icon="faShoppingCart" />
         <Button small ghost :icon="faShoppingCart" />
         <Button small circular :icon="faShoppingCart" />
         <Button small circular ghost :icon="faShoppingCart" />
       </div>
-      <br />
+      <br>
       <div>
         <Button>Default</Button>
         <Button ghost positive>Default</Button>
-        <Button orange :leftLabelIcon="faPause">Pause</Button>
-        <Button loading></Button>
+        <Button orange :left-label-icon="faPause">Pause</Button>
+        <Button loading />
         <Button red :icon="faHeart">
-          <template v-slot:default>Like</template>
-          <template v-slot:rightLabel>12,325</template>
+          <template #default>Like</template>
+          <template #rightLabel>12,325</template>
         </Button>
         <Button ghost blue :icon="faCodeBranch">
-          <template v-slot:default>Fork</template>
-          <template v-slot:rightLabel>12,325</template>
+          <template #default>Fork</template>
+          <template #rightLabel>12,325</template>
         </Button>
         <Button :icon="faShoppingCart" />
         <Button ghost :icon="faShoppingCart" />
         <Button circular :icon="faShoppingCart" />
         <Button circular ghost :icon="faShoppingCart" />
       </div>
-      <br />
+      <br>
       <div>
         <Button large>Large</Button>
         <Button ghost large positive>Large</Button>
-        <Button large orange :leftLabelIcon="faPause">Pause</Button>
-        <Button large loading></Button>
+        <Button large orange :left-label-icon="faPause">Pause</Button>
+        <Button large loading />
         <Button large red :icon="faHeart">
-          <template v-slot:default>Like</template>
-          <template v-slot:rightLabel>12,325</template>
+          <template #default>Like</template>
+          <template #rightLabel>12,325</template>
         </Button>
         <Button large ghost blue :icon="faCodeBranch">
-          <template v-slot:default>Fork</template>
-          <template v-slot:rightLabel>12,325</template>
+          <template #default>Fork</template>
+          <template #rightLabel>12,325</template>
         </Button>
         <Button large :icon="faShoppingCart" />
         <Button large ghost :icon="faShoppingCart" />
         <Button large circular :icon="faShoppingCart" />
         <Button large circular ghost :icon="faShoppingCart" />
       </div>
-      <br />
+      <br>
       <div>
         <Button massive>Massive</Button>
         <Button massive ghost positive>Massive</Button>
-        <Button massive orange :leftLabelIcon="faPause">Pause</Button>
-        <Button massive loading></Button>
+        <Button massive orange :left-label-icon="faPause">Pause</Button>
+        <Button massive loading />
         <Button massive red :icon="faHeart">
-          <template v-slot:default>Like</template>
-          <template v-slot:rightLabel>12,325</template>
+          <template #default>Like</template>
+          <template #rightLabel>12,325</template>
         </Button>
         <Button massive ghost blue :icon="faCodeBranch">
-          <template v-slot:default>Fork</template>
-          <template v-slot:rightLabel>12,325</template>
+          <template #default>Fork</template>
+          <template #rightLabel>12,325</template>
         </Button>
         <Button massive :icon="faShoppingCart" />
         <Button massive ghost :icon="faShoppingCart" />
@@ -454,23 +454,23 @@
         <ButtonGroup vertical>
           <Button>One</Button>
           <Button>Two</Button>
-          <Button :rightLabelIcon="faArrowRight">Three</Button>
+          <Button :right-label-icon="faArrowRight">Three</Button>
         </ButtonGroup>
         <ButtonGroup>
-          <Button active :icon="faAlignLeft"></Button>
-          <Button :icon="faAlignCenter"></Button>
-          <Button :icon="faAlignRight"></Button>
-          <Button :icon="faAlignJustify"></Button>
+          <Button active :icon="faAlignLeft" />
+          <Button :icon="faAlignCenter" />
+          <Button :icon="faAlignRight" />
+          <Button :icon="faAlignJustify" />
         </ButtonGroup>
         <ButtonGroup>
-          <Button active :icon="faBold"></Button>
-          <Button :icon="faUnderline"></Button>
-          <Button :icon="faStrikethrough"></Button>
+          <Button active :icon="faBold" />
+          <Button :icon="faUnderline" />
+          <Button :icon="faStrikethrough" />
         </ButtonGroup>
         <ButtonGroup size="large">
-          <Button :icon="faArrowLeft"></Button>
+          <Button :icon="faArrowLeft" />
           <Button>2/10</Button>
-          <Button :icon="faArrowRight"></Button>
+          <Button :icon="faArrowRight" />
         </ButtonGroup>
       </div>
     </div>
@@ -478,24 +478,25 @@
 </template>
 
 <script lang="ts" setup>
-import Button from 'src/components/Button.vue'
-import ButtonGroup from 'src/components/ButtonGroup.vue'
 import {
-  faAlignLeft,
-  faAlignRight,
   faAlignCenter,
   faAlignJustify,
+  faAlignLeft,
+  faAlignRight,
+  faArrowLeft,
+  faArrowRight,
   faBold,
-  faUnderline,
-  faStrikethrough,
   faCodeBranch,
   faHeart,
-  faArrowRight,
-  faArrowLeft,
-  faShoppingCart,
   faPause,
+  faShoppingCart,
+  faStrikethrough,
+  faUnderline,
   faUser,
 } from '@fortawesome/free-solid-svg-icons'
+import Button from 'src/components/Button.vue'
+import ButtonGroup from 'src/components/ButtonGroup.vue'
+
 </script>
 
 <style lang="stylus" scoped>

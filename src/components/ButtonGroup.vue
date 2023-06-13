@@ -1,12 +1,11 @@
 <template>
   <div :class="classes">
-    <slot></slot>
+    <slot />
   </div>
 </template>
 
 <script lang="ts" setup>
 import type { ButtonSize } from './Button.vue'
-import { useSlots } from 'vue'
 
 const props = defineProps<{
   direction?: 'horizontal' | 'vertical'

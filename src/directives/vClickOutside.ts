@@ -1,7 +1,7 @@
-import { Directive } from 'vue'
+import type { Directive } from 'vue'
 
 const vClickOutside: Directive = {
-  mounted(el, binding) {
+  mounted (el, binding) {
     el.__vClickOutside = function (e: Event) {
       const target = e.target as HTMLElement
       if (el === target || el.contains(target)) {
@@ -17,7 +17,7 @@ const vClickOutside: Directive = {
     })
   },
 
-  beforeUnmount(el) {
+  beforeUnmount (el) {
     document.body.removeEventListener('click', el.__vClickOutside)
   },
 }
