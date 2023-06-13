@@ -17,8 +17,6 @@ export default defineConfig({
     },
   },
   plugins: [
-    vue({
-      refTransform: true
-    }),
+    vue(),
   ],
 })

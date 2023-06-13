@@ -48,7 +48,7 @@
 
 <script lang="ts" setup>
 import type { IconDefinition } from '@fortawesome/fontawesome-svg-core'
-import { useSlots } from 'vue'
+import { computed, ref, useSlots } from 'vue'
 import pick from 'src/utils/pick'
 
 export type ButtonTheme = 'primary' | 'secondary' | 'default';
@@ -123,16 +123,16 @@ const colors: (keyof typeof props)[] = [
   'secondary',
 ]
 
-let withLabel = $computed(() => props.leftLabelIcon ?? props.rightLabelIcon ?? slots.leftLabel ?? slots.rightLabel)
-let active = $ref(false)
+const withLabel = computed(() => props.leftLabelIcon ?? props.rightLabelIcon ?? slots.leftLabel ?? slots.rightLabel)
+const active = ref(false)
 
-let classes = $computed(() => [
+const classes = computed(() => [
   'sui-button',
   props.animated === true ? 'horizontal' : props.animated,
   pick(props, 'animated', 'active', 'fluid', 'circular'),
-  { active: !props.disabled && active },
+  { active: !props.disabled && active.value },
 
-  { 'with-label': withLabel },
+  { 'with-label': withLabel.value },
   { 'only-icon': props.icon && !(props.content ?? slots.default) },
 
   props.theme,

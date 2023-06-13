@@ -26,7 +26,7 @@
 import Button from 'src/components/Button.vue'
 import vClickOutside from 'src/directives/vClickOutside'
 import { faTimes } from '@fortawesome/free-solid-svg-icons'
-import { watchEffect } from 'vue'
+import { ref, watchEffect } from 'vue'
 
 const defaultConfig: SemModalConfig = {
   closeIcon: false,
@@ -51,12 +51,12 @@ const emit = defineEmits<{
   (e: 'close', reason: 'backdrop' | 'closeIcon' | 'cancel'): void
 }>()
 
-let show = $ref(false)
+const show = ref(false)
 
 const displayCloseIcon = props.closeIcon ?? modalConfig.closeIcon
 
 watchEffect(() => {
-  if (show) {
+  if (show.value) {
     document.querySelector('[data-v-app]')?.classList.add('blurring', 'dimmed')
     document.body.style.overflow = 'hidden'
   } else {
@@ -66,21 +66,21 @@ watchEffect(() => {
 })
 
 const onClickBackdrop = () => {
-  show = false
+  show.value = false
   emit('close', 'backdrop')
 }
 const onClickCloseIcon = () => {
-  show = false
+  show .value= false
   emit('close', 'closeIcon')
 }
 const onCancel = () => {
-  show = false
+  show .value= false
   emit('close', 'cancel')
 }
 
 defineExpose({
-  open: () => void (show = true),
-  close: () => void (show = false),
+  open: () => void (show.value = true),
+  close: () => void (show.value = false),
 })
 </script>
 

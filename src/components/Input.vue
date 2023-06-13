@@ -38,8 +38,7 @@
 
 <script lang="ts" setup>
 import type { IconDefinition } from '@fortawesome/fontawesome-svg-core'
-import { useSlots } from '@vue/runtime-core'
-import { computed } from 'vue'
+import { computed, ref, useSlots } from 'vue'
 import pick from 'src/utils/pick'
 
 const defaultConfig: SemInputConfig = {
@@ -101,10 +100,10 @@ const inputType: InputType | undefined = props.type
   || (props.text && 'text')
   || undefined
 
-let inputRef = $ref<HTMLInputElement | null>(null)
+const inputRef = ref<HTMLInputElement | null>(null)
 
 defineExpose({
-  focus: () => void inputRef?.focus(),
+  focus: () => void inputRef.value?.focus(),
 } as InputRef)
 </script>
 

@@ -79,7 +79,8 @@ import type { InputRef } from 'src/components/Input.vue'
 import Input from 'src/components/Input.vue'
 import Button from 'src/components/Button.vue'
 import { faUser, faSearch } from '@fortawesome/free-solid-svg-icons'
+import { ref } from 'vue'
 
-let input1 = $ref('Hello')
-let focusRef = $ref<InputRef | null>(null)
+const input1 = ref('Hello')
+const focusRef = ref<InputRef | null>(null)
 </script>

@@ -49,7 +49,7 @@
 </template>
 
 <script lang="ts" setup>
-import { useSlots, watch } from 'vue'
+import { computed, ref, useSlots, watch } from 'vue'
 import pick from 'src/utils/pick'
 import vClickOutside from 'src/directives/vClickOutside'
 import { faCaretDown } from '@fortawesome/free-solid-svg-icons'
@@ -84,20 +84,20 @@ const slots = useSlots()
 const debug = props.debug || dropdownConfig.debug
 const compat = props.compat || dropdownConfig.compat
 
-let showList = $ref(false)
-let localValue = $ref(props.value)
+const showList = ref(false)
+const localValue = ref(props.value)
 
-let classes = $computed(() => [
+const classes = computed(() => [
   'sem-dropdown',
   pick(props, ['fluid']),
 
-  { expanded: showList, outline: !slots.default, compat },
+  { expanded: showList.value, outline: !slots.default, compat },
 ])
 
 
 const onChange = (option: SemOption) => {
-  showList = false
-  localValue = option.value
+  showList.value = false
+  localValue.value = option.value
   emit('change', option)
 }
 </script>
