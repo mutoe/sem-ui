@@ -85,74 +85,74 @@ defineExpose({
 </script>
 
 <style lang="stylus">
-.blurring
-  filter blur(5px) grayscale(.7)
+.blurring {
+  filter blur(5px) grayscale(0.7)
+}
 </style>
 
 <style lang="stylus" scoped>
 .sui-modal {
-  position: fixed
+  position fixed
+  z-index 1000
   top 0
-  left: 0
-  width: 100%
-  height: 100%
-  padding: 1em
-  background-color rgba(#000, 0.65)
-  transition background-color .5s linear
-  transform-origin center center
-  z-index: 1000
-  display: flex
-  justify-content center
+  left 0
+  display flex
+  width 100%
+  height 100%
   align-items center
+  justify-content center
+  padding 1em
+  background-color rgba(#000, 0.65)
+  transform-origin center center
+  transition background-color 0.5s linear
 
   .container {
-    position: relative;
-    width: max(850px, 88%)
-    background-color #fff
-    box-shadow 1px 3px 3px 0 rgba(#000, .2), 1px 3px 15px 2px rgba(#000, .2)
+    position relative
+    width max(850px, 88%)
     border-radius (2 / 7) rem
+    background-color #fff
+    box-shadow 1px 3px 3px 0 rgba(#000, 0.2), 1px 3px 15px 2px rgba(#000, 0.2)
     user-select text
     will-change top, left, margin, transform, opacity
 
     .close-icon {
-      position: absolute;
-      right: -2.5rem
+      position absolute
       top -2.5rem
-      width: 2.5rem
-      height: 2.5rem
-      color: #fff
-      background-color transparent
-      padding: 0.6rem
-      margin: 0
+      right -2.5rem
+      width 2.5rem
+      height 2.5rem
+      padding 0.6rem
       border none
+      margin 0
+      background-color transparent
+      color #fff
 
       :deep(svg) {
-        width: 1.5rem
-        height: 1.5rem
+        width 1.5rem
+        height 1.5rem
       }
     }
   }
 
   .header {
-    padding: 1rem
-    border-bottom 1px solid rgba(34, 36, 38, .15)
+    padding 1rem
+    border-bottom 1px solid rgba(34, 36, 38, 0.15)
     border-top-left-radius inherit
     border-top-right-radius inherit
   }
 
   .content {
-    padding: 1rem
+    padding 1rem
   }
 
   .actions {
     display flex
     justify-content flex-end
-    padding: 1rem
-    border-top: 1px solid rgba(34, 36, 38, .15)
+    padding 1rem
+    border-top 1px solid rgba(34, 36, 38, 0.15)
     background-color #f9fafb
     border-bottom-left-radius inherit
     border-bottom-right-radius inherit
   }
-
 }
 </style>

@@ -24,15 +24,16 @@ const classes = [
 
 <style lang="stylus" scoped>
 .sui-button-group {
-  display: inline-flex;
+  display inline-flex
 
   :deep(.sui-button.icon) {
-    padding-left 1em
     padding-right 1em
+    padding-left 1em
   }
 
   for $size in $size-list {
     &.{$size} {
+
       :deep(.sui-button) {
         size($size)
       }
@@ -43,8 +44,8 @@ const classes = [
     margin-right 0.25em
 
     :deep(.sui-button) {
-      margin-right 0
       border-radius 0
+      margin-right 0
 
       &:first-child {
         border-bottom-left-radius $border-radius
@@ -62,8 +63,8 @@ const classes = [
     flex-direction column
 
     :deep(.sui-button) {
-      margin-bottom 0
       border-radius 0
+      margin-bottom 0
 
       &:first-child {
         border-top-left-radius $border-radius

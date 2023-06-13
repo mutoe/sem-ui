@@ -1,40 +1,44 @@
 loading() {
+  position relative
   display inline-block
-  position: relative
-  cursor: default
-  color: transparent
-  transition: all 0 linear, opacity $default-duration $default-easing
-  width: 1em
+  width 1em
+  color transparent
+  cursor default
+  transition all 0 linear, opacity $default-duration $default-easing
 
   &::before
   &::after {
     position absolute
-    content ""
-    top: 50%
-    left: 50%
-    margin $loader-margin
-    height: $loader-size
+    top 50%
+    left 50%
     width $loader-size
+    height $loader-size
+    border 0.2em solid rgba(#000, 0.15)
     border-radius 500rem
-    border .2em solid rgba(#000, .15)
+    margin $loader-margin
+    content ""
   }
 
   &::after {
-    animation spin .6s linear infinite
     border-color #fff transparent transparent
+    animation spin 0.6s linear infinite
   }
 }
 
 size($size = "middle") {
   if $size == "mini" {
     font-size (1 - 1.5 / 7) rem
-  } else if $size == "small" {
+  }
+  else if $size == "small" {
     font-size (1 - 0.75 / 7) rem
-  } else if $size == "large" {
+  }
+  else if $size == "large" {
     font-size (1 + 2 / 7) rem
-  } else if $size == "massive" {
+  }
+  else if $size == "massive" {
     font-size (1 + 4 / 7) rem
-  } else {
+  }
+  else {
     font-size 1rem
   }
 }

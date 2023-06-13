@@ -159,55 +159,56 @@ box-shadow-border($color = currentColor, $width = 1px) {
 }
 
 .sui-button {
+  display inline-flex
+  min-height 1em
+  align-items center
+  justify-content center
+  padding $vertical-padding $horizontal-padding
+  border none
+  border-radius $border-radius
+  margin 0 $horizontal-margin $vertical-margin 0
+  background-color $color-light
   color $color-text
   cursor pointer
-  display: inline-flex
-  justify-content center
-  align-items center
-  min-height 1em
-  line-height 1em
   font-size 1rem
+  line-height 1em
   outline none
-  border none
-  margin: 0 $horizontal-margin $vertical-margin 0
-  padding $vertical-padding $horizontal-padding
-  border-radius $border-radius
   transition $transition
   transition-duration $default-duration
-  transition-timing-function $default-easing
   transition-property $transition-property
+  transition-timing-function $default-easing
   vertical-align middle
-  background-color $color-light
 
   .gutter {
-    margin-right: (4 / 7em);
+    margin-right (4 / 7em)
   }
 
   &.circular {
     border-radius 3em
 
     &.with-label .label {
+
       &.left {
-        border-top-left-radius 3em
         border-bottom-left-radius 3em
+        border-top-left-radius 3em
       }
 
       &.right {
-        border-top-right-radius 3em
         border-bottom-right-radius 3em
+        border-top-right-radius 3em
       }
     }
   }
 
   &.only-icon {
-    padding $vertical-padding
     width $icon-width
+    padding $vertical-padding
   }
 
   &.fluid {
     display flex
-    justify-content center
     width 100%
+    justify-content center
   }
 
   for $size in $size-list {
@@ -217,6 +218,7 @@ box-shadow-border($color = currentColor, $width = 1px) {
   }
 
   &:not(:disabled) {
+
     &:hover,
     &:focus {
       filter brightness(0.9)
@@ -237,11 +239,12 @@ box-shadow-border($color = currentColor, $width = 1px) {
   }
 
   &.ghost {
+    background transparent
     color $color-grey
-    background: transparent
     box-shadow-border(currentColor)
 
     &:not(:disabled) {
+
       &:hover,
       &:focus {
         filter brightness(1.3)
@@ -259,42 +262,42 @@ box-shadow-border($color = currentColor, $width = 1px) {
   }
 
   &.with-label {
-    padding 0
     align-items stretch
+    padding 0
 
-    $decorator-size = .8em
+    $decorator-size = 0.8em
 
     .content {
       padding $vertical-padding $horizontal-padding
     }
 
     .label {
+      position relative
       display flex
       align-items center
       padding 0 calc(1em - 2px)
       font-weight bold
-      position relative
 
       &:not(.icon) {
         background-color #fff
         box-shadow-border($color-light)
 
         &::before {
-          content ""
           position absolute
-          display block
           top 50%
-          background-color #fff
+          display block
           width $decorator-size
           height $decorator-size
+          background-color #fff
+          content ""
           transform translateY($decorator-size / -2) rotateZ(45deg)
         }
       }
 
       &.icon {
-        background-color rgba(#000, .15)
-        padding $vertical-padding
         width $icon-width
+        padding $vertical-padding
+        background-color rgba(#000, 0.15)
 
         .loading {
           min-width 1em
@@ -302,31 +305,33 @@ box-shadow-border($color = currentColor, $width = 1px) {
       }
 
       &.left {
-        border-top-left-radius $border-radius
         border-bottom-left-radius $border-radius
+        border-top-left-radius $border-radius
 
         &::before {
-          right: "calc(%s + 0.1em)" % ($decorator-size/ -2)
+          right "calc(%s + 0.1em)" % ($decorator-size/ -2)
         }
       }
 
       &.right {
-        border-top-right-radius $border-radius
         border-bottom-right-radius $border-radius
+        border-top-right-radius $border-radius
 
         &::before {
-          left: "calc(%s + 0.1em)" % ($decorator-size/ -2)
+          left "calc(%s + 0.1em)" % ($decorator-size/ -2)
         }
       }
     }
 
     &.secondary {
+
       .label {
-        background-color rgba(#fff, .15)
+        background-color rgba(#fff, 0.15)
       }
     }
 
     &.ghost {
+
       .label {
         background-color transparent
         box-shadow-border()
@@ -339,15 +344,15 @@ box-shadow-border($color = currentColor, $width = 1px) {
           }
 
           &.left::before {
-            right: "calc(%s + 0.02em)" % ($decorator-size/ -2)
-            border-left none
+            right "calc(%s + 0.02em)" % ($decorator-size/ -2)
             border-bottom none
+            border-left none
           }
 
           &.right::before {
-            left: "calc(%s + 0.02em)" % ($decorator-size/ -2)
-            border-right none
+            left "calc(%s + 0.02em)" % ($decorator-size/ -2)
             border-top none
+            border-right none
           }
         }
       }
@@ -362,6 +367,7 @@ box-shadow-border($color = currentColor, $width = 1px) {
       color $color-text-inverse
 
       &:not(:disabled) {
+
         &:hover
         &:focus {
           filter brightness(0.9)
@@ -379,10 +385,11 @@ box-shadow-border($color = currentColor, $width = 1px) {
 
       &.ghost {
         background-color transparent
-        color: $current-color
+        color $current-color
         box-shadow-border()
 
         &:not(:disabled) {
+
           &:hover,
           &:focus {
             box-shadow-border(currentColor)
@@ -395,21 +402,23 @@ box-shadow-border($color = currentColor, $width = 1px) {
 
           &:active,
           &.active {
-            opacity .7
+            opacity 0.7
           }
         }
       }
 
       &.with-label:not(.ghost) .label:not(.icon) {
-        color $current-color
         background-color #fff
+        color $current-color
         box-shadow-border()
       }
     }
   }
 
   &.secondary {
+
     &:not(:disabled) {
+
       &:hover
       &:focus {
         filter brightness(1.5)
@@ -431,8 +440,8 @@ box-shadow-border($color = currentColor, $width = 1px) {
   }
 
   &:disabled:not(.loading) {
-    cursor: default
-    opacity: 0.45
+    cursor default
+    opacity 0.45
   }
 
   .loading {
@@ -442,97 +451,102 @@ box-shadow-border($color = currentColor, $width = 1px) {
 
   &.animated {
     position relative
+    z-index 1
     overflow hidden
     vertical-align middle
-    z-index 1
 
     .visible, .hidden {
-      will-change: transform, opacity
-      transition: transform $animate-duration $default-easing,
+      transition transform $animate-duration $default-easing,
         opacity $animate-duration $default-easing
+      will-change transform, opacity
     }
 
     .hidden {
-      position: absolute
-      top: 0
-      left: 0
+      position absolute
+      top 0
       right 0
       bottom 0
-      display: flex;
-      align-items: center;
-      justify-content: center;
+      left 0
+      display flex
+      align-items center
+      justify-content center
     }
 
     &.horizontal {
+
       .visible {
-        transform: translateX(0)
+        transform translateX(0)
       }
 
       .hidden {
-        transform: translateX(100%)
+        transform translateX(100%)
       }
 
       &:hover,
       &:active,
       &.active {
+
         .visible {
-          transform: translateX(-200%)
+          transform translateX(-200%)
         }
 
         .hidden {
-          transform: translateX(0)
+          transform translateX(0)
         }
       }
     }
 
     &.vertical {
+
       .visible {
-        transform: translateY(0)
+        transform translateY(0)
       }
 
       .hidden {
-        transform: translateY(-100%)
+        transform translateY(-100%)
       }
 
       &:hover,
       &:active,
       &.active {
+
         .visible {
-          transform: translateY(200%)
+          transform translateY(200%)
         }
 
         .hidden {
-          transform: translateY(0)
+          transform translateY(0)
         }
       }
     }
 
     &.fade {
+
       .visible {
         opacity 1
-        transform: scale(1)
+        transform scale(1)
       }
 
       .hidden {
         opacity 0
-        transform: scale(1.5)
+        transform scale(1.5)
       }
 
       &:hover,
       &:active,
       &.active {
+
         .visible {
           opacity 0
-          transform: scale(0.75)
+          transform scale(0.75)
         }
 
         .hidden {
           opacity 1
-          transform: scale(1)
+          transform scale(1)
         }
       }
     }
   }
-
 }
 </style>

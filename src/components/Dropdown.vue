@@ -102,26 +102,26 @@ const onChange = (option: Sem.Option) => {
 </script>
 
 <style lang="stylus" scoped>
-$horizontal-padding = .78571429rem
+$horizontal-padding = 0.78571429rem
 
 .sem-dropdown {
   position relative
   display inline-flex
   align-items center
+  margin-right 0.5em
   cursor pointer
-  transition box-shadow .1s ease, width .1s ease
-  margin-right .5em
+  transition box-shadow 0.1s ease, width 0.1s ease
   vertical-align bottom
 
   &.selection {
-    word-wrap break-word
-    color #000000de
-    white-space normal
-    min-height 2.71428571em;
     min-width 14em
+    min-height 2.71428571em
+    padding 0.78571429em 2.1em 0.78571429em 1em
     border 1px solid #22242626
     border-radius $border-radius
-    padding 0.78571429em 2.1em .78571429em 1em;
+    color #000000de
+    white-space normal
+    word-wrap break-word
   }
 
   &::selection {
@@ -134,8 +134,8 @@ $horizontal-padding = .78571429rem
   }
 
   &:not([tabindex="-1"]):focus-within {
-    outline solid 3px $color-primary
     border-radius $border-radius
+    outline solid 3px $color-primary
   }
 
   :slotted(.sui-button) {
@@ -147,32 +147,32 @@ $horizontal-padding = .78571429rem
     align-items center
 
     > .icon {
-      margin-left: 1em
+      margin-left 1em
     }
 
     > :slotted(.sem-button) {
-      margin-right: 0
+      margin-right 0
     }
   }
 
   .list {
     position absolute
+    z-index 11
     top calc(100% + 0.5em)
-    left 0
     right 0
+    left 0
     min-width max-content
     border 1px solid #22242626
     border-radius $border-radius
     background-color #fff
-    z-index: 11
     box-shadow 0 2px 3px 0 #22242626
-    transition opacity .1s ease
+    transition opacity 0.1s ease
     // TODO: How to work for this property?
     will-change transform, opacity
 
     &.upward {
-      bottom calc(100% + 0.5em)
       top unset
+      bottom calc(100% + 0.5em)
     }
 
     .item {
@@ -205,10 +205,10 @@ $horizontal-padding = .78571429rem
     }
 
     .divider {
-      border none
       height 1px
+      border none
+      margin 0.5em 0
       background-color #2224261a
-      margin .5em 0
     }
   }
 }

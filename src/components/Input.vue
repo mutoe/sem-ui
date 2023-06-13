@@ -108,49 +108,51 @@ defineExpose({
 </script>
 
 <style lang="stylus" scoped>
-$input-padding-vertical = 0.678em;
-$input-padding-horizontal = 1em;
+$input-padding-vertical = 0.678em
+$input-padding-horizontal = 1em
 
 .sui-input {
   display inline-flex
   align-items center
-  color $color-text
-  padding: $input-padding-vertical ($input-padding-horizontal/ 2);
-  border: 1px solid $border-color
+  padding $input-padding-vertical ($input-padding-horizontal/ 2)
+  border 1px solid $border-color
   border-radius $border-radius
-  transition box-shadow .1s ease, border-color .1s ease
-  vertical-align middle
+  color $color-text
   line-height 1.21428571em
+  transition box-shadow 0.1s ease, border-color 0.1s ease
+  vertical-align middle
 
   &.fluid {
-    width: 100%
+    width 100%
   }
 
   .sui-input-element {
-    flex auto
     display block
     max-width 100%
-    font-size 100%
-    outline 0
+    flex auto
     padding 0 ($input-padding-horizontal/ 2)
-    background-color transparent
     border none
-    line-height 1.21em
-    transition .1s ease, border-color .1s ease, box-shadow .1s ease
+    background-color transparent
     color inherit
+    font-size 100%
+    line-height 1.21em
+    outline 0
+    transition 0.1s ease, border-color 0.1s ease, box-shadow 0.1s ease
 
     &::placeholder {
-      color: $color-placeholder
+      color $color-placeholder
     }
 
     // Hide number input arrow buttons (for Chrome, Safari, Edge, Opera)
+
     &::-webkit-outer-spin-button,
     &::-webkit-inner-spin-button {
-      -webkit-appearance none
       margin 0
+      -webkit-appearance none
     }
 
     // Hide number input arrow buttons (for Firefox)
+
     &[type="number"] {
       -moz-appearance textfield
     }
@@ -159,18 +161,18 @@ $input-padding-horizontal = 1em;
   &:focus-within,
   &.focus {
     border-color $border-focus
-    color $color-text
     box-shadow none
+    color $color-text
   }
 
   &.disabled {
-    opacity: 0.45
     background-color $color-disabled-background
+    opacity 0.45
   }
 
   &.error {
-    background-color #fff6f6
     border-color #e0b4b4
+    background-color #fff6f6
     color #9f3a38
 
     .sui-input-element::placeholder {
@@ -182,8 +184,8 @@ $input-padding-horizontal = 1em;
   .append {
     display flex
     flex none
-    padding 0
     align-items center
+    padding 0
     color #909090
   }
 

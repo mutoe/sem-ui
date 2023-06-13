@@ -23,6 +23,9 @@
     "eslint": "^8.42.0",
     "lint-staged": "^13.2.2",
     "simple-git-hooks": "^2.8.1",
+    "stylelint": "^14.16.1",
+    "stylelint-config-idiomatic-order": "^9.0.0",
+    "stylelint-stylus": "^0.18.0",
     "stylus": "^0.59.0",
     "typescript": "^4.9.5",
     "vite": "^4.3.9",
@@ -35,6 +38,22 @@
     ],
     "rules": {
       "max-lines": "off"
+    }
+  },
+  "stylelint": {
+    "ignoreFiles": [
+      "**/*",
+      "!src/**/*.{vue,styl,stylus}"
+    ],
+    "extends": [
+      "stylelint-stylus/standard",
+      "stylelint-config-idiomatic-order"
+    ],
+    "rules": {
+      "rule-empty-line-before": "always-multi-line",
+      "stylus/pythonic": "never",
+      "stylus/selector-list-comma-newline-after": "always-multi-line",
+      "stylus/selector-list-comma": null
     }
   },
   "simple-git-hooks": {

@@ -10,11 +10,11 @@ import { routes } from 'src/router'
 
 <style lang="stylus" scoped>
 .navigation {
-  padding: 2rem
+  padding 2rem
   font-size 1.5rem
 
   > a {
-    margin-right: 1em
+    margin-right 1em
     color $color-grey
 
     &.active {
