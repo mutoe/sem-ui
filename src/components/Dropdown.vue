@@ -28,6 +28,7 @@
     <ul
       v-show="popupShown"
       :id="`${id}-popup`"
+      ref="popupRef"
       :class="['list', { upward }]"
       role="listbox"
       aria-label="Popup"
@@ -58,7 +59,7 @@
 </template>
 
 <script lang="ts" setup>
-import { computed, ref, useSlots } from 'vue'
+import { computed, nextTick, ref, useSlots, watch } from 'vue'
 import { faCaretDown } from '@fortawesome/free-solid-svg-icons'
 import useId from 'src/composables/use-id'
 import vClickOutside from 'src/directives/vClickOutside'
@@ -76,7 +77,6 @@ const props = defineProps<{
   multiple?: boolean
   placeholder?: string
   fluid?: boolean
-  // TODO: implement auto upward when scroll to bottom of screen
   upward?: boolean
   text?: string
   tabindex?: number | string
@@ -94,7 +94,32 @@ const debug = props.debug || dropdownConfig.debug
 const compat = props.compat || dropdownConfig.compat
 const id = props.id || useId()
 
+const popupRef = ref<HTMLUListElement>()
 const popupShown = ref(false)
+const popupTranslateY = ref('0')
+const popupHeight = ref('unset')
+
+watch(popupShown, async () => {
+  if (!popupShown.value) {
+    popupTranslateY.value = '0'
+    popupHeight.value = 'unset'
+    return
+  }
+  await nextTick()
+  if (!popupRef.value) return
+  if (popupRef.value.getBoundingClientRect().height > window.innerHeight) {
+    popupHeight.value = `${window.innerHeight}px`
+    await nextTick()
+    popupTranslateY.value = `${-popupRef.value.getBoundingClientRect().top}px`
+    return
+  }
+  if (props.upward && popupRef.value.getBoundingClientRect().top < 0) {
+    popupTranslateY.value = `${-popupRef.value.getBoundingClientRect().top}px`
+  } else if (!props.upward && popupRef.value.getBoundingClientRect().bottom > window.innerHeight) {
+    popupTranslateY.value = `${window.innerHeight - popupRef.value.getBoundingClientRect().bottom}px`
+  }
+})
+
 const activeIndex = ref<number>(-1)
 const localValue = ref(props.value)
 
@@ -104,33 +129,50 @@ function onKeyDown (event: KeyboardEvent) {
   if (popupShown.value) {
     switch (key) {
       case ' ':
-      case 'Enter': { onChange(props.options[activeIndex.value]); break }
-      case 'Escape': { popupShown.value = false; break }
+      case 'Enter': {
+        event.preventDefault()
+        onChange(props.options[activeIndex.value])
+        break }
+      case 'Escape': {
+        popupShown.value = false
+        break }
       case 'ArrowDown': {
+        event.preventDefault()
         if (altKey) break
         else selectAction(SelectAction.Next)
-        break
-      }
+        break }
       case 'ArrowUp': {
+        event.preventDefault()
         if (altKey) popupShown.value = false
         else selectAction(SelectAction.Prev)
-        break
-      }
-      case 'Home': { selectAction(SelectAction.First); break }
-      case 'End': { selectAction(SelectAction.Last); break }
+        break }
+      case 'Home': {
+        event.preventDefault()
+        selectAction(SelectAction.First)
+        break }
+      case 'End': {
+        event.preventDefault()
+        selectAction(SelectAction.Last)
+        break }
     }
   } else {
     switch (key) {
       case ' ':
-      case 'Enter': { popupShown.value = true; break }
-      case 'Escape': { onChange(); break }
+      case 'Enter': {
+        event.preventDefault()
+        popupShown.value = true
+        break }
+      case 'Escape': {
+        onChange()
+        break }
       case 'ArrowDown': {
-        if (altKey) {
-          popupShown.value = true
-        } else selectAction(SelectAction.First)
+        event.preventDefault()
+        if (altKey) popupShown.value = true
+        else selectAction(SelectAction.First)
         break
       }
       case 'ArrowUp': {
+        event.preventDefault()
         if (altKey) popupShown.value = false
         else selectAction(SelectAction.Last)
         break
@@ -142,10 +184,34 @@ function onKeyDown (event: KeyboardEvent) {
 function selectAction (action: SelectAction) {
   popupShown.value = true
   switch (action) {
-    case SelectAction.First: { activeIndex.value = 0; break }
-    case SelectAction.Last:{ activeIndex.value = props.options.length - 1; break }
-    case SelectAction.Next:{ activeIndex.value = Math.min(props.options.length - 1, activeIndex.value + 1); break }
-    case SelectAction.Prev:{ activeIndex.value = Math.max(0, activeIndex.value - 1); break }
+    case SelectAction.First: {
+      activeIndex.value = 0
+      nextTick(() => {
+        const activeItemEl = popupRef.value?.querySelector('.active')
+        if ((activeItemEl?.getBoundingClientRect().top ?? 0) < 0) activeItemEl?.scrollIntoView(true)
+      })
+      break }
+    case SelectAction.Prev:{
+      activeIndex.value = Math.max(0, activeIndex.value - 1)
+      nextTick(() => {
+        const activeItemEl = popupRef.value?.querySelector('.active')
+        if ((activeItemEl?.getBoundingClientRect().top ?? 0) < 0) activeItemEl?.scrollIntoView(true)
+      })
+      break }
+    case SelectAction.Last:{
+      activeIndex.value = props.options.length - 1
+      nextTick(() => {
+        const activeItemEl = popupRef.value?.querySelector('.active')
+        if ((activeItemEl?.getBoundingClientRect().bottom ?? 0) > window.innerHeight) activeItemEl?.scrollIntoView(false)
+      })
+      break }
+    case SelectAction.Next:{
+      activeIndex.value = Math.min(props.options.length - 1, activeIndex.value + 1)
+      nextTick(() => {
+        const activeItemEl = popupRef.value?.querySelector('.active')
+        if ((activeItemEl?.getBoundingClientRect().bottom ?? 0) > window.innerHeight) activeItemEl?.scrollIntoView(false)
+      })
+      break }
   }
 }
 
@@ -226,13 +292,16 @@ $horizontal-padding = 0.78571429rem
     top calc(100% + 0.5em)
     right 0
     left 0
+    overflow auto
     min-width max-content
+    height v-bind(popupHeight)
     padding-left 0
     border 1px solid #22242626
     border-radius $border-radius
     margin 0
     background-color #fff
     box-shadow 0 2px 3px 0 #22242626
+    transform translateY(v-bind(popupTranslateY))
     transition opacity 0.1s ease
     // TODO: How to work for this property?
     will-change transform, opacity
