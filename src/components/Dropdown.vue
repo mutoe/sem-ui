@@ -1,16 +1,19 @@
 <template>
   <div
-    v-click-outside="() => showList = false"
-    role="listbox"
+    v-click-outside="() => popupShown = false"
     :class="classes"
-    :aria-expanded="showList"
+    role="combobox"
+    :aria-activedescendant="popupShown ? `${id}-popup` : undefined"
+    :aria-controls="`${id}-popup`"
+    :aria-expanded="popupShown"
+    aria-autocomplete="list"
+    aria-haspopup="listbox"
     :tabindex="tabindex ?? 0"
-    @click.capture="showList = !showList"
-    @keydown.space.prevent
-    @keyup.space="showList = !showList"
-    @focusout="!debug && (showList = false)"
+    @click.capture="popupShown = !popupShown"
+    @keydown="onKeyDown"
+    @focusout="!debug && (popupShown = false)"
   >
-    <div class="content">
+    <div :id="id" class="content">
       <slot name="default">
         <div
           role="alert"
@@ -22,43 +25,49 @@
       </slot>
     </div>
 
-    <div
-      v-show="showList"
+    <ul
+      v-show="popupShown"
+      :id="`${id}-popup`"
       :class="['list', { upward }]"
-      :aria-hidden="!showList"
+      role="listbox"
+      aria-label="Popup"
+      :aria-hidden="!popupShown"
     >
       <template
         v-for="(option, index) in options"
         :key="option.value ?? index"
       >
-        <div
+        <li
           role="option"
-          class="item"
+          :class="['item', {active: index === activeIndex}]"
           :value="option.value"
+          :index="index"
+          :aria-selected="activeIndex === index"
           @click="onChange(option)"
+          @mouseover="activeIndex = index"
         >
           <Icon v-if="option.icon" class="icon" :icon="option.icon" />
           <span class="text">{{ option.text }}</span>
           <span v-if="option.description" class="description">{{ option.description }}</span>
-        </div>
+        </li>
 
         <hr v-if="option.divider" class="divider">
       </template>
-    </div>
+    </ul>
   </div>
 </template>
 
 <script lang="ts" setup>
 import { computed, ref, useSlots } from 'vue'
 import { faCaretDown } from '@fortawesome/free-solid-svg-icons'
+import useId from 'src/composables/use-id'
 import vClickOutside from 'src/directives/vClickOutside'
 import pick from 'src/utils/pick'
 
 const dropdownConfig: Sem.DropdownConfig = Object.assign({}, window.__SEM_CONFIG?.common, window.__SEM_CONFIG?.dropdown)
 
-// TODO: accessibility
-
 const props = defineProps<{
+  id?: string
   value?: Sem.Option['value']
   values?: Sem.Option['value'][]
   options: Sem.Option[]
@@ -76,27 +85,83 @@ const props = defineProps<{
 }>()
 
 const emit = defineEmits<{
-  (e: 'change', value: Sem.Option): void
+  change: [value?: Sem.Option]
 }>()
 
 const slots = useSlots()
 
 const debug = props.debug || dropdownConfig.debug
 const compat = props.compat || dropdownConfig.compat
+const id = props.id || useId()
 
-const showList = ref(false)
+const popupShown = ref(false)
+const activeIndex = ref<number>(-1)
 const localValue = ref(props.value)
+
+enum SelectAction { First, Last, Prev, Next }
+function onKeyDown (event: KeyboardEvent) {
+  const { key, altKey } = event
+  if (popupShown.value) {
+    switch (key) {
+      case ' ':
+      case 'Enter': { onChange(props.options[activeIndex.value]); break }
+      case 'Escape': { popupShown.value = false; break }
+      case 'ArrowDown': {
+        if (altKey) break
+        else selectAction(SelectAction.Next)
+        break
+      }
+      case 'ArrowUp': {
+        if (altKey) popupShown.value = false
+        else selectAction(SelectAction.Prev)
+        break
+      }
+      case 'Home': { selectAction(SelectAction.First); break }
+      case 'End': { selectAction(SelectAction.Last); break }
+    }
+  } else {
+    switch (key) {
+      case ' ':
+      case 'Enter': { popupShown.value = true; break }
+      case 'Escape': { onChange(); break }
+      case 'ArrowDown': {
+        if (altKey) {
+          popupShown.value = true
+        } else selectAction(SelectAction.First)
+        break
+      }
+      case 'ArrowUp': {
+        if (altKey) popupShown.value = false
+        else selectAction(SelectAction.Last)
+        break
+      }
+    }
+  }
+}
+
+function selectAction (action: SelectAction) {
+  popupShown.value = true
+  switch (action) {
+    case SelectAction.First: { activeIndex.value = 0; break }
+    case SelectAction.Last:{ activeIndex.value = props.options.length - 1; break }
+    case SelectAction.Next:{ activeIndex.value = Math.min(props.options.length - 1, activeIndex.value + 1); break }
+    case SelectAction.Prev:{ activeIndex.value = Math.max(0, activeIndex.value - 1); break }
+  }
+}
 
 const classes = computed(() => [
   'sem-dropdown',
   pick(props, ['fluid']),
-
-  { expanded: showList.value, outline: !slots.default, compat },
+  {
+    expanded: popupShown.value,
+    outline: !slots.default,
+    compat,
+  },
 ])
 
-const onChange = (option: Sem.Option) => {
-  showList.value = false
-  localValue.value = option.value
+const onChange = (option?: Sem.Option) => {
+  popupShown.value = false
+  localValue.value = option?.value
   emit('change', option)
 }
 </script>
@@ -162,13 +227,19 @@ $horizontal-padding = 0.78571429rem
     right 0
     left 0
     min-width max-content
+    padding-left 0
     border 1px solid #22242626
     border-radius $border-radius
+    margin 0
     background-color #fff
     box-shadow 0 2px 3px 0 #22242626
     transition opacity 0.1s ease
     // TODO: How to work for this property?
     will-change transform, opacity
+
+    &:focus {
+      background red
+    }
 
     &.upward {
       top unset
@@ -185,7 +256,7 @@ $horizontal-padding = 0.78571429rem
         padding ($horizontal-padding / 2) (8 / 14rem)
       }
 
-      &:hover {
+      &.active {
         background-color #0000000d
         color #000000f2
       }

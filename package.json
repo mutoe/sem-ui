@@ -37,7 +37,8 @@
       "@mutoe/eslint-config-preset-vue"
     ],
     "rules": {
-      "max-lines": "off"
+      "max-lines": "off",
+      "max-statements-per-line": ["warn", { "max": 2 }]
     }
   },
   "stylelint": {
