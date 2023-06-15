@@ -278,7 +278,11 @@ $horizontal-padding = 0.78571429rem
     align-items center
 
     > .icon {
-      margin-left 1em
+      margin-left (3/7)em
+
+      ^[0].compat ^[1..-1] {
+        margin-left (1/7)em
+      }
     }
 
     > :slotted(.sem-button) {
