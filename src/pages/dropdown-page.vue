@@ -26,7 +26,7 @@
         </Dropdown>
 
         <Dropdown text="File" :options="fileOptions" :tabindex="-1" @change="onSingleChange">
-          <Button basic>Select Language <Icon :icon="faCaretDown" /></Button>
+          <Button basic :right-icon="faCaretDown">Select Language</Button>
         </Dropdown>
       </div>
     </div>

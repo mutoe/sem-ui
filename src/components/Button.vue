@@ -19,8 +19,9 @@
       </template>
 
       <template v-else>
-        <Icon v-if="props.icon" :class="{ gutter: props.content || slots.default }" :icon="props.icon" />
+        <Icon v-if="leftIcon" :class="[{ gutter: props.content || slots.default }, 'left']" :icon="leftIcon" />
         <slot>{{ props.content }}</slot>
+        <Icon v-if="rightIcon" :class="[{ gutter: props.content || slots.default }, 'right']" :icon="rightIcon" />
       </template>
     </template>
 
@@ -32,8 +33,9 @@
         </slot>
       </div>
       <span class="content">
-        <Icon v-if="props.icon" :class="{ gutter: props.content || slots.default }" :icon="props.icon" />
+        <Icon v-if="leftIcon" :class="[{ gutter: props.content || slots.default }, 'left']" :icon="leftIcon" />
         <slot>{{ props.content }}</slot>
+        <Icon v-if="rightIcon" :class="[{ gutter: props.content || slots.default }, 'right']" :icon="rightIcon" />
       </span>
       <span v-if="slots.rightLabel ?? props.rightLabelIcon" :class="['label', 'right', { icon: props.rightLabelIcon }]">
         <div v-if="props.loading" class="loading">Loading</div>
@@ -57,7 +59,8 @@ export type ButtonSize = 'mini' | 'small' | 'middle' | 'large' | 'massive'
 
 const props = defineProps<{
   content?: string
-  icon?: IconDefinition
+  leftIcon?: IconDefinition
+  rightIcon?: IconDefinition
   leftLabelIcon?: IconDefinition
   rightLabelIcon?: IconDefinition
 
@@ -124,7 +127,6 @@ const colors: (keyof typeof props)[] = [
 
 const withLabel = computed(() => props.leftLabelIcon ?? props.rightLabelIcon ?? slots.leftLabel ?? slots.rightLabel)
 const innerActive = ref(false)
-
 const classes = computed(() => [
   'sui-button',
   props.animated === true ? 'horizontal' : props.animated,
@@ -132,7 +134,7 @@ const classes = computed(() => [
   { active: !props.disabled && innerActive.value },
 
   { 'with-label': withLabel.value },
-  { 'only-icon': props.icon && !(props.content ?? slots.default) },
+  { 'only-icon': (props.leftIcon || props.rightIcon) && !(props.content ?? slots.default) },
 
   props.theme,
   props.color,
@@ -180,7 +182,14 @@ box-shadow-border($color = currentColor, $width = 1px) {
   vertical-align middle
 
   .gutter {
-    margin-right (4 / 7em)
+
+    &.left {
+      margin-right (4 / 7em)
+    }
+
+    &.right {
+      margin-left (4 / 7em)
+    }
   }
 
   &.circular {
