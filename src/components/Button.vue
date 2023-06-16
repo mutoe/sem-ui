@@ -307,6 +307,7 @@ box-shadow-border($color = currentColor, $width = 1px) {
         width $icon-width
         padding $vertical-padding
         background-color rgba(#000, 0.15)
+        justify-content center
 
         .loading {
           min-width 1em

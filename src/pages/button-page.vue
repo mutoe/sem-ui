@@ -7,7 +7,7 @@
       <p>A standard button</p>
 
       <div>
-        <Button>Follow</Button>
+        <Button>Basic</Button>
         <Button active>Active</Button>
         <Button disabled>Disabled</Button>
         <Button loading>Loading</Button>
@@ -16,7 +16,7 @@
       <br>
 
       <div>
-        <Button primary>Follow</Button>
+        <Button primary>Primary</Button>
         <Button primary active>Active</Button>
         <Button primary disabled>Disabled</Button>
         <Button primary loading>Loading</Button>
@@ -25,7 +25,7 @@
       <br>
 
       <div>
-        <Button secondary>Follow</Button>
+        <Button secondary>Secondary</Button>
         <Button secondary active>Active</Button>
         <Button secondary disabled>Disabled</Button>
         <Button secondary loading>Loading</Button>
@@ -36,10 +36,11 @@
       <h3>Icon</h3>
 
       <div>
-        <Button :icon="faShoppingCart" />
-        <Button :icon="faShoppingCart" content="Shopping cart" />
-        <Button loading :icon="faShoppingCart" />
-        <Button loading :icon="faShoppingCart" content="Shopping cart" />
+        <Button :left-icon="faShoppingCart" />
+        <Button :left-icon="faShoppingCart" content="Shopping cart" />
+        <Button :right-icon="faSignOut" content="Logout" />
+        <Button loading :left-icon="faShoppingCart" />
+        <Button loading :left-icon="faShoppingCart" content="Shopping cart" />
       </div>
     </div>
 
@@ -47,10 +48,11 @@
       <h3>Circular</h3>
 
       <div>
-        <Button circular :icon="faShoppingCart" />
-        <Button circular :icon="faShoppingCart" content="Shopping cart" />
-        <Button loading circular :icon="faShoppingCart" />
-        <Button loading circular :icon="faShoppingCart" content="Shopping cart" />
+        <Button circular :left-icon="faShoppingCart" />
+        <Button circular :left-icon="faShoppingCart" content="Shopping cart" />
+        <Button circular :right-icon="faSignOut" content="Logout" />
+        <Button loading circular :left-icon="faShoppingCart" />
+        <Button loading circular :left-icon="faShoppingCart" content="Shopping cart" />
       </div>
     </div>
 
@@ -74,54 +76,54 @@
       <h3>Labeled button</h3>
 
       <div>
-        <Button red :icon="faHeart">
+        <Button red :left-icon="faHeart">
           <template #default>Like</template>
           <template #rightLabel>12,325</template>
         </Button>
-        <Button active red :icon="faHeart">
+        <Button active red :left-icon="faHeart">
           <template #default>Like</template>
           <template #rightLabel>12,325</template>
         </Button>
-        <Button loading red :icon="faHeart">
+        <Button loading red :left-icon="faHeart">
           <template #default>Like</template>
           <template #rightLabel>12,325</template>
         </Button>
-        <Button red :icon="faHeart">
+        <Button red :left-icon="faHeart">
           <template #default>Like</template>
           <template #leftLabel>12,325</template>
         </Button>
-        <Button active red :icon="faHeart">
+        <Button active red :left-icon="faHeart">
           <template #default>Like</template>
           <template #leftLabel>12,325</template>
         </Button>
-        <Button loading red :icon="faHeart">
+        <Button loading red :left-icon="faHeart">
           <template #default>Like</template>
           <template #leftLabel>12,325</template>
         </Button>
       </div>
       <br>
       <div>
-        <Button ghost blue :icon="faCodeBranch">
+        <Button ghost blue :left-icon="faCodeBranch">
           <template #default>Fork</template>
           <template #rightLabel>12,325</template>
         </Button>
-        <Button active ghost blue :icon="faCodeBranch">
+        <Button active ghost blue :left-icon="faCodeBranch">
           <template #default>Fork</template>
           <template #rightLabel>12,325</template>
         </Button>
-        <Button loading ghost blue :icon="faCodeBranch">
+        <Button loading ghost blue :left-icon="faCodeBranch">
           <template #default>Fork</template>
           <template #rightLabel>12,325</template>
         </Button>
-        <Button ghost blue :icon="faCodeBranch">
+        <Button ghost blue :left-icon="faCodeBranch">
           <template #default>Fork</template>
           <template #leftLabel>12,325</template>
         </Button>
-        <Button active ghost blue :icon="faCodeBranch">
+        <Button active ghost blue :left-icon="faCodeBranch">
           <template #default>Fork</template>
           <template #leftLabel>12,325</template>
         </Button>
-        <Button loading ghost blue :icon="faCodeBranch">
+        <Button loading ghost blue :left-icon="faCodeBranch">
           <template #default>Fork</template>
           <template #leftLabel>12,325</template>
         </Button>
@@ -148,23 +150,23 @@
       </div>
       <br>
       <div>
-        <Button :icon="faPause">
+        <Button :left-icon="faPause">
           <template #default>Basic button</template>
           <template #rightLabel>12,325</template>
         </Button>
-        <Button :icon="faPause" primary>
+        <Button :left-icon="faPause" primary>
           <template #default>Primary</template>
           <template #rightLabel>12,325</template>
         </Button>
-        <Button :icon="faPause" secondary>
+        <Button :left-icon="faPause" secondary>
           <template #default>Secondary</template>
           <template #rightLabel>12,325</template>
         </Button>
-        <Button :icon="faPause" positive>
+        <Button :left-icon="faPause" positive>
           <template #default>Positive</template>
           <template #rightLabel>12,325</template>
         </Button>
-        <Button :icon="faPause" negative>
+        <Button :left-icon="faPause" negative>
           <template #default>Negative</template>
           <template #rightLabel>12,325</template>
         </Button>
@@ -196,9 +198,9 @@
         <Button ghost secondary>Secondary</Button>
         <Button ghost positive>Positive</Button>
         <Button ghost negative>Negative</Button>
-        <Button ghost :icon="faCodeBranch" />
-        <Button ghost circular :icon="faCodeBranch" />
-        <Button ghost circular orange :icon="faUser">Follow</Button>
+        <Button ghost :left-icon="faCodeBranch" />
+        <Button ghost circular :left-icon="faCodeBranch" />
+        <Button ghost circular orange :left-icon="faUser">Follow</Button>
       </div>
       <br>
       <div>
@@ -210,23 +212,23 @@
       </div>
       <br>
       <div>
-        <Button ghost :icon="faPause">
+        <Button ghost :left-icon="faPause">
           <template #default>Ghost button</template>
           <template #rightLabel>12,325</template>
         </Button>
-        <Button ghost :icon="faPause" primary>
+        <Button ghost :left-icon="faPause" primary>
           <template #default>Primary</template>
           <template #rightLabel>12,325</template>
         </Button>
-        <Button ghost :icon="faPause" secondary>
+        <Button ghost :left-icon="faPause" secondary>
           <template #default>Secondary</template>
           <template #rightLabel>12,325</template>
         </Button>
-        <Button ghost :icon="faPause" positive>
+        <Button ghost :left-icon="faPause" positive>
           <template #default>Positive</template>
           <template #rightLabel>12,325</template>
         </Button>
-        <Button ghost :icon="faPause" negative>
+        <Button ghost :left-icon="faPause" negative>
           <template #default>Negative</template>
           <template #rightLabel>12,325</template>
         </Button>
@@ -270,23 +272,23 @@
         </div>
         <br>
         <div>
-          <Button ghost :icon="faPause">
+          <Button ghost :left-icon="faPause">
             <template #default>Ghost button</template>
             <template #rightLabel>12,325</template>
           </Button>
-          <Button ghost :icon="faPause" primary>
+          <Button ghost :left-icon="faPause" primary>
             <template #default>Primary</template>
             <template #rightLabel>12,325</template>
           </Button>
-          <Button ghost :icon="faPause" secondary>
+          <Button ghost :left-icon="faPause" secondary>
             <template #default>Secondary</template>
             <template #rightLabel>12,325</template>
           </Button>
-          <Button ghost :icon="faPause" positive>
+          <Button ghost :left-icon="faPause" positive>
             <template #default>Positive</template>
             <template #rightLabel>12,325</template>
           </Button>
-          <Button ghost :icon="faPause" negative>
+          <Button ghost :left-icon="faPause" negative>
             <template #default>Negative</template>
             <template #rightLabel>12,325</template>
           </Button>
@@ -338,8 +340,8 @@
         <Button fluid mini>Fits to Container</Button>
         <Button fluid small primary>Fits to Container</Button>
         <Button fluid secondary>Fits to Container</Button>
-        <Button fluid ghost large positive :icon="faPause">Fits to Container</Button>
-        <Button fluid massive negative :icon="faPause">Fits to Container</Button>
+        <Button fluid ghost large positive :left-icon="faPause">Fits to Container</Button>
+        <Button fluid massive negative :left-icon="faPause">Fits to Container</Button>
       </div>
     </div>
 
@@ -351,18 +353,18 @@
         <Button mini positive ghost>Mini</Button>
         <Button mini orange :left-label-icon="faPause">Pause</Button>
         <Button mini loading />
-        <Button mini red :icon="faHeart">
+        <Button mini red :left-icon="faHeart">
           <template #default>Like</template>
           <template #rightLabel>12,325</template>
         </Button>
-        <Button mini ghost blue :icon="faCodeBranch">
+        <Button mini ghost blue :left-icon="faCodeBranch">
           <template #default>Fork</template>
           <template #rightLabel>12,325</template>
         </Button>
-        <Button mini :icon="faShoppingCart" />
-        <Button mini ghost :icon="faShoppingCart" />
-        <Button mini circular :icon="faShoppingCart" />
-        <Button mini circular ghost :icon="faShoppingCart" />
+        <Button mini :left-icon="faShoppingCart" />
+        <Button mini ghost :left-icon="faShoppingCart" />
+        <Button mini circular :left-icon="faShoppingCart" />
+        <Button mini circular ghost :left-icon="faShoppingCart" />
       </div>
       <br>
       <div>
@@ -370,18 +372,18 @@
         <Button small positive ghost>Small</Button>
         <Button small orange :left-label-icon="faPause">Pause</Button>
         <Button small loading />
-        <Button small red :icon="faHeart">
+        <Button small red :left-icon="faHeart">
           <template #default>Like</template>
           <template #rightLabel>12,325</template>
         </Button>
-        <Button small ghost blue :icon="faCodeBranch">
+        <Button small ghost blue :left-icon="faCodeBranch">
           <template #default>Fork</template>
           <template #rightLabel>12,325</template>
         </Button>
-        <Button small :icon="faShoppingCart" />
-        <Button small ghost :icon="faShoppingCart" />
-        <Button small circular :icon="faShoppingCart" />
-        <Button small circular ghost :icon="faShoppingCart" />
+        <Button small :left-icon="faShoppingCart" />
+        <Button small ghost :left-icon="faShoppingCart" />
+        <Button small circular :left-icon="faShoppingCart" />
+        <Button small circular ghost :left-icon="faShoppingCart" />
       </div>
       <br>
       <div>
@@ -389,18 +391,18 @@
         <Button ghost positive>Default</Button>
         <Button orange :left-label-icon="faPause">Pause</Button>
         <Button loading />
-        <Button red :icon="faHeart">
+        <Button red :left-icon="faHeart">
           <template #default>Like</template>
           <template #rightLabel>12,325</template>
         </Button>
-        <Button ghost blue :icon="faCodeBranch">
+        <Button ghost blue :left-icon="faCodeBranch">
           <template #default>Fork</template>
           <template #rightLabel>12,325</template>
         </Button>
-        <Button :icon="faShoppingCart" />
-        <Button ghost :icon="faShoppingCart" />
-        <Button circular :icon="faShoppingCart" />
-        <Button circular ghost :icon="faShoppingCart" />
+        <Button :left-icon="faShoppingCart" />
+        <Button ghost :left-icon="faShoppingCart" />
+        <Button circular :left-icon="faShoppingCart" />
+        <Button circular ghost :left-icon="faShoppingCart" />
       </div>
       <br>
       <div>
@@ -408,18 +410,18 @@
         <Button ghost large positive>Large</Button>
         <Button large orange :left-label-icon="faPause">Pause</Button>
         <Button large loading />
-        <Button large red :icon="faHeart">
+        <Button large red :left-icon="faHeart">
           <template #default>Like</template>
           <template #rightLabel>12,325</template>
         </Button>
-        <Button large ghost blue :icon="faCodeBranch">
+        <Button large ghost blue :left-icon="faCodeBranch">
           <template #default>Fork</template>
           <template #rightLabel>12,325</template>
         </Button>
-        <Button large :icon="faShoppingCart" />
-        <Button large ghost :icon="faShoppingCart" />
-        <Button large circular :icon="faShoppingCart" />
-        <Button large circular ghost :icon="faShoppingCart" />
+        <Button large :left-icon="faShoppingCart" />
+        <Button large ghost :left-icon="faShoppingCart" />
+        <Button large circular :left-icon="faShoppingCart" />
+        <Button large circular ghost :left-icon="faShoppingCart" />
       </div>
       <br>
       <div>
@@ -427,18 +429,18 @@
         <Button massive ghost positive>Massive</Button>
         <Button massive orange :left-label-icon="faPause">Pause</Button>
         <Button massive loading />
-        <Button massive red :icon="faHeart">
+        <Button massive red :left-icon="faHeart">
           <template #default>Like</template>
           <template #rightLabel>12,325</template>
         </Button>
-        <Button massive ghost blue :icon="faCodeBranch">
+        <Button massive ghost blue :left-icon="faCodeBranch">
           <template #default>Fork</template>
           <template #rightLabel>12,325</template>
         </Button>
-        <Button massive :icon="faShoppingCart" />
-        <Button massive ghost :icon="faShoppingCart" />
-        <Button massive circular :icon="faShoppingCart" />
-        <Button massive circular ghost :icon="faShoppingCart" />
+        <Button massive :left-icon="faShoppingCart" />
+        <Button massive ghost :left-icon="faShoppingCart" />
+        <Button massive circular :left-icon="faShoppingCart" />
+        <Button massive circular ghost :left-icon="faShoppingCart" />
       </div>
     </div>
 
@@ -457,20 +459,20 @@
           <Button :right-label-icon="faArrowRight">Three</Button>
         </ButtonGroup>
         <ButtonGroup>
-          <Button active :icon="faAlignLeft" />
-          <Button :icon="faAlignCenter" />
-          <Button :icon="faAlignRight" />
-          <Button :icon="faAlignJustify" />
+          <Button active :left-icon="faAlignLeft" />
+          <Button :left-icon="faAlignCenter" />
+          <Button :left-icon="faAlignRight" />
+          <Button :left-icon="faAlignJustify" />
         </ButtonGroup>
         <ButtonGroup>
-          <Button active :icon="faBold" />
-          <Button :icon="faUnderline" />
-          <Button :icon="faStrikethrough" />
+          <Button active :left-icon="faBold" />
+          <Button :left-icon="faUnderline" />
+          <Button :left-icon="faStrikethrough" />
         </ButtonGroup>
         <ButtonGroup size="large">
-          <Button :icon="faArrowLeft" />
+          <Button :left-icon="faArrowLeft" />
           <Button>2/10</Button>
-          <Button :icon="faArrowRight" />
+          <Button :left-icon="faArrowRight" />
         </ButtonGroup>
       </div>
     </div>
@@ -489,7 +491,7 @@ import {
   faCodeBranch,
   faHeart,
   faPause,
-  faShoppingCart,
+  faShoppingCart, faSignOut,
   faStrikethrough,
   faUnderline,
   faUser,
