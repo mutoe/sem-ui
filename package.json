@@ -62,6 +62,7 @@
     "pre-push": "pnpm exec vue-tsc"
   },
   "lint-staged": {
-    "*.{vue,js,ts,json,html}": "eslint --fix"
+    "*.{vue,js,ts,json,html}": "eslint --fix",
+    "*.{vue,styl,stylus,css}": "stylelint --fix"
   }
 }

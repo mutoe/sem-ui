@@ -175,7 +175,6 @@ box-shadow-border($color = currentColor, $width = 1px) {
   font-size 1rem
   line-height 1em
   outline none
-  transition $transition
   transition-duration $default-duration
   transition-property $transition-property
   transition-timing-function $default-easing
@@ -289,7 +288,10 @@ box-shadow-border($color = currentColor, $width = 1px) {
 
       &:not(.icon) {
         background-color #fff
-        box-shadow-border($color-light)
+
+        ^[1]:not(.ghost) ^[2..-1] {
+          box-shadow-border($color-light)
+        }
 
         &::before {
           position absolute
@@ -305,9 +307,9 @@ box-shadow-border($color = currentColor, $width = 1px) {
 
       &.icon {
         width $icon-width
+        justify-content center
         padding $vertical-padding
         background-color rgba(#000, 0.15)
-        justify-content center
 
         .loading {
           min-width 1em
@@ -344,13 +346,39 @@ box-shadow-border($color = currentColor, $width = 1px) {
 
       .label {
         background-color transparent
-        box-shadow-border()
+
+        &::after {
+          position absolute
+          top 0
+          bottom 0
+          width 1px
+          content ""
+
+          ^[3].left^[-1..-1] {
+            right 0
+          }
+
+          ^[3].right^[-1..-1] {
+            left 0
+          }
+
+          ^[3].icon^[-1..-1] {
+            background-color currentColor
+          }
+        }
 
         &:not(.icon) {
-          background-color #fff
+
+          &::after {
+            display block
+            box-sizing border-box
+            border solid currentColor
+            border-width 0.78em 0
+          }
 
           &::before {
             border 1px solid currentColor
+            background-color transparent
           }
 
           &.left::before {
@@ -402,12 +430,7 @@ box-shadow-border($color = currentColor, $width = 1px) {
 
           &:hover,
           &:focus {
-            box-shadow-border(currentColor)
             filter brightness(1.2)
-
-            &.with-label .label {
-              box-shadow-border(currentColor)
-            }
           }
 
           &:active,
