@@ -181,7 +181,6 @@ box-shadow-border($color = currentColor, $width = 1px) {
   vertical-align middle
 
   .gutter {
-
     &.left {
       margin-right (4 / 7em)
     }
@@ -195,7 +194,6 @@ box-shadow-border($color = currentColor, $width = 1px) {
     border-radius 3em
 
     &.with-label .label {
-
       &.left {
         border-bottom-left-radius 3em
         border-top-left-radius 3em
@@ -226,7 +224,6 @@ box-shadow-border($color = currentColor, $width = 1px) {
   }
 
   &:not(:disabled) {
-
     &:hover,
     &:focus {
       filter brightness(0.9)
@@ -252,7 +249,6 @@ box-shadow-border($color = currentColor, $width = 1px) {
     box-shadow-border(currentColor)
 
     &:not(:disabled) {
-
       &:hover,
       &:focus {
         filter brightness(1.3)
@@ -336,14 +332,12 @@ box-shadow-border($color = currentColor, $width = 1px) {
     }
 
     &.secondary {
-
       .label {
         background-color rgba(#fff, 0.15)
       }
     }
 
     &.ghost {
-
       .label {
         background-color transparent
 
@@ -368,7 +362,6 @@ box-shadow-border($color = currentColor, $width = 1px) {
         }
 
         &:not(.icon) {
-
           &::after {
             display block
             box-sizing border-box
@@ -405,7 +398,6 @@ box-shadow-border($color = currentColor, $width = 1px) {
       color $color-text-inverse
 
       &:not(:disabled) {
-
         &:hover
         &:focus {
           filter brightness(0.9)
@@ -427,7 +419,6 @@ box-shadow-border($color = currentColor, $width = 1px) {
         box-shadow-border()
 
         &:not(:disabled) {
-
           &:hover,
           &:focus {
             filter brightness(1.2)
@@ -449,9 +440,7 @@ box-shadow-border($color = currentColor, $width = 1px) {
   }
 
   &.secondary {
-
     &:not(:disabled) {
-
       &:hover
       &:focus {
         filter brightness(1.5)
@@ -506,7 +495,6 @@ box-shadow-border($color = currentColor, $width = 1px) {
     }
 
     &.horizontal {
-
       .visible {
         transform translateX(0)
       }
@@ -518,7 +506,6 @@ box-shadow-border($color = currentColor, $width = 1px) {
       &:hover,
       &:active,
       &.active {
-
         .visible {
           transform translateX(-200%)
         }
@@ -530,7 +517,6 @@ box-shadow-border($color = currentColor, $width = 1px) {
     }
 
     &.vertical {
-
       .visible {
         transform translateY(0)
       }
@@ -542,7 +528,6 @@ box-shadow-border($color = currentColor, $width = 1px) {
       &:hover,
       &:active,
       &.active {
-
         .visible {
           transform translateY(200%)
         }
@@ -554,7 +539,6 @@ box-shadow-border($color = currentColor, $width = 1px) {
     }
 
     &.fade {
-
       .visible {
         opacity 1
         transform scale(1)
@@ -568,7 +552,6 @@ box-shadow-border($color = currentColor, $width = 1px) {
       &:hover,
       &:active,
       &.active {
-
         .visible {
           opacity 0
           transform scale(0.75)

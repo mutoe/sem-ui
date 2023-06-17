@@ -51,7 +51,10 @@
       "stylelint-config-idiomatic-order"
     ],
     "rules": {
-      "rule-empty-line-before": "always-multi-line",
+      "rule-empty-line-before": ["always-multi-line", {
+        "except": ["after-single-line-comment", "first-nested"],
+        "ignore": ["after-comment"]
+      }],
       "stylus/pythonic": "never",
       "stylus/selector-list-comma-newline-after": "always-multi-line",
       "stylus/selector-list-comma": null

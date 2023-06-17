@@ -33,7 +33,6 @@ const classes = [
 
   for $size in $size-list {
     &.{$size} {
-
       :deep(.sui-button) {
         size($size)
       }

@@ -20,7 +20,6 @@ main {
 }
 
 @keyframes bounceInDown {
-
   from,
   60%,
   75%,
