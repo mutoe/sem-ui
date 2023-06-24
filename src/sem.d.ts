@@ -27,4 +27,23 @@ declare namespace Sem {
     // eslint-disable-next-line @typescript-eslint/consistent-type-imports
     icon?: import('@fortawesome/fontawesome-svg-core').IconDefinition
   }
+
+  type Color =
+    | 'red'
+    | 'orange'
+    | 'yellow'
+    | 'olive'
+    | 'green'
+    | 'teal'
+    | 'blue'
+    | 'violet'
+    | 'purple'
+    | 'pink'
+    | 'brown'
+    | 'grey'
+    | 'black'
+    | 'positive'
+    | 'negative'
+    | 'primary'
+    | 'secondary'
 }

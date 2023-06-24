@@ -48,16 +48,17 @@
 </template>
 
 <script lang="ts" setup>
+import { colors } from 'src/constants'
+import type { ColorProps } from 'src/types'
 import { computed, ref, useSlots } from 'vue'
 import type { IconDefinition } from '@fortawesome/fontawesome-svg-core'
 import pick from 'src/utils/pick'
 
-export type ButtonTheme = 'primary' | 'secondary' | 'default'
+export type ButtonTheme = 'default' | 'ghost'
 export type ButtonAnimated = true | 'horizontal' | 'vertical' | 'fade'
-export type ButtonColor = 'light' | 'red' | 'orange' | 'yellow' | 'olive' | 'green' | 'teal' | 'blue' | 'violet' | 'purple' | 'pink' | 'brown' | 'grey' | 'black'
 export type ButtonSize = 'mini' | 'small' | 'middle' | 'large' | 'massive'
 
-const props = defineProps<{
+const props = defineProps<ColorProps & {
   content?: string
   leftIcon?: IconDefinition
   rightIcon?: IconDefinition
@@ -77,53 +78,14 @@ const props = defineProps<{
   fluid?: boolean
   circular?: boolean
 
+  color?: Sem.Color
   theme?: ButtonTheme
-  primary?: boolean
-  secondary?: boolean
-  positive?: boolean
-  negative?: boolean
   ghost?: boolean
-
-  color?: ButtonColor
-  red?: boolean
-  orange?: boolean
-  yellow?: boolean
-  olive?: boolean
-  green?: boolean
-  teal?: boolean
-  blue?: boolean
-  violet?: boolean
-  purple?: boolean
-  pink?: boolean
-  brown?: boolean
-  grey?: boolean
-  black?: boolean
 
   animated?: ButtonAnimated
 }>()
 
 const slots = useSlots()
-
-const colors: (keyof typeof props)[] = [
-  'red',
-  'orange',
-  'yellow',
-  'olive',
-  'green',
-  'teal',
-  'blue',
-  'violet',
-  'purple',
-  'pink',
-  'brown',
-  'grey',
-  'black',
-  'ghost',
-  'positive',
-  'negative',
-  'primary',
-  'secondary',
-]
 
 const withLabel = computed(() => props.leftLabelIcon ?? props.rightLabelIcon ?? slots.leftLabel ?? slots.rightLabel)
 const innerActive = ref(false)
@@ -138,7 +100,7 @@ const classes = computed(() => [
 
   props.theme,
   props.color,
-  pick(props, colors),
+  pick(props, [...colors, 'ghost']),
 
   props.size,
   pick(props, 'mini', 'small', 'large', 'massive'),
@@ -390,7 +352,7 @@ box-shadow-border($color = currentColor, $width = 1px) {
     }
   }
 
-  for c in 'red' 'orange' 'yellow' 'olive' 'green' 'teal' 'blue' 'violet' 'purple' 'pink' 'brown' 'grey' 'black' 'positive' 'negative' 'primary' 'secondary' {
+  for c in $colors {
     $current-color = lookup('$color-' + c)
 
     &.{c} {

@@ -139,6 +139,32 @@
         <Button secondary>Secondary</Button>
         <Button positive>Positive</Button>
         <Button negative>Negative</Button>
+        <Button color="grey">Grey</Button>
+        <Button color="teal">Teal</Button>
+        <Button color="violet">Violet</Button>
+        <Button color="olive">Olive</Button>
+        <Button color="orange">Orange</Button>
+        <Button color="brown">Brown</Button>
+        <Button color="pink">Pink</Button>
+        <Button color="purple">Purple</Button>
+        <Button color="yellow">Yellow</Button>
+      </div>
+      <br>
+      <div>
+        <Button disabled>Disabled button</Button>
+        <Button disabled primary>Primary</Button>
+        <Button disabled secondary>Secondary</Button>
+        <Button disabled positive>Positive</Button>
+        <Button disabled negative>Negative</Button>
+        <Button disabled color="grey">Grey</Button>
+        <Button disabled color="teal">Teal</Button>
+        <Button disabled color="violet">Violet</Button>
+        <Button disabled color="olive">Olive</Button>
+        <Button disabled color="orange">Orange</Button>
+        <Button disabled color="brown">Brown</Button>
+        <Button disabled color="pink">Pink</Button>
+        <Button disabled color="purple">Purple</Button>
+        <Button disabled color="yellow">Yellow</Button>
       </div>
       <br>
       <div>
@@ -147,6 +173,8 @@
         <Button :left-label-icon="faPause" secondary>Secondary</Button>
         <Button :left-label-icon="faPause" positive>Positive</Button>
         <Button :left-label-icon="faPause" negative>Negative</Button>
+        <Button :left-label-icon="faPause" positive disabled>Positive</Button>
+        <Button :left-label-icon="faPause" negative disabled>Negative</Button>
       </div>
       <br>
       <div>
