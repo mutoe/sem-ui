@@ -5,7 +5,7 @@ import DropdownPage from 'src/pages/dropdown-page.vue'
 import InputPage from 'src/pages/input-page.vue'
 import MainPage from 'src/pages/main-page.vue'
 import ModalPage from 'src/pages/modal-page.vue'
-// import PlaceholderPage from 'src/pages/placeholder-page.vue'
+import PlaceholderPage from 'src/pages/placeholder-page.vue'
 import SegmentPage from 'src/pages/segment-page.vue'
 
 export const routes: RouteRecordRaw[] = [
@@ -15,7 +15,7 @@ export const routes: RouteRecordRaw[] = [
   { name: 'Dropdown', path: '/dropdown', component: DropdownPage },
   { name: 'Modal', path: '/modal', component: ModalPage },
   { name: 'Segment', path: '/segment', component: SegmentPage },
-  // { name: 'Placeholder', path: '/placeholder', component: PlaceholderPage },
+  { name: 'Placeholder', path: '/placeholder', component: PlaceholderPage },
 ]
 
 const router = createRouter({

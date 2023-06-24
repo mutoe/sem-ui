@@ -16,9 +16,9 @@
         </p>
       </Segment>
 
-      <!--      <Segment> -->
-      <!--        <Placeholder paragraph /> -->
-      <!--      </Segment> -->
+      <Segment>
+        <Placeholder paragraph />
+      </Segment>
     </div>
 
     <div class="fields">
@@ -38,7 +38,7 @@
 </template>
 
 <script setup lang="ts">
-// import Placeholder from 'src/components/Placeholder.vue'
+import Placeholder from 'src/components/Placeholder.vue'
 import Segment from 'src/components/Segment.vue'
 
 const text = 'Lorem ipsum dolor sit amet, consectetur adipisicing elit. A cum debitis eius et ex illo in maiores molestias mollitia non odit porro possimus provident ratione sed sunt veniam, vero voluptatem.'
