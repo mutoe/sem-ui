@@ -26,13 +26,68 @@
 
       <Segment raised>{{ text }}</Segment>
     </div>
+    <div>
+      <Segment attached raised>{{ text }}</Segment>
+      <Segment attached raised>{{ text }}</Segment>
+    </div>
 
     <div class="fields">
       <h3>Stacked</h3>
-
       <Segment stacked>{{ text }}</Segment>
+    </div>
+    <div>
+      <Segment attached stacked>{{ text }}</Segment>
+      <Segment attached stacked>{{ text }}</Segment>
+    </div>
 
+    <div>
+      <h3>Tall stacked</h3>
       <Segment tall-stacked>{{ text }}</Segment>
+    </div>
+    <div>
+      <Segment attached tall-stacked>{{ text }}</Segment>
+      <Segment attached tall-stacked>{{ text }}</Segment>
+    </div>
+
+    <div class="fields">
+      <h3>Piled</h3>
+
+      <Segment piled>{{ text }}</Segment>
+    </div>
+
+    <div class="fields">
+      <h3>Colored</h3>
+
+      <Segment red>Red</Segment>
+      <Segment green>Green</Segment>
+      <Segment blue>Blue</Segment>
+      <Segment color="grey">Grey</Segment>
+    </div>
+
+    <div class="fields">
+      <h3>Attached</h3>
+
+      <Segment attached>Top</Segment>
+      <Segment attached>Middle</Segment>
+      <Segment attached pink>Pink</Segment>
+      <Segment attached orange>Orange</Segment>
+      <Segment attached color="olive">Olive</Segment>
+      <Segment attached color="violet">Violet</Segment>
+    </div>
+
+    <div class="fields">
+      <h3>Nested segments</h3>
+
+      <Segment attached>
+        <span>Top</span>
+        <Segment attached>Nested top</Segment>
+        <Segment attached>Nested bottom</Segment>
+      </Segment>
+      <Segment attached>
+        <Segment attached>Nested top</Segment>
+        <Segment attached>Nested bottom</Segment>
+        <span>Bottom</span>
+      </Segment>
     </div>
   </section>
 </template>
