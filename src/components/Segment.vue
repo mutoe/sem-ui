@@ -154,11 +154,7 @@ $padding = 1em
   for c in $colors {
     $current-color = lookup('$color-' + c)
 
-    &.{c}:not(.attached) {
-      border-color $current-color
-      box-shadow 0 1px 2px 0 rgba(34,36,38,0.15)
-    }
-    &.{c}.attached {
+    &.{c} {
       border-top-width 2px
       border-top-color $current-color
     }
