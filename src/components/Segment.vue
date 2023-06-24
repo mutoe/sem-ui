@@ -5,6 +5,7 @@
       <div class="piled-background" />
     </template>
     <slot />
+    <div v-if="loading" class="spinner" />
   </div>
 </template>
 
@@ -15,6 +16,8 @@ import pick from 'src/utils/pick'
 import { computed } from 'vue'
 
 const props = defineProps<ColorProps & {
+  disabled?: boolean
+  loading?: boolean
   raised?: boolean
   stacked?: boolean
   'tallStacked'?: boolean
@@ -23,11 +26,13 @@ const props = defineProps<ColorProps & {
   color?: Sem.Color
 }>()
 
+const disabled = props.disabled || props.loading
+
 const classes = computed(() => [
   'sem-segment',
   props.color,
   pick(props, 'raised', 'stacked', 'piled', 'attached', ...colors),
-  { 'tall-stacked': props.tallStacked },
+  { 'tall-stacked': props.tallStacked, disabled },
 ])
 
 </script>
@@ -45,6 +50,34 @@ $padding = 1em
   background #fff
   box-shadow 0 1px 2px 0 rgba(34,36,38,0.15)
   font-size 1rem
+
+  &.disabled::before {
+    position absolute
+    top 0
+    right 0
+    bottom 0
+    left 0
+    display block
+    background #fffc
+    content ''
+  }
+
+  .spinner {
+    loading()
+    position absolute
+    top 0
+    right 0
+    bottom 0
+    left 0
+    width unset
+
+    &::before
+    &::after {
+      width 3em
+      height 3em
+      margin -1.5em 0 0 -1.5em
+    }
+  }
 
   &.raised {
     box-shadow 0 2px 2px 0 $color-light, 0 2px 4px 0 $color-light

@@ -22,6 +22,29 @@
     </div>
 
     <div class="fields">
+      <h3>Disabled</h3>
+      <Segment disabled>
+        <p>
+          Beatae consequatur dolorum esse est sit. Alias aliquid autem corporis exercitationem fuga iure iusto libero nam, nesciunt placeat qui reprehenderit soluta tenetur velit voluptates? Accusamus
+          blanditiis distinctio ea eligendi exercitationem, labore laborum modi molestias optio, placeat quos, saepe. Dolores ducimus et facere incidunt sapiente sunt, velit voluptatum!
+        </p>
+      </Segment>
+    </div>
+
+    <div class="fields">
+      <h3>Loading</h3>
+      <Segment loading>
+        <p>
+          Beatae consequatur dolorum esse est sit. Alias aliquid autem corporis exercitationem fuga iure iusto libero nam, nesciunt placeat qui reprehenderit soluta tenetur velit voluptates? Accusamus
+          blanditiis distinctio ea eligendi exercitationem, labore laborum modi molestias optio, placeat quos, saepe. Dolores ducimus et facere incidunt sapiente sunt, velit voluptatum! Et expedita
+          harum laboriosam quo sapiente tempore veniam! Assumenda consequuntur dolore iusto minima non? Aliquam, aspernatur atque blanditiis eius est fugiat in ipsam itaque
+          iure minus nisi obcaecati optio perferendis porro, possimus praesentium provident quam qui sit soluta unde vero voluptatum? Deserunt itaque maiores, necessitatibus nisi qui repudiandae sint
+          veritatis. Beatae commodi, corporis cumque dicta distinctio dolor dolorum eligendi harum nemo nostrum nulla officiis quod sint vitae!
+        </p>
+      </Segment>
+    </div>
+
+    <div class="fields">
       <h3>Raise</h3>
 
       <Segment raised>{{ text }}</Segment>
