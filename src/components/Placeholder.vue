@@ -20,22 +20,16 @@ const props = defineProps<{
 }>()
 
 const imageRadio: number = typeof props.image === 'number' && props.image > 0 ? props.image : props.image ? 1 : 0
-const rows: number = typeof props.lines === 'number' && props.lines > 0
-  ? props.lines
-  : props.lines
-    ? 1
-    : typeof props.paragraph === 'number' && props.paragraph > 0
-      ? props.paragraph
-      : props.paragraph
-        ? 3
-        : imageRadio ? 1 : 0
+const linesProp: number = typeof props.lines === 'number' && props.lines > 0 ? props.lines : props.lines ? 1 : 0
+const paragraphProp: number = typeof props.paragraph === 'number' && props.paragraph > 0 ? props.paragraph : props.paragraph ? 3 : 0
+const rows: number = linesProp || paragraphProp || imageRadio
 
-const uneven: boolean = props.uneven || props.paragraph > 0
-const slim: boolean = props.paragraph > 0
+const uneven: boolean = props.uneven || paragraphProp > 0
+const slim: boolean = paragraphProp > 0
 
 const classes = computed(() => [
   'sem-placeholder',
-  { image: props.image > 0, uneven, slim },
+  { image: imageRadio > 0, uneven, slim },
 ])
 </script>
 
