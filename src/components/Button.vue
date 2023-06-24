@@ -148,13 +148,13 @@ const classes = computed(() => [
 <style lang="stylus" scoped>
 $shadow-distance = 0px
 $shadow-offset = ($shadow-distance / 2)
-$vertical-padding = (2 / 7em + 1 / 2em)
+$vertical-padding = rigor(2 / 7em + 1 / 2em)
 $horizontal-padding = 1.5em
 $vertical-margin = 0
 $horizontal-margin = 0.25em
 $transition-property = opacity, background-color, color, box-shadow, background
 $animate-duration = 0.3s
-$icon-width = (36 / 14em)
+$icon-width = rigor(36 / 14em)
 
 box-shadow-border($color = currentColor, $width = 1px) {
   box-shadow 0 0 0 $width $color inset
@@ -182,11 +182,11 @@ box-shadow-border($color = currentColor, $width = 1px) {
 
   .gutter {
     &.left {
-      margin-right (4 / 7em)
+      margin-right rigor(4 / 7em)
     }
 
     &.right {
-      margin-left (4 / 7em)
+      margin-left rigor(4 / 7em)
     }
   }
 

@@ -278,10 +278,10 @@ $horizontal-padding = 0.78571429rem
     align-items center
 
     > .icon {
-      margin-left (3/7)em
+      margin-left rigor(3 / 7)em
 
       ^[0].compat ^[1..-1] {
-        margin-left (1/7)em
+        margin-left rigor(1 / 7)em
       }
     }
 
@@ -322,11 +322,11 @@ $horizontal-padding = 0.78571429rem
     .item {
       position relative
       display flex
-      padding $horizontal-padding (8 / 7rem)
+      padding $horizontal-padding rigor(8 / 7rem)
       line-height 1em
 
       ^[0].compat ^[2..-1] {
-        padding ($horizontal-padding / 2) (8 / 14rem)
+        padding ($horizontal-padding / 2) rigor(8 / 14rem)
       }
 
       &.active {

@@ -109,7 +109,7 @@ defineExpose({
   .container {
     position relative
     width max(850px, 88%)
-    border-radius (2 / 7) rem
+    border-radius rigor(2 / 7) rem
     background-color #fff
     box-shadow 1px 3px 3px 0 rgba(#000, 0.2), 1px 3px 15px 2px rgba(#000, 0.2)
     user-select text
