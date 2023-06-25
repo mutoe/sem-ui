@@ -10,10 +10,10 @@
 </template>
 
 <script setup lang="ts">
+import { computed } from 'vue'
 import { colors } from 'src/constants'
 import type { ColorProps } from 'src/types'
 import pick from 'src/utils/pick'
-import { computed } from 'vue'
 
 const props = defineProps<ColorProps & {
   disabled?: boolean

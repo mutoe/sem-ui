@@ -7,7 +7,17 @@
     "prepare": "simple-git-hooks",
     "start": "vite",
     "build": "vue-tsc && vite build",
-    "serve": "vite preview"
+    "serve": "vite preview",
+    "storybook": "storybook dev -p 6006",
+    "build-storybook": "storybook build"
+  },
+  "simple-git-hooks": {
+    "pre-commit": "pnpm exec lint-staged",
+    "pre-push": "pnpm exec vue-tsc"
+  },
+  "lint-staged": {
+    "*.{vue,js,ts,json,html}": "eslint --fix",
+    "*.{vue,styl,stylus,css}": "stylelint --fix"
   },
   "dependencies": {
     "@fortawesome/fontawesome-svg-core": "^6.4.0",
@@ -17,28 +27,45 @@
     "vue-router": "^4.2.2"
   },
   "devDependencies": {
-    "@mutoe/eslint-config-preset-vue": "^3.5.1",
+    "@mutoe/eslint-config-preset-vue": "^3.5.2",
+    "@storybook/addon-essentials": "^7.1.0-alpha.39",
+    "@storybook/addon-interactions": "^7.1.0-alpha.39",
+    "@storybook/addon-links": "^7.1.0-alpha.39",
+    "@storybook/blocks": "^7.1.0-alpha.39",
+    "@storybook/testing-library": "^0.2.0",
+    "@storybook/vue3": "^7.1.0-alpha.39",
+    "@storybook/vue3-vite": "^7.1.0-alpha.39",
     "@types/node": "^20.3.1",
     "@vitejs/plugin-vue": "^4.2.3",
-    "eslint": "^8.42.0",
+    "eslint": "^8.43.0",
+    "eslint-plugin-storybook": "^0.6.12",
     "lint-staged": "^13.2.2",
+    "react": "^18.2.0",
+    "react-dom": "^18.2.0",
     "simple-git-hooks": "^2.8.1",
+    "storybook": "^7.1.0-alpha.39",
     "stylelint": "^14.16.1",
     "stylelint-config-idiomatic-order": "^9.0.0",
     "stylelint-stylus": "^0.18.0",
     "stylus": "^0.59.0",
     "typescript": "^5.1.3",
     "vite": "^4.3.9",
-    "vue-tsc": "^1.6.5"
+    "vue-tsc": "^1.8.1"
   },
   "eslintConfig": {
     "root": true,
     "extends": [
-      "@mutoe/eslint-config-preset-vue"
+      "@mutoe/eslint-config-preset-vue",
+      "plugin:storybook/recommended"
     ],
     "rules": {
       "max-lines": "off",
-      "max-statements-per-line": ["warn", { "max": 2 }]
+      "max-statements-per-line": [
+        "warn",
+        {
+          "max": 2
+        }
+      ]
     }
   },
   "stylelint": {
@@ -51,21 +78,21 @@
       "stylelint-config-idiomatic-order"
     ],
     "rules": {
-      "rule-empty-line-before": ["always-multi-line", {
-        "except": ["after-single-line-comment", "first-nested"],
-        "ignore": ["after-comment"]
-      }],
+      "rule-empty-line-before": [
+        "always-multi-line",
+        {
+          "except": [
+            "after-single-line-comment",
+            "first-nested"
+          ],
+          "ignore": [
+            "after-comment"
+          ]
+        }
+      ],
       "stylus/pythonic": "never",
       "stylus/selector-list-comma-newline-after": "always-multi-line",
       "stylus/selector-list-comma": null
     }
-  },
-  "simple-git-hooks": {
-    "pre-commit": "pnpm exec lint-staged",
-    "pre-push": "pnpm exec vue-tsc"
-  },
-  "lint-staged": {
-    "*.{vue,js,ts,json,html}": "eslint --fix",
-    "*.{vue,styl,stylus,css}": "stylelint --fix"
   }
 }

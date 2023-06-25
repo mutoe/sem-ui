@@ -48,10 +48,10 @@
 </template>
 
 <script lang="ts" setup>
-import { colors } from 'src/constants'
-import type { ColorProps } from 'src/types'
 import { computed, ref, useSlots } from 'vue'
 import type { IconDefinition } from '@fortawesome/fontawesome-svg-core'
+import { colors } from 'src/constants'
+import type { ColorProps } from 'src/types'
 import pick from 'src/utils/pick'
 
 export type ButtonTheme = 'default' | 'ghost'
