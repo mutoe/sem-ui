@@ -74,7 +74,7 @@ const countryOptions: Sem.Option[] = [
   { value: 'Singapore', text: 'Singapore' },
 ]
 
-const onSingleChange = (option: Sem.Option) => {
+const onSingleChange = (option?: Sem.Option) => {
   console.log('onSingleChange', option)
 }
 
