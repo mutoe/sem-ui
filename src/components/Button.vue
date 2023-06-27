@@ -5,6 +5,7 @@
     :aria-disabled="disabled || loading"
     @keydown.space.enter="innerActive = true"
     @keyup.space.enter="innerActive = false"
+    @click="emit('click', $event)"
   >
     <template v-if="!withLabel">
       <div v-if="props.loading" class="loading">Loading</div>
@@ -26,7 +27,7 @@
     </template>
 
     <template v-else>
-      <div v-if="slots.leftLabel ?? props.leftLabelIcon" :class="['label', 'left', { icon: props.leftLabelIcon }]">
+      <div v-if="leftLabel" :class="['label', 'left', { icon: props.leftLabelIcon }]">
         <div v-if="props.loading" class="loading">Loading</div>
         <slot v-else name="leftLabel">
           <Icon :icon="props.leftLabelIcon" />
@@ -37,7 +38,7 @@
         <slot>{{ props.content }}</slot>
         <Icon v-if="rightIcon" :class="[{ gutter: props.content || slots.default }, 'right']" :icon="rightIcon" />
       </span>
-      <span v-if="slots.rightLabel ?? props.rightLabelIcon" :class="['label', 'right', { icon: props.rightLabelIcon }]">
+      <span v-if="rightLabel" :class="['label', 'right', { icon: props.rightLabelIcon }]">
         <div v-if="props.loading" class="loading">Loading</div>
         <slot v-else name="rightLabel">
           <Icon :icon="props.rightLabelIcon" />
@@ -48,8 +49,9 @@
 </template>
 
 <script lang="ts" setup>
-import { computed, ref, useSlots } from 'vue'
+import { computed, ref } from 'vue'
 import type { IconDefinition } from '@fortawesome/fontawesome-svg-core'
+import Icon from 'src/components/Icon.vue'
 import { colors } from 'src/constants'
 import type { ColorProps } from 'src/types'
 import pick from 'src/utils/pick'
@@ -85,9 +87,20 @@ const props = defineProps<ColorProps & {
   animated?: ButtonAnimated
 }>()
 
-const slots = useSlots()
+const slots = defineSlots<{
+  default(): any
+  animated(): any
+  leftLabel(): any
+  rightLabel(): any
+}>()
 
-const withLabel = computed(() => props.leftLabelIcon ?? props.rightLabelIcon ?? slots.leftLabel ?? slots.rightLabel)
+const emit = defineEmits<{
+  (e: 'click', event: MouseEvent): void
+}>()
+
+const leftLabel = computed(() => Boolean(props.leftLabelIcon || slots.leftLabel?.().some(it => it.children)))
+const rightLabel = computed(() => Boolean(props.rightLabelIcon || slots.rightLabel?.().some(it => it.children)))
+const withLabel = computed(() => leftLabel.value || rightLabel.value)
 const innerActive = ref(false)
 const classes = computed(() => [
   'sui-button',

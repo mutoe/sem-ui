@@ -28,6 +28,7 @@
   },
   "devDependencies": {
     "@mutoe/eslint-config-preset-vue": "^3.5.2",
+    "@storybook/addon-actions": "^7.0.23",
     "@storybook/addon-essentials": "^7.1.0-alpha.39",
     "@storybook/addon-interactions": "^7.1.0-alpha.39",
     "@storybook/addon-links": "^7.1.0-alpha.39",
@@ -35,6 +36,7 @@
     "@storybook/testing-library": "^0.2.0",
     "@storybook/vue3": "^7.1.0-alpha.39",
     "@storybook/vue3-vite": "^7.1.0-alpha.39",
+    "@types/mdx": "^2.0.5",
     "@types/node": "^20.3.1",
     "@vitejs/plugin-vue": "^4.2.3",
     "eslint": "^8.43.0",

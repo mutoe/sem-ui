@@ -1,9 +1,17 @@
 <template>
-  <button type="button" :class="classes" :style="style" @click="onClick">{{ label }} </button>
+  <button type="button" :class="classes" :style="style" @click="onClick">
+    <slot>
+      {{ label }}
+    </slot>
+  </button>
 </template>
 
 <script lang="ts" setup>
 import { computed } from 'vue'
+
+defineSlots<{
+  default: string
+}>()
 
 const props = withDefaults(defineProps<{
   /**

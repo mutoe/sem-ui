@@ -25,12 +25,14 @@
 import './header.css'
 import MyButton from './Button.vue'
 
-defineProps<{ user: { name: string } | null }>()
+defineProps<{
+  user: { name: string } | null
+}>()
 
 defineEmits<{
-  (event: 'createAccount'): void
-  (event: 'login'): void
-  (event: 'logout'): void
+  createAccount: []
+  login: []
+  logout: []
 }>()
 
 </script>
