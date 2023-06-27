@@ -14,35 +14,67 @@ const meta = {
     click: null,
   },
   argTypes: {
-    size: {
-      control: { type: 'text' },
-      table: { category: 'props' },
-    },
     default: {
       description: 'The default slot',
       control: { type: 'text' },
-      table: { category: 'slots', type: { summary: 'html' } },
+      table: { type: { summary: 'node' } },
     },
     animated: {
-      description: 'animation',
-      control: { type: 'boolean', defaultValue: false },
-      table: { category: 'props' },
-    },
-    animatedSlot: {
-      name: 'animated',
       description: 'The slot of what is displayed when the cursor hovers',
-      control: { type: 'text' },
-      table: { category: 'slots', type: { summary: 'html' } },
+      control: 'text',
+      table: { type: { summary: 'node' } },
     },
     leftLabel: {
       description: 'The slot of what is displayed when the cursor hovers',
       control: { type: 'text' },
-      table: { type: { summary: 'html' } },
+      table: { type: { summary: 'node' } },
     },
     rightLabel: {
       description: 'The slot of what is displayed when the cursor hovers',
       control: { type: 'text' },
-      table: { type: { summary: 'html' } },
+      table: { type: { summary: 'node' } },
+    },
+    animation: {
+      description: 'animation',
+      control: 'inline-radio',
+      options: ['horizontal', 'vertical', 'fade'],
+      table: {
+        category: 'props',
+        type: { summary: 'enum' },
+        defaultValue: { summary: 'horizontal' },
+      },
+    },
+    content: {
+      control: 'text',
+      description: 'If you only have plain text, you can using this prop',
+      table: {
+        category: 'props',
+        type: { summary: 'text' },
+      },
+    },
+    size: {
+      description: 'The size of button<br>Also you can use `mini` `small` `large` `massive` prop directly',
+      control: { type: 'inline-radio' },
+      options: ['mini', 'small', 'middle', 'large', 'massive'],
+      table: {
+        category: 'props',
+        type: { summary: 'enum' },
+        defaultValue: { summary: 'middle' },
+      },
+    },
+    active: {
+      control: 'boolean',
+      table: {
+        category: 'props',
+        defaultValue: { summary: 'false' },
+      },
+    },
+    loading: {
+      control: 'boolean',
+      table: {
+        category: 'props',
+        defaultValue: { summary: 'false' },
+      },
     },
     click: { action: 'clicked' },
   },
@@ -53,9 +85,9 @@ const meta = {
     const events: Record<string, any> = {}
     for (const [k, argType] of Object.entries(argTypes) as any) {
       const v = args[k]
-      if (argType.table?.category === 'slots') slots[k] = argType
+      if (k in Button.props) props[k] = v
+      else if (argType.table?.category === 'slots') slots[k] = argType
       else if (argType.table?.category === 'events' && v) events[k] = v
-      else if (k in Button.props) props[k] = v
       else if (v) attrs[k] = v
     }
     const { default: defaultSlot, ...otherSlots } = slots
@@ -75,12 +107,10 @@ const meta = {
       </Button>`,
     }
   },
-} satisfies Meta<typeof Button>
-
-type Story = StoryObj<typeof meta>
-
+} satisfies Meta
 export default meta
 
+type Story = StoryObj<typeof meta>
 export const Basic: Story = {
   args: {
     default: 'Basic button',
@@ -90,7 +120,6 @@ export const Basic: Story = {
 export const Animated: Story = {
   args: {
     default: 'Hover me',
-    animated: true,
-    animatedSlot: 'Animated',
+    animated: 'Animated',
   },
 }

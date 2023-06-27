@@ -10,7 +10,7 @@
     <template v-if="!withLabel">
       <div v-if="props.loading" class="loading">Loading</div>
 
-      <template v-else-if="props.animated">
+      <template v-else-if="animation">
         <div class="content visible">
           <slot>{{ props.content }}</slot>
         </div>
@@ -55,13 +55,14 @@ import type { IconDefinition } from '@fortawesome/fontawesome-svg-core'
 import Icon from 'src/components/Icon.vue'
 import { colors } from 'src/constants'
 import type { ColorProps } from 'src/types'
+import { hasSlot } from 'src/utils/has-slot'
 import pick from 'src/utils/pick'
 
 export type ButtonTheme = 'default' | 'ghost'
-export type ButtonAnimated = true | 'horizontal' | 'vertical' | 'fade'
+export type ButtonAnimation = 'horizontal' | 'vertical' | 'fade'
 export type ButtonSize = 'mini' | 'small' | 'middle' | 'large' | 'massive'
 
-const props = defineProps<ColorProps & {
+const props = withDefaults(defineProps<ColorProps & {
   content?: string
   leftIcon?: IconDefinition
   rightIcon?: IconDefinition
@@ -85,8 +86,10 @@ const props = defineProps<ColorProps & {
   theme?: ButtonTheme
   ghost?: boolean
 
-  animated?: ButtonAnimated
-}>()
+  animation?: ButtonAnimation
+}>(), {
+  animation: 'horizontal',
+})
 
 const slots = defineSlots<{
   default(props?: object): VNode[]
@@ -99,14 +102,15 @@ const emit = defineEmits<{
   (e: 'click', event: MouseEvent): void
 }>()
 
-const leftLabel = computed(() => Boolean(props.leftLabelIcon || slots.leftLabel?.().some(it => it.children)))
-const rightLabel = computed(() => Boolean(props.rightLabelIcon || slots.rightLabel?.().some(it => it.children)))
+const leftLabel = computed(() => Boolean(props.leftLabelIcon || hasSlot(slots.leftLabel)))
+const rightLabel = computed(() => Boolean(props.rightLabelIcon || hasSlot(slots.rightLabel)))
 const withLabel = computed(() => leftLabel.value || rightLabel.value)
 const innerActive = ref(false)
+const animation = computed(() => hasSlot(slots.animated) && props.animation)
 const classes = computed(() => [
   'sui-button',
-  props.animated === true ? 'horizontal' : props.animated,
-  pick(props, 'animated', 'active', 'fluid', 'circular'),
+  animation.value && `animation ${animation.value}`,
+  pick(props, 'active', 'fluid', 'circular'),
   { active: !props.disabled && innerActive.value },
 
   { 'with-label': withLabel.value },
@@ -447,7 +451,7 @@ box-shadow-border($color = currentColor, $width = 1px) {
     min-width 3em
   }
 
-  &.animated {
+  &.animation {
     position relative
     z-index 1
     overflow hidden
