@@ -115,7 +115,7 @@ $input-padding-horizontal = 1em
   display inline-flex
   align-items center
   padding $input-padding-vertical ($input-padding-horizontal/ 2)
-  border 1px solid $border-color
+  border 1px solid $color-border
   border-radius $border-radius
   color $color-text
   line-height 1.21428571em

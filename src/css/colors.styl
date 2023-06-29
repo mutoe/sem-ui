@@ -17,18 +17,21 @@ $color-night = var(--color-night, #2b3c4d)
 $color-positive = var(--color-positive, $color-green)
 $color-negative = var(--color-negative, $color-red)
 
-$color-text = var(--color-text, #000000dd)
-$color-placeholder = var(--color-placeholder, #00000080)
-$color-disabled-background = var(--color-disabled-background, #0000000c)
+$color-text = var(--color-text, rgba(#000, 0.87))
+$color-placeholder = var(--color-placeholder, rgba(#000, 0.5))
+$color-disabled-background = var(--color-disabled-background, rgba(#000, 0.05))
 $color-text-inverse = var(--color-text-inverse, #fff)
-$color-primary = 'var(--color-primary, %s)' % $color-blue
-$color-secondary = 'var(--color-secondary, %s)' % $color-black
+$color-primary = var(--color-primary, $color-blue)
+$color-secondary = var(--color-secondary, $color-blck)
+
+$color-border = var(--color-border, rgba(#222426, 0.15))
+$color-hover = var(--color-hover, rgba(#000, 0.03))
+$color-active = var(--color-active, rgba(#000, 0.05))
 
 // Font size
 $font-size-basic = var(--font-size-basic, 14px)
 
 // Border
-$border-color = var(--border-color, #22242626)
 $border-radius = var(--border-radius, rigor(2 / 7rem))
 $border-focus = var(--border-focus, #85b7d9)
 
