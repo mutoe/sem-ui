@@ -24,6 +24,7 @@ const props = defineProps<ColorProps & {
   piled?: boolean
   attached?: boolean
   color?: Sem.Color
+  borderless?: boolean
 }>()
 
 const disabled = props.disabled || props.loading
@@ -31,7 +32,7 @@ const disabled = props.disabled || props.loading
 const classes = computed(() => [
   'sem-segment',
   props.color,
-  pick(props, 'raised', 'stacked', 'piled', 'attached', ...colors),
+  pick(props, 'raised', 'stacked', 'piled', 'attached', 'borderless', 'loading', ...colors),
   { 'tall-stacked': props.tallStacked, disabled },
 ])
 
@@ -50,6 +51,15 @@ $padding = 1em
   background #fff
   box-shadow 0 1px 2px 0 rgba(34,36,38,0.15)
   font-size 1rem
+
+  &.loading {
+    min-height 6em
+  }
+
+  &.borderless {
+    border none
+    box-shadow none
+  }
 
   &.disabled::before {
     position absolute

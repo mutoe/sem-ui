@@ -1,24 +1,26 @@
 <template>
-  <div role="tablist" :class="classes">
-    <button
-      v-for="(item, index) in list"
-      :id="id && `${id}-tab-${item.key || index}`"
-      ref="buttonRefs"
-      :key="item.key || index"
-      :class="['sem-tab', {active: isActive(index)}]"
-      role="tab"
-      :disabled="item.disabled"
-      :tabindex="isActive(index) || (activatedItem === undefined && index === 0) ? undefined : -1"
-      :aria-selected="isActive(index)"
-      :aria-controls="`tabpanel-${item.key ||index}`"
-      @click="emit('click', index, item.key)"
-    >
-      <slot :name="`item-${item.key || index}`" v-bind="item" :index="index">
-        <slot v-bind="item" :index="index">
-          {{ item.title }}
+  <div :class="['sem-menu', pick($props, 'tabbed', 'secondary', 'indicator', 'attached')]">
+    <div role="tablist" :class="['sem-menu-tabs']">
+      <button
+        v-for="(item, index) in list"
+        :id="id && `${id}-tab-${item.key || index}`"
+        ref="buttonRefs"
+        :key="item.key || index"
+        :class="['sem-tab', {active: isActive(index)}]"
+        role="tab"
+        :disabled="item.disabled"
+        :tabindex="isActive(index) || (activatedItem === undefined && index === 0) ? undefined : -1"
+        :aria-selected="isActive(index)"
+        :aria-controls="`tabpanel-${item.key ||index}`"
+        @click="emit('click', index, item.key)"
+      >
+        <slot :name="`item-${item.key || index}`" v-bind="item" :index="index">
+          <slot v-bind="item" :index="index">
+            {{ item.title }}
+          </slot>
         </slot>
-      </slot>
-    </button>
+      </button>
+    </div>
   </div>
 </template>
 
@@ -34,25 +36,19 @@ export interface MenuItem {
   disabled?: boolean
 }
 
-type KeyOrIndex = T['key'] extends string ? string : number
-
 const props = defineProps<{
   list: string[] | T[]
   id?: string
-  activatedItem?: KeyOrIndex
+  activatedItem?: string | number
   secondary?: boolean
   indicator?: boolean
   tabbed?: boolean
+  attached?: boolean
 }>()
 
 const emit = defineEmits<{
   (e: 'click', index: number, key?: string): void
 }>()
-
-const classes = computed(() => [
-  'sem-menu',
-  pick(props, ['secondary', 'indicator', 'tabbed']),
-])
 
 const list = computed(() => props.list.map(item => typeof item === 'string' ? { title: item } : item) as T[])
 
@@ -69,16 +65,29 @@ function isActive (currentIndex: number) {
 
 <style lang="stylus" scoped>
 .sem-menu {
-  display flex
   width 100%
-  min-height rigor(20 / 7em)
-  flex-direction row
   border 1px solid $color-border
   border-radius $border-radius
   box-shadow 0 1px 2px 0 $color-light
+  overflow-x auto
+  overflow-y hidden
+  scrollbar-width none
+
+  &::-webkit-scrollbar {
+    display none
+  }
+
+  .sem-menu-tabs {
+    display flex
+    min-height rigor(20 / 7em)
+    flex-direction row
+    flex-shrink 0
+  }
 
   .sem-tab {
     position relative
+    display flex
+    align-items center
     padding (6.5 / 7em) (11 / 7em)
     border none
     border-right 1px solid $color-border
@@ -117,13 +126,14 @@ function isActive (currentIndex: number) {
       border-radius $border-radius
       border-right none
       margin-right rigor(4/7em)
+      margin-bottom rigor(4/7em)
     }
 
     &.indicator {
       position relative
 
       &::before {
-        position absolute
+        position fixed
         right 0
         bottom 0
         left 0
@@ -182,10 +192,21 @@ function isActive (currentIndex: number) {
       }
     }
   }
+
+  &.attached {
+    &:not(:first-of-type) {
+      border-top-left-radius 0
+      border-top-right-radius 0
+    }
+
+    &:not(:last-of-type) {
+      border-bottom-left-radius 0
+      border-bottom-right-radius 0
+    }
+  }
 }
 
 :global(.sem-menu + .sem-segment.attached) {
   border-top none
 }
-
 </style>

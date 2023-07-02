@@ -16,7 +16,7 @@
       <h3>Secondary menu</h3>
 
       <div>
-        <Menu id="secondary-menu" secondary :activated-item="0" :list="list" />
+        <Menu id="secondary-menu" secondary activated-item="tab1" :list="list" />
         <br>
         <Menu id="secondary-indicator-menu" indicator secondary activated-item="tab1" :list="list" />
       </div>
