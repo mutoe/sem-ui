@@ -49,6 +49,7 @@
 </template>
 
 <script lang="ts" setup>
+import type { VNode } from 'vue'
 import { computed, ref } from 'vue'
 import type { IconDefinition } from '@fortawesome/fontawesome-svg-core'
 import Icon from 'src/components/Icon.vue'
@@ -88,10 +89,10 @@ const props = defineProps<ColorProps & {
 }>()
 
 const slots = defineSlots<{
-  default(): any
-  animated(): any
-  leftLabel(): any
-  rightLabel(): any
+  default(props?: object): VNode[]
+  animated(props?: object): VNode[]
+  leftLabel(props?: object): VNode[]
+  rightLabel(props?: object): VNode[]
 }>()
 
 const emit = defineEmits<{
