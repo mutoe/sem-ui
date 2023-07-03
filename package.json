@@ -75,6 +75,12 @@
         "rules": {
           "quotes": ["error", "single", { "allowTemplateLiterals": true }]
         }
+      },
+      {
+        "files": ["*.stories.{jsx,tsx,js,ts}"],
+        "rules": {
+          "@typescript-eslint/no-unused-vars": "off"
+        }
       }
     ]
   },

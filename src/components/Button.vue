@@ -86,6 +86,7 @@ const props = withDefaults(defineProps<ColorProps & {
   theme?: ButtonTheme
   ghost?: boolean
 
+  // FIXME: animation could be pass in boolean value
   animation?: ButtonAnimation
 }>(), {
   animation: 'horizontal',
@@ -130,7 +131,7 @@ $shadow-distance = 0px
 $shadow-offset = ($shadow-distance / 2)
 $vertical-padding = rigor(2 / 7em + 1 / 2em)
 $horizontal-padding = 1.5em
-$vertical-margin = 0
+$vertical-margin = 0.25em
 $horizontal-margin = 0.25em
 $transition-property = opacity, background-color, color, box-shadow, background
 $animate-duration = 0.3s

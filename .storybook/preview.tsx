@@ -2,10 +2,12 @@ import { DocsContainer, DocsContainerProps } from '@storybook/blocks'
 import type { Preview } from "@storybook/vue3";
 import DocumentationTemplate from './DocumentationTemplate.mdx'
 
+import '../src/css/reset.styl'
+import './preview.styl'
+
 const preview: Preview = {
   parameters: {
     docs: {
-      page: DocumentationTemplate,
       source: {
         transform: (code, storyContext) => {
           code = code.replace(/v-bind=".+?"/, '')
