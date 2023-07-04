@@ -64,6 +64,8 @@ export type ButtonSize = 'mini' | 'small' | 'middle' | 'large' | 'massive'
 
 const props = withDefaults(defineProps<ColorProps & {
   content?: string
+  /** Alias for leftIcon */
+  icon?: IconDefinition
   leftIcon?: IconDefinition
   rightIcon?: IconDefinition
   leftLabelIcon?: IconDefinition
@@ -103,6 +105,7 @@ const emit = defineEmits<{
   (e: 'click', event: MouseEvent): void
 }>()
 
+const leftIcon = computed(() => props.leftIcon || props.icon)
 const leftLabel = computed(() => Boolean(props.leftLabelIcon || hasSlot(slots.leftLabel)))
 const rightLabel = computed(() => Boolean(props.rightLabelIcon || hasSlot(slots.rightLabel)))
 const withLabel = computed(() => leftLabel.value || rightLabel.value)
@@ -115,7 +118,7 @@ const classes = computed(() => [
   { active: !props.disabled && innerActive.value },
 
   { 'with-label': withLabel.value },
-  { 'only-icon': (props.leftIcon || props.rightIcon) && !(props.content ?? slots.default) },
+  { 'only-icon': (leftIcon.value || props.rightIcon) && !(props.content ?? slots.default) },
 
   props.theme,
   props.color,

@@ -25,10 +25,6 @@ const meta = {
       argTypesRegex: `^(${(Button.emits as string[])?.join('|')})$`,
     },
   },
-  args: {
-    default: 'Button',
-    click: null,
-  },
   argTypes: {
     default: {
       description: 'The default slot',
@@ -93,6 +89,10 @@ const meta = {
       },
     },
     click: { action: 'clicked' },
+  },
+  args: {
+    default: 'Button',
+    click: null,
   },
   render: (args: Record<string, any>, { argTypes }) => {
     const attrs: Record<string, any> = {}
