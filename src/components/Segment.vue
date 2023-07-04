@@ -15,7 +15,7 @@ import { colors } from 'src/constants'
 import type { ColorProps } from 'src/types'
 import pick from 'src/utils/pick'
 
-const props = defineProps<ColorProps & {
+const props = withDefaults(defineProps<ColorProps & {
   disabled?: boolean
   loading?: boolean
   raised?: boolean
@@ -25,15 +25,15 @@ const props = defineProps<ColorProps & {
   attached?: boolean
   color?: Sem.Color
   borderless?: boolean
-}>()
+}>(), {})
 
-const disabled = props.disabled || props.loading
+const disabled = computed(() => props.disabled || props.loading)
 
 const classes = computed(() => [
   'sem-segment',
   props.color,
   pick(props, 'raised', 'stacked', 'piled', 'attached', 'borderless', 'loading', ...colors),
-  { 'tall-stacked': props.tallStacked, disabled },
+  { 'tall-stacked': props.tallStacked, 'disabled': disabled.value },
 ])
 
 </script>
@@ -57,7 +57,7 @@ $padding = 1em
   }
 
   &.borderless {
-    border none
+    border-color transparent
     box-shadow none
   }
 
