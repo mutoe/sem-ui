@@ -5,16 +5,17 @@
         <Button v-if="displayCloseIcon" :icon="faTimes" basic class="close-icon" @click="onClickCloseIcon" />
         <header class="header">
           <slot name="header">
-            <h2>{{ props.title || 'Title' }}</h2>
+            <h2>{{ props.title }}</h2>
           </slot>
         </header>
         <div class="content">
-          <slot name="default">{{ props.content }}</slot>
+          <slot v-if="hasSlot(slots.default)" />
+          <template v-else>{{ props.content }}</template>
         </div>
         <div class="actions">
           <slot name="actions">
             <Button @click="onCancel">Cancel</Button>
-            <Button positive @click="emit('confirm')">OK</Button>
+            <Button primary @click="onConfirm">OK</Button>
           </slot>
         </div>
       </div>
@@ -23,37 +24,56 @@
 </template>
 
 <script lang="ts" setup>
-import { ref, watchEffect } from 'vue'
+import type { VNode } from 'vue'
+import { computed, ref, watchEffect } from 'vue'
 import { faTimes } from '@fortawesome/free-solid-svg-icons'
 import Button from 'src/components/Button.vue'
 import vClickOutside from 'src/directives/vClickOutside'
+import { hasSlot } from 'src/utils/has-slot'
 
 const defaultConfig: Sem.ModalConfig = {
   closeIcon: false,
 }
 const modalConfig: Sem.ModalConfig = Object.assign(defaultConfig, window.__SEM_CONFIG?.modal)
 
-export interface ModalRef {
-  open: () => void
-  close: () => void
-}
-
-const props = defineProps<{
+const props = withDefaults(defineProps<{
+  /** Dialog title */
   title?: string
+  /** Dialog main content */
   content?: string
-
+  /** TODO: Need to implement */
   dimmerInverted?: boolean
+  /** TODO: Need to implement */
   dimmerBlurring?: boolean
+  /** Whether to show the close icon button in the dialog upper right corner */
   closeIcon?: boolean
-}>()
+}>(), {
+  closeIcon: false,
+})
+
+// TODO: Support async confirm and close event https://stackoverflow.com/a/66585473/7736393
 const emit = defineEmits<{
+  /** This event is triggered when user click the confirmed button. */
   (e: 'confirm'): void
-  (e: 'close', reason: 'backdrop' | 'closeIcon' | 'cancel'): void
+  /** This event is triggered when the modal is closed for some reason. */
+  (e: 'close', reason: 'backdrop' | 'closeIcon' | 'cancel' | 'call'): void
 }>()
+const slots = defineSlots<{
+  default: (props: object) => VNode[]
+  header: (props: object) => VNode[]
+  actions: (props: object) => VNode[]
+}>()
+defineExpose<Sem.ModalRef>({
+  open: () => void (show.value = true),
+  close: () => {
+    show.value = false
+    emit('close', 'call')
+  },
+})
 
 const show = ref(false)
 
-const displayCloseIcon = props.closeIcon ?? modalConfig.closeIcon
+const displayCloseIcon = computed(() => props.closeIcon ?? modalConfig.closeIcon)
 
 watchEffect(() => {
   if (show.value) {
@@ -77,11 +97,11 @@ const onCancel = () => {
   show.value = false
   emit('close', 'cancel')
 }
+const onConfirm = () => {
+  show.value = false
+  emit('confirm')
+}
 
-defineExpose({
-  open: () => void (show.value = true),
-  close: () => void (show.value = false),
-})
 </script>
 
 <style lang="stylus">
