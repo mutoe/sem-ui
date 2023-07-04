@@ -19,17 +19,18 @@ const props = defineProps<{
   uneven?: boolean
 }>()
 
-const imageRadio: number = typeof props.image === 'number' && props.image > 0 ? props.image : props.image ? 1 : 0
-const linesProp: number = typeof props.lines === 'number' && props.lines > 0 ? props.lines : props.lines ? 1 : 0
-const paragraphProp: number = typeof props.paragraph === 'number' && props.paragraph > 0 ? props.paragraph : props.paragraph ? 3 : 0
-const rows: number = linesProp || paragraphProp || imageRadio
+const imageRadio = computed<number>(() => typeof props.image === 'number' && props.image > 0 ? props.image : props.image ? 1 : 0)
+const linesProp = computed<number>(() => typeof props.lines === 'number' && props.lines > 0 ? props.lines : props.lines ? 1 : 0)
+const paragraphProp = computed<number>(() => typeof props.paragraph === 'number' && props.paragraph > 0 ? props.paragraph : props.paragraph ? 3 : 0)
+const rows = computed<number>(() => linesProp.value || paragraphProp.value || imageRadio.value)
 
-const uneven: boolean = props.uneven || paragraphProp > 0
-const slim: boolean = paragraphProp > 0
+const uneven = computed<boolean>(() => props.uneven ?? paragraphProp.value > 0)
+// TODO: Need to implementation
+const slim = computed<boolean>(() => paragraphProp.value > 0)
 
 const classes = computed(() => [
   'sem-placeholder',
-  { image: imageRadio > 0, uneven, slim },
+  { image: imageRadio.value > 0, uneven: uneven.value, slim: slim.value },
 ])
 </script>
 
