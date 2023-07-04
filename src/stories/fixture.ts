@@ -21,3 +21,13 @@ export const countryOptions: Sem.Option[] = [
   { value: 'Russia', text: 'Russia' },
   { value: 'Singapore', text: 'Singapore' },
 ]
+
+export const menuList = [
+  { title: 'Tab1', key: 'tab1' },
+  { title: 'Tab2', key: 'tab2' },
+]
+
+export const tabList = [
+  { title: 'Tab1', content: 'Tab1 content: Lorem ipsum dolor sit amet, consectetur adipisicing elit. Dicta distinctio dolores ipsa ipsum iusto, maiores obcaecati odit saepe sapiente sed? Animi deleniti excepturi incidunt magnam similique temporibus unde vitae voluptate!' },
+  { title: 'Tab2 with a looooong name', content: 'Tab2 content: Lorem ipsum dolor sit amet, consectetur adipisicing elit. Dicta distinctio dolores ipsa ipsum iusto, maiores obcaecati odit saepe sapiente sed? Animi deleniti excepturi incidunt magnam similique temporibus unde vitae voluptate!' },
+]

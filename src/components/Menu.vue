@@ -14,10 +14,8 @@
         :aria-controls="`tabpanel-${item.key ||index}`"
         @click="emit('click', index, item.key)"
       >
-        <slot :name="`item-${item.key || index}`" v-bind="item" :index="index">
-          <slot v-bind="item" :index="index">
-            {{ item.title }}
-          </slot>
+        <slot v-bind="item" :index="index">
+          {{ item.title }}
         </slot>
       </button>
     </div>
@@ -30,6 +28,7 @@ import pick from 'src/utils/pick'
 
 // TODO: ARIA shortcuts https://www.w3.org/WAI/ARIA/apg/patterns/menubar/
 
+// TODO: replace it to Sem.Option
 export interface MenuItem {
   title: string
   key?: string
@@ -133,7 +132,7 @@ function isActive (currentIndex: number) {
       position relative
 
       &::before {
-        position fixed
+        position absolute
         right 0
         bottom 0
         left 0

@@ -27,10 +27,8 @@
         role="tabpanel"
         :aria-labelledby="`tab-${item.key || index}`"
       >
-        <slot :name="`panel-${item.key || index}`" v-bind="item" :index="index">
-          <slot name="panel" v-bind="item" :index="index">
-            {{ item.content }}
-          </slot>
+        <slot name="panel" v-bind="item" :index="index">
+          {{ item.content }}
         </slot>
       </div>
     </Segment>
