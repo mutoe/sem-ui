@@ -14,7 +14,8 @@
     @focusout="!debug && (popupShown = false)"
   >
     <div :id="id" class="content">
-      <slot name="default">
+      <slot v-if="hasSlot(slots.default)" />
+      <template v-else>
         <div
           role="alert"
           aria-atomic="true"
@@ -22,7 +23,7 @@
           v-text="text"
         />
         <Icon class="icon" :icon="faCaretDown" />
-      </slot>
+      </template>
     </div>
 
     <ul
@@ -59,11 +60,14 @@
 </template>
 
 <script lang="ts" setup>
-import { computed, nextTick, ref, useSlots, watch } from 'vue'
+import type { VNode } from 'vue'
+import { computed, nextTick, ref, watch } from 'vue'
 import { faCaretDown } from '@fortawesome/free-solid-svg-icons'
 import useId from 'src/composables/use-id'
 import vClickOutside from 'src/directives/vClickOutside'
+import { hasSlot } from 'src/utils/has-slot'
 import pick from 'src/utils/pick'
+import Icon from './Icon.vue'
 
 const dropdownConfig: Sem.DropdownConfig = Object.assign({}, window.__SEM_CONFIG?.common, window.__SEM_CONFIG?.dropdown)
 
@@ -85,16 +89,18 @@ const props = defineProps<{
 }>()
 
 const emit = defineEmits<{
-  change: [value?: Sem.Option]
+  (e: 'change', value?: Sem.Option): void
 }>()
 
-const slots = useSlots()
+const slots = defineSlots<{
+  default: (props: object) => VNode[]
+}>()
 
-const debug = props.debug || dropdownConfig.debug
-const compat = props.compat || dropdownConfig.compat
-const id = props.id || useId()
+const debug = computed(() => props.debug || dropdownConfig.debug)
+const compat = computed(() => props.compat || dropdownConfig.compat)
+const id = computed(() => props.id || useId())
 
-const popupRef = ref<HTMLUListElement>()
+const popupRef = ref<HTMLUListElement>(null)
 const popupShown = ref(false)
 const popupTranslateY = ref('0')
 const popupHeight = ref('unset')
@@ -220,15 +226,15 @@ const classes = computed(() => [
   pick(props, ['fluid']),
   {
     expanded: popupShown.value,
-    outline: !slots.default,
-    compat,
+    outline: !hasSlot(slots.default),
+    compat: compat.value,
   },
 ])
 
 const onChange = (option?: Sem.Option) => {
+  emit('change', option)
   popupShown.value = false
   localValue.value = option?.value
-  emit('change', option)
 }
 </script>
 
