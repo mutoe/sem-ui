@@ -10,7 +10,7 @@ const preview: Preview = {
     docs: {
       source: {
         transform: (code, storyContext) => {
-          code = code.replace(/v-bind=".+?"/, '')
+          code = code.replace(/v-bind="[\s\S]+?"/, '')
             .replaceAll(/<template #(\w+?)>\{\{args.\1(?:Slot)?}}<\/template>/g, '')
             .replaceAll(/<template #(\w+?) \/>/g, '')
             .replaceAll(/:(\w+?)="'(.*?)'"/g, '$1="$2"')
