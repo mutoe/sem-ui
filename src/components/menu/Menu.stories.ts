@@ -1,7 +1,7 @@
 import { action } from '@storybook/addon-actions'
 import type { Meta, StoryObj } from '@storybook/vue3'
-import Menu from 'src/components/Menu.vue'
-import Segment from 'src/components/Segment.vue'
+import Menu from 'src/components/menu/Menu.vue'
+import Segment from 'src/components/segment/Segment.vue'
 import { menuList } from 'src/stories/fixture'
 import { booleanProp, vNodeSlot } from 'src/stories/story-macro'
 

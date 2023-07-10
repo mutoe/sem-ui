@@ -38,9 +38,8 @@
 
 <script lang="ts" setup>
 import { computed, ref, useSlots } from 'vue'
-import type { IconDefinition } from '@fortawesome/fontawesome-svg-core'
+import Icon from 'src/components/icon/Icon.vue'
 import pick from 'src/utils/pick'
-import Icon from './Icon.vue'
 
 const defaultConfig: Sem.InputConfig = {
   iconPosition: 'left',

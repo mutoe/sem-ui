@@ -15,10 +15,10 @@ import {
 } from '@fortawesome/free-solid-svg-icons'
 import { action } from '@storybook/addon-actions'
 import type { Meta, StoryObj } from '@storybook/vue3'
-import Button from 'src/components/Button.vue'
-import Input from 'src/components/Input.vue'
+import Button from 'src/components/button/Button.vue'
+import Icon from 'src/components/icon/Icon.vue'
+import Input from 'src/components/input/Input.vue'
 import omit from 'src/utils/omit'
-import Icon from './Icon.vue'
 
 const meta = {
   component: Input,

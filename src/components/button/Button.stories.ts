@@ -14,9 +14,9 @@ import {
 } from '@fortawesome/free-solid-svg-icons'
 import { action } from '@storybook/addon-actions'
 import type { Meta, StoryObj } from '@storybook/vue3'
-import ButtonGroup from 'src/components/ButtonGroup.vue'
-import Button from './Button.vue'
-import Icon from './Icon.vue'
+import Button from 'src/components/button/Button.vue'
+import ButtonGroup from 'src/components/button/ButtonGroup.vue'
+import Icon from 'src/components/icon/Icon.vue'
 
 const meta = {
   component: Button,

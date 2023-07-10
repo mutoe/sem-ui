@@ -16,6 +16,28 @@ export default defineConfig({
       },
     },
   },
+  build: {
+    target: 'modules',
+    minify: false,
+    cssCodeSplit: false,
+    lib: {
+      entry: resolve(__dirname, 'src/index.ts'),
+      name: 'SemUI',
+      formats: ['es'],
+    },
+    rollupOptions: {
+      external: ['vue'],
+      output: [
+        {
+          format: 'es',
+          dir: 'dist',
+          entryFileNames: '[name].js',
+          preserveModules: true,
+          preserveModulesRoot: 'src',
+        },
+      ],
+    },
+  },
   plugins: [
     vue(),
   ],

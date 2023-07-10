@@ -1,6 +1,16 @@
-
 declare interface Window {
   __SEM_CONFIG?: Sem.Config
+}
+
+declare interface IconDefinition {
+  prefix: string
+  iconName: string
+  icon: [
+    number, // width
+    number, // height
+    string[], // ligatures
+    string, // unicode
+  ]
 }
 
 declare namespace Sem {
@@ -24,8 +34,7 @@ declare namespace Sem {
     hidden?: boolean
     disabled?: boolean
     divider?: boolean
-    // eslint-disable-next-line @typescript-eslint/consistent-type-imports
-    icon?: import('@fortawesome/fontawesome-svg-core').IconDefinition
+    icon?: IconDefinition
   }
 
   type Color =

@@ -1,8 +1,14 @@
 {
-  "name": "@sem-ui/vue",
+  "name": "@mutoe/sem-ui",
   "version": "0.0.0",
   "license": "MIT",
   "type": "module",
+  "module": "./dist/index.js",
+  "typings": "./src/index.ts",
+  "files": [
+    "dist",
+    "src"
+  ],
   "scripts": {
     "prepare": "simple-git-hooks",
     "start": "vite",
@@ -19,12 +25,14 @@
     "*.{vue,js,ts,json,html}": "eslint --fix",
     "*.{vue,styl,stylus,css}": "stylelint --fix"
   },
+  "peerDependencies": {
+    "stylus": ">=0.59",
+    "typescript": ">=4.9",
+    "vue": "^3"
+  },
   "dependencies": {
-    "@fortawesome/fontawesome-svg-core": "^6.4.0",
     "@fortawesome/free-solid-svg-icons": "^6.4.0",
-    "@fortawesome/vue-fontawesome": "^3.0.3",
-    "vue": "^3.3.4",
-    "vue-router": "^4.2.2"
+    "@fortawesome/vue-fontawesome": "^3.0.3"
   },
   "devDependencies": {
     "@mutoe/eslint-config-preset-vue": "^3.5.2",
@@ -49,7 +57,6 @@
     "stylelint": "^14.16.1",
     "stylelint-config-idiomatic-order": "^9.0.0",
     "stylelint-stylus": "^0.18.0",
-    "stylus": "^0.59.0",
     "typescript": "^5.1.6",
     "vite": "^4.3.9",
     "vue-tsc": "^1.8.3"
@@ -71,13 +78,23 @@
     },
     "overrides": [
       {
-        "files": ["*.{ts,js,tsx,jsx}"],
+        "files": [
+          "*.{ts,js,tsx,jsx}"
+        ],
         "rules": {
-          "quotes": ["error", "single", { "allowTemplateLiterals": true }]
+          "quotes": [
+            "error",
+            "single",
+            {
+              "allowTemplateLiterals": true
+            }
+          ]
         }
       },
       {
-        "files": ["*.stories.{jsx,tsx,js,ts}"],
+        "files": [
+          "*.stories.{jsx,tsx,js,ts}"
+        ],
         "rules": {
           "@typescript-eslint/no-unused-vars": "off"
         }

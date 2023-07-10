@@ -5,7 +5,7 @@
 </template>
 
 <script lang="ts" setup>
-import type { ButtonSize } from './Button.vue'
+import type { ButtonSize } from 'src/components/button/Button.vue'
 
 const props = defineProps<{
   direction?: 'horizontal' | 'vertical'

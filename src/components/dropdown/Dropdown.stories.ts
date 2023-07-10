@@ -15,11 +15,11 @@ import {
 } from '@fortawesome/free-solid-svg-icons'
 import { action } from '@storybook/addon-actions'
 import type { Meta, StoryObj } from '@storybook/vue3'
-import Button from 'src/components/Button.vue'
-import Dropdown from 'src/components/Dropdown.vue'
+import Button from 'src/components/button/Button.vue'
+import Dropdown from 'src/components/dropdown/Dropdown.vue'
+import Icon from 'src/components/icon/Icon.vue'
 import { countryOptions, fileOptions } from 'src/stories/fixture'
 import omit from 'src/utils/omit'
-import Icon from './Icon.vue'
 
 const meta = {
   component: Dropdown,

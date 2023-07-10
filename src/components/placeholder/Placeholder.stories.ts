@@ -1,40 +1,44 @@
+import { h, ref } from 'vue'
 import { action } from '@storybook/addon-actions'
 import type { Meta, StoryObj } from '@storybook/vue3'
-import Tabs from 'src/components/Tabs.vue'
-import { menuList, tabList } from 'src/stories/fixture'
+import Placeholder from 'src/components/placeholder/Placeholder.vue'
+import Segment from 'src/components/segment/Segment.vue'
+import { booleanProp, vNodeSlot } from 'src/stories/story-macro'
 
 const meta = {
-  component: Tabs,
+  component: Placeholder,
   parameters: {
     actions: {
-      argTypesRegex: `^(${(Tabs.emits as string[])?.join('|')})$`,
+      argTypesRegex: `^(${(Placeholder.emits as string[])?.join('|')})$`,
     },
   },
   argTypes: {
-    list: {
-      control: 'array',
+    lines: {
+      description: 'Indicate how many lines will be shown.\n\nIf pass in `true`, will be equivalent pass in `1`',
+      control: 'number',
       table: {
-        type: { summary: 'MenuItem[]' },
+        type: { summary: 'number | boolean' },
       },
     },
-    activatedItem: {
-      description: 'Indicate current activated item key(`string`) or index(`number`).',
-      control: 'object',
+    paragraph: {
+      description: 'Indicate how many lines will be shown. (This props will set the uneven to be `true` as default)\n\nIf pass in `true`, will be equivalent pass in `3`',
+      control: 'number',
       table: {
-        type: { summary: 'number|string' },
+        type: { summary: 'number | boolean' },
       },
     },
-    id: {
-      description: 'Document `id` attribute',
-      control: 'text',
+    image: {
+      description: 'Display as a image placeholder.\n\nIf pass in number, will as the image aspect radio',
+      control: 'boolean',
       table: {
-        type: { summary: 'string' },
+        type: { summary: 'boolean | number' },
       },
+    },
+    uneven: {
+      ...booleanProp,
     },
   },
-  args: {
-    list: tabList,
-  },
+  args: {},
   render: (args: Record<string, any>, { argTypes }) => {
     const attrs: Record<string, any> = {}
     const props: Record<string, any> = {}
@@ -42,18 +46,19 @@ const meta = {
     const events: Record<string, any> = {}
     for (const [k, argType] of Object.entries(argTypes) as any) {
       const v = args[k]
-      if (k in Tabs.props) props[k] = v
+      if (k in Placeholder.props) props[k] = v
       else if (argType.table?.category === 'slots') slots[k] = argType
       else if (argType.table?.category === 'events' && v) events[k] = v
       else if (v) attrs[k] = v
     }
     return {
-      components: { Tabs },
+      components: { Placeholder, Segment },
       props: Object.keys(argTypes),
       setup () {
         return { action, args }
       },
-      template: `<Tabs
+      template: `<Segment> 
+          <Placeholder
             ref="modal"
             v-bind="args"
             ${Object.keys(props).map(prop => args[prop] ? `:${prop}="args.${prop}"` : '').join('\n')}
@@ -62,43 +67,23 @@ const meta = {
           >
           ${Object.entries(slots).map(([nameWithSlot, argTypes]) =>
         `<template v-if="args.${nameWithSlot}" #${argTypes.name}>{{args.${nameWithSlot}}}</template>`).join('\n')}
-        </Tabs>`,
+        </Placeholder>
+      </Segment>`,
     }
   },
-} satisfies Meta<typeof Tabs>
+} satisfies Meta<typeof Placeholder>
 export default meta
 
 type Story = StoryObj<typeof meta>
 
-export const Basic: Story = {
-  args: { activatedItem: 'tab1' },
+export const Paragraph: Story = {
+  args: { paragraph: true },
 }
 
-export const Secondary: Story = {
-  args: { activatedItem: 'tab1', secondary: true },
+export const Lines: Story = {
+  args: { lines: true },
 }
 
-export const Indicator: Story = {
-  args: { activatedItem: 'tab1', secondary: true, indicator: true },
-}
-
-export const Tabbed: Story = {
-  args: { activatedItem: 'tab1', tabbed: true },
-}
-
-export const Gutter: Story = {
-  render: () => ({
-    components: { Tabs },
-    setup: () => ({ list: tabList }),
-    template: `
-      <h3>Normal gutter</h3>
-      <Tabs indicator gutter :list="list" />
-      
-      <h3>Secondary gutter</h3>
-      <Tabs secondary gutter :list="list" />
-      
-      <h3>Indicator gutter</h3>
-      <Tabs secondary gutter indicator :list="list" /> 
-    `,
-  }),
+export const Image: Story = {
+  args: { image: true },
 }

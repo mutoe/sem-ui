@@ -1,8 +1,8 @@
 import { ref } from 'vue'
 import { action } from '@storybook/addon-actions'
 import type { Meta, StoryObj } from '@storybook/vue3'
-import Button from 'src/components/Button.vue'
-import Modal from 'src/components/Modal.vue'
+import Button from 'src/components/button/Button.vue'
+import Modal from 'src/components/modal/Modal.vue'
 
 const meta = {
   component: Modal,

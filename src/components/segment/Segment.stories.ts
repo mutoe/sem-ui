@@ -1,9 +1,9 @@
 import { h, ref } from 'vue'
 import { action } from '@storybook/addon-actions'
 import type { Meta, StoryObj } from '@storybook/vue3'
-import Placeholder from 'src/components/Placeholder.vue'
-import Segment from 'src/components/Segment.vue'
-import fixture from 'src/stories/fixture'
+import Placeholder from 'src/components/placeholder/Placeholder.vue'
+import Segment from 'src/components/segment/Segment.vue'
+import { text } from 'src/stories/fixture'
 import { booleanProp, vNodeSlot } from 'src/stories/story-macro'
 
 const meta = {
@@ -36,7 +36,7 @@ const meta = {
     },
   },
   args: {
-    default: fixture.text,
+    default: text,
   },
   render: (args: Record<string, any>, { argTypes }) => {
     const attrs: Record<string, any> = {}
@@ -148,7 +148,7 @@ export const Colored: Story = {
 export const Attached: Story = {
   render: () => ({
     components: { Segment },
-    setup: () => ({ text: fixture.text }),
+    setup: () => ({ text }),
     template: `
       <div> 
         <Segment attached>Top</Segment>

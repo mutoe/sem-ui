@@ -27,7 +27,7 @@
 import type { VNode } from 'vue'
 import { computed, ref, watchEffect } from 'vue'
 import { faTimes } from '@fortawesome/free-solid-svg-icons'
-import Button from 'src/components/Button.vue'
+import Button from 'src/components/button/Button.vue'
 import vClickOutside from 'src/directives/vClickOutside'
 import { hasSlot } from 'src/utils/has-slot'
 

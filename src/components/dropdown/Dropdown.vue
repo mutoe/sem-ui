@@ -63,11 +63,11 @@
 import type { VNode } from 'vue'
 import { computed, nextTick, ref, watch } from 'vue'
 import { faCaretDown } from '@fortawesome/free-solid-svg-icons'
+import Icon from 'src/components/icon/Icon.vue'
 import useId from 'src/composables/use-id'
 import vClickOutside from 'src/directives/vClickOutside'
 import { hasSlot } from 'src/utils/has-slot'
 import pick from 'src/utils/pick'
-import Icon from './Icon.vue'
 
 const dropdownConfig: Sem.DropdownConfig = Object.assign({}, window.__SEM_CONFIG?.common, window.__SEM_CONFIG?.dropdown)
 

@@ -51,8 +51,7 @@
 <script lang="ts" setup>
 import type { VNode } from 'vue'
 import { computed, ref } from 'vue'
-import type { IconDefinition } from '@fortawesome/fontawesome-svg-core'
-import Icon from 'src/components/Icon.vue'
+import Icon from 'src/components/icon/Icon.vue'
 import { colors } from 'src/constants'
 import type { ColorProps } from 'src/types'
 import { hasSlot } from 'src/utils/has-slot'

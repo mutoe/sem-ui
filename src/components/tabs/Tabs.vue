@@ -37,8 +37,8 @@
 
 <script lang="ts" setup generic="T extends TabItem">
 import { computed, ref } from 'vue'
-import Segment from 'src/components/Segment.vue'
-import Menu from './Menu.vue'
+import Menu from 'src/components/menu/Menu.vue'
+import Segment from 'src/components/segment/Segment.vue'
 
 // TODO: ARIA shortcuts https://www.w3.org/WAI/ARIA/apg/patterns/tabs/
 
