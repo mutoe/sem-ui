@@ -100,7 +100,7 @@ const debug = computed(() => props.debug || dropdownConfig.debug)
 const compat = computed(() => props.compat || dropdownConfig.compat)
 const id = computed(() => props.id || useId())
 
-const popupRef = ref<HTMLUListElement>(null)
+const popupRef = ref<HTMLUListElement | null>(null)
 const popupShown = ref(false)
 const popupTranslateY = ref('0')
 const popupHeight = ref('unset')

@@ -14,6 +14,9 @@
     "noEmit": true,
   },
   "include": [
-    "src",
+    "src/**/*",
+  ],
+  "exclude": [
+    "**/*.stories.ts",
   ],
 }
