@@ -1,6 +1,14 @@
 {
   "name": "@mutoe/sem-ui",
   "version": "0.1.0",
+  "author": "mutoe <imutoe@gmail.com>",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/mutoe/sem-ui.git"
+  },
+  "publishConfig": {
+    "access": "public"
+  },
   "license": "MIT",
   "type": "module",
   "module": "./dist/index.js",
