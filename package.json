@@ -1,6 +1,6 @@
 {
   "name": "@mutoe/sem-ui",
-  "version": "0.1.1",
+  "version": "0.1.2",
   "author": "mutoe <imutoe@gmail.com>",
   "repository": {
     "type": "git",
@@ -23,7 +23,8 @@
     "build": "vue-tsc && vite build",
     "serve": "vite preview",
     "storybook": "storybook dev -p 6006",
-    "build-storybook": "storybook build"
+    "build-storybook": "storybook build",
+    "prepublish": "pnpm build"
   },
   "simple-git-hooks": {
     "pre-commit": "pnpm exec lint-staged",
