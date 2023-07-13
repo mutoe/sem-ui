@@ -23,7 +23,7 @@ export default defineConfig({
     lib: {
       entry: resolve(__dirname, 'src/index.ts'),
       name: 'SemUI',
-      formats: ['es'],
+      formats: ['es', 'cjs'],
     },
     rollupOptions: {
       external: ['vue'],
@@ -32,6 +32,13 @@ export default defineConfig({
           format: 'es',
           dir: 'dist',
           entryFileNames: '[name].js',
+          preserveModules: true,
+          preserveModulesRoot: 'src',
+        },
+        {
+          format: 'cjs',
+          dir: 'cjs',
+          entryFileNames: '[name].cjs',
           preserveModules: true,
           preserveModulesRoot: 'src',
         },

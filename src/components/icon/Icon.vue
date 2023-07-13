@@ -3,9 +3,7 @@
 </template>
 
 <script lang="ts" setup>
-import * as VueFontAwesome from '@fortawesome/vue-fontawesome'
-
-const { FontAwesomeIcon } = VueFontAwesome
+import { FontAwesomeIcon } from '@fortawesome/vue-fontawesome'
 
 const props = defineProps<{
   icon?: IconDefinition
