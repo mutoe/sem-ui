@@ -23,10 +23,9 @@ export default defineConfig({
     lib: {
       entry: resolve(__dirname, 'src/index.ts'),
       name: 'SemUI',
-      formats: ['es', 'cjs'],
     },
     rollupOptions: {
-      external: ['vue'],
+      external: ['vue', '@fortawesome/vue-fontawesome', '@fortawesome/free-solid-svg-icons'],
       output: [
         {
           format: 'es',
