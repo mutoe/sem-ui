@@ -50,7 +50,7 @@ export interface InputRef {
   focus: () => void
 }
 
-export type InputType = 'text' | 'number' | 'tel' | 'url' | 'email'
+export type InputType = 'text' | 'number' | 'tel' | 'url' | 'email' | 'password'
 
 const props = defineProps<{
   modelValue?: string
@@ -63,6 +63,7 @@ const props = defineProps<{
   tel?: boolean
   url?: boolean
   email?: boolean
+  password?: boolean
 
   focus?: boolean
   disabled?: boolean
@@ -98,6 +99,7 @@ const inputType: InputType | undefined = props.type
   || (props.url && 'url')
   || (props.email && 'email')
   || (props.text && 'text')
+  || (props.password && 'password')
   || undefined
 
 const inputRef = ref<HTMLInputElement | null>(null)
