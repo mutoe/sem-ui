@@ -29,14 +29,14 @@ export default defineConfig({
       output: [
         {
           format: 'es',
-          dir: 'dist',
+          dir: 'build/es',
           entryFileNames: '[name].js',
           preserveModules: true,
           preserveModulesRoot: 'src',
         },
         {
           format: 'cjs',
-          dir: 'cjs',
+          dir: 'build/cjs',
           entryFileNames: '[name].cjs',
           preserveModules: true,
           preserveModulesRoot: 'src',

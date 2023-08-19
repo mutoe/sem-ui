@@ -11,12 +11,20 @@
   },
   "license": "MIT",
   "type": "module",
-  "module": "./dist/index.js",
-  "typings": "./src/index.ts",
+  "main": "./build/cjs/index.cjs",
+  "module": "./build/es/index.js",
+  "typings": "./build/dts/index.ts",
   "files": [
-    "dist",
-    "src"
+    "build"
   ],
+  "exports": {
+    ".": {
+      "import": "./build/es/index.js",
+      "require": "./build/cjs/index.cjs"
+    },
+    "./style.css": "./build/es/style.css",
+    "./*": "./*"
+  },
   "scripts": {
     "prepare": "simple-git-hooks",
     "start": "vite",
