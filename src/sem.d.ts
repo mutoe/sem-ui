@@ -1,7 +1,3 @@
-declare interface Window {
-  __SEM_CONFIG?: Sem.Config
-}
-
 declare type IconDefinition = any
 
 declare namespace Sem {

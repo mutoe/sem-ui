@@ -69,7 +69,7 @@ import vClickOutside from 'src/directives/vClickOutside'
 import { hasSlot } from 'src/utils/has-slot'
 import pick from 'src/utils/pick'
 
-const dropdownConfig: Sem.DropdownConfig = Object.assign({}, window.__SEM_CONFIG?.common, window.__SEM_CONFIG?.dropdown)
+const dropdownConfig: Sem.DropdownConfig = Object.assign({}, globalThis.__SEM_CONFIG?.common, globalThis.__SEM_CONFIG?.dropdown)
 
 const props = defineProps<{
   id?: string

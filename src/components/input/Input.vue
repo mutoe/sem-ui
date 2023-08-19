@@ -44,7 +44,7 @@ import pick from 'src/utils/pick'
 const defaultConfig: Sem.InputConfig = {
   iconPosition: 'left',
 }
-const inputConfig: Sem.InputConfig = Object.assign(defaultConfig, window.__SEM_CONFIG?.input)
+const inputConfig: Sem.InputConfig = Object.assign(defaultConfig, globalThis.__SEM_CONFIG?.input)
 
 export interface InputRef {
   focus: () => void
