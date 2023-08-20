@@ -1,24 +1,10 @@
-import { ref, watch } from 'vue'
-import {
-  faAlignCenter,
-  faAlignJustify,
-  faAlignLeft,
-  faAlignRight,
-  faArrowLeft,
-  faArrowRight, faBold,
-  faCodeBranch, faEarth,
-  faHeart,
-  faPause, faSearch,
-  faShoppingCart,
-  faSignOut, faStrikethrough,
-  faUnderline, faUser,
-} from '@fortawesome/free-solid-svg-icons'
+import { ref } from 'vue'
+import { faEarth, faSearch, faUser } from '@fortawesome/free-solid-svg-icons'
 import { action } from '@storybook/addon-actions'
 import type { Meta, StoryObj } from '@storybook/vue3'
 import Button from 'src/components/button/Button.vue'
 import Icon from 'src/components/icon/Icon.vue'
 import Input from 'src/components/input/Input.vue'
-import omit from 'src/utils/omit'
 
 const meta = {
   component: Input,
@@ -115,10 +101,31 @@ const meta = {
         category: 'events',
       },
     },
+    'blur': {
+      action: 'blur',
+      table: {
+        category: 'events',
+      },
+    },
+    'input': {
+      action: 'input',
+      table: {
+        category: 'events',
+      },
+    },
+    'change': {
+      action: 'change',
+      table: {
+        category: 'events',
+      },
+    },
   },
   args: {
     'modelValue': 'Hello',
     'update:modelValue': null,
+    'input': null,
+    'change': null,
+    'blur': null,
   },
   render: (args: Record<string, any>, { argTypes }) => {
     const attrs: Record<string, any> = {}

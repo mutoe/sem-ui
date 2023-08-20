@@ -48,7 +48,8 @@
   "dependencies": {
     "@fortawesome/fontawesome-svg-core": "^6.4.2",
     "@fortawesome/free-solid-svg-icons": "^6.4.2",
-    "@fortawesome/vue-fontawesome": "^3.0.3"
+    "@fortawesome/vue-fontawesome": "^3.0.3",
+    "@mutoe/form-validator": "^0.1.0"
   },
   "devDependencies": {
     "@mutoe/eslint-config-preset-vue": "^3.5.2",
@@ -92,7 +93,8 @@
         {
           "max": 2
         }
-      ]
+      ],
+      "vue/require-default-prop": "off"
     },
     "overrides": [
       {
