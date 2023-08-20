@@ -1,6 +1,4 @@
-import { DocsContainer, DocsContainerProps } from '@storybook/blocks'
-import type { Preview } from "@storybook/vue3";
-import DocumentationTemplate from './DocumentationTemplate.mdx'
+import type { Preview } from '@storybook/vue3'
 
 import '../src/css/reset.styl'
 import './preview.styl'

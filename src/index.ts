@@ -2,6 +2,7 @@ import './css/reset.styl'
 
 export * from './constants'
 export * from './types'
+export * from './composables'
 
 export * from './components/button'
 export * from './components/dropdown'

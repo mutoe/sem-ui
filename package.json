@@ -43,13 +43,18 @@
     "*.{vue,styl,stylus,css}": "stylelint --fix"
   },
   "peerDependencies": {
-    "vue": "^3"
+    "vue": "^3",
+    "@mutoe/form-validator": "^0.1.1"
+  },
+  "peerDependenciesMeta": {
+    "@mutoe/form-validator": {
+      "optional": true
+    }
   },
   "dependencies": {
     "@fortawesome/fontawesome-svg-core": "^6.4.2",
     "@fortawesome/free-solid-svg-icons": "^6.4.2",
-    "@fortawesome/vue-fontawesome": "^3.0.3",
-    "@mutoe/form-validator": "^0.1.0"
+    "@fortawesome/vue-fontawesome": "^3.0.3"
   },
   "devDependencies": {
     "@mutoe/eslint-config-preset-vue": "^3.5.2",

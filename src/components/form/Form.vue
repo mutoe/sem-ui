@@ -12,7 +12,8 @@ import { validateField } from '@mutoe/form-validator'
 
 const props = withDefaults(defineProps<{
   modelValue?: F
-  schema?: ValidationSchema<keyof F>
+  onUpdateModelValue?: (newModelValue: F) => void
+  schema?: ValidationSchema<F>
   /**
    * Specifies the trigger event for validating the input in a form field.
    *
@@ -26,6 +27,7 @@ const props = withDefaults(defineProps<{
    */
   validateTrigger?: 'change' | 'input' | 'blur' | 'none'
   errors?: ValidateResult<F>
+  onUpdateErrors?: (newErrors: ValidateResult<F>) => void
 }>(), {
   modelValue: () => ({} as F),
   schema: () => ({}),
@@ -45,6 +47,7 @@ watch(() => props.errors, (value) => {
 })
 watch(innerErrors, (value) => {
   emit('update:errors', value)
+  props.onUpdateErrors?.(value)
 }, { deep: true })
 
 function validateFormField (key: keyof F, value: unknown) {
@@ -66,7 +69,9 @@ const formFieldsProps = computed(() => {
       modelValue: value,
       error: innerErrors.value[key] as ErrorResult,
       onUpdateModelValue: (value: string) => {
-        emit('update:modelValue', { ...props.modelValue, [key]: value })
+        const newForm = { ...props.modelValue, [key]: value }
+        emit('update:modelValue', newForm)
+        props.onUpdateModelValue?.(newForm)
       },
     }
     if (props.validateTrigger === 'input') {

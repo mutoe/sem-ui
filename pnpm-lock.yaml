@@ -15,8 +15,8 @@ dependencies:
     specifier: ^3.0.3
     version: 3.0.3(@fortawesome/fontawesome-svg-core@6.4.2)(vue@3.3.4)
   '@mutoe/form-validator':
-    specifier: ^0.1.0
-    version: 0.1.0
+    specifier: ^0.1.1
+    version: 0.1.1
   vue:
     specifier: ^3
     version: 3.3.4
@@ -2339,8 +2339,8 @@ packages:
       - typescript
     dev: true
 
-  /@mutoe/form-validator@0.1.0:
-    resolution: {integrity: sha512-xWXK+nf6ZgXlZuUJfmZqrdtsu3Y5F/77qbZElLyLRNcf2y/vzMTkb8nq1JconxEQgdK4lCnoCzCkhcl+LOLKkg==}
+  /@mutoe/form-validator@0.1.1:
+    resolution: {integrity: sha512-l7674T8Tf9ZfLKGilxYje2WyL+fiKL7ms82q9WTuV6iE13CsJ5utSIlJ0ZrL4IRsRKlDV6O+61namFebu8bJ+A==}
     engines: {node: '>= 14'}
     dev: false
 
