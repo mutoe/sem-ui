@@ -35,7 +35,7 @@ const defaultConfig: Sem.ModalConfig = {
   closeIcon: false,
   teleport: 'body',
 }
-const modalConfig: Sem.ModalConfig = Object.assign(defaultConfig, window.__SEM_CONFIG?.modal)
+const modalConfig: Sem.ModalConfig = Object.assign(defaultConfig, globalThis.__SEM_CONFIG?.modal)
 
 const props = withDefaults(defineProps<{
   /** Dialog title */
@@ -81,6 +81,7 @@ const show = ref(false)
 const displayCloseIcon = computed(() => props.closeIcon ?? modalConfig.closeIcon)
 
 watchEffect(() => {
+  if (!globalThis.document) return
   if (show.value) {
     document.querySelector('[data-v-app]')?.classList.add('blurring', 'dimmed')
     document.body.style.overflow = 'hidden'

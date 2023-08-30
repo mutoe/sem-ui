@@ -13,12 +13,12 @@ const vClickOutside: Directive = {
     }
 
     setTimeout(() => {
-      document.body.addEventListener('click', el.__vClickOutside)
+      document?.body.addEventListener('click', el.__vClickOutside)
     })
   },
 
   beforeUnmount (el) {
-    document.body.removeEventListener('click', el.__vClickOutside)
+    document?.body.removeEventListener('click', el.__vClickOutside)
   },
 }
 
