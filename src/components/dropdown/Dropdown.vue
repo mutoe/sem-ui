@@ -14,7 +14,7 @@
     @focusout="!debug && (popupShown = false)"
   >
     <div :id="id" class="content">
-      <slot v-if="hasSlot(slots.default)" />
+      <slot v-if="!isEmptySlot(slots.default)" />
       <template v-else>
         <div
           role="alert"
@@ -66,8 +66,7 @@ import { faCaretDown } from '@fortawesome/free-solid-svg-icons'
 import Icon from 'src/components/icon/Icon.vue'
 import useId from 'src/composables/use-id'
 import vClickOutside from 'src/directives/vClickOutside'
-import { hasSlot } from 'src/utils/has-slot'
-import pick from 'src/utils/pick'
+import { isEmptySlot, pick } from 'src/utils'
 
 const dropdownConfig: Sem.DropdownConfig = Object.assign({}, globalThis.__SEM_CONFIG?.common, globalThis.__SEM_CONFIG?.dropdown)
 
@@ -226,7 +225,7 @@ const classes = computed(() => [
   pick(props, ['fluid']),
   {
     expanded: popupShown.value,
-    outline: !hasSlot(slots.default),
+    outline: isEmptySlot(slots.default),
     compat: compat.value,
   },
 ])

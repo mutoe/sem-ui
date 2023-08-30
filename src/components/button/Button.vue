@@ -54,8 +54,7 @@ import { computed, ref } from 'vue'
 import Icon from 'src/components/icon/Icon.vue'
 import { colors } from 'src/constants'
 import type { ColorProps } from 'src/types'
-import { hasSlot } from 'src/utils/has-slot'
-import pick from 'src/utils/pick'
+import { isEmptySlot, pick } from 'src/utils'
 
 export type ButtonTheme = 'default' | 'ghost'
 export type ButtonAnimation = 'horizontal' | 'vertical' | 'fade'
@@ -105,11 +104,11 @@ const emit = defineEmits<{
 }>()
 
 const leftIcon = computed(() => props.leftIcon || props.icon)
-const leftLabel = computed(() => Boolean(props.leftLabelIcon || hasSlot(slots.leftLabel)))
-const rightLabel = computed(() => Boolean(props.rightLabelIcon || hasSlot(slots.rightLabel)))
+const leftLabel = computed(() => Boolean(props.leftLabelIcon || !isEmptySlot(slots.leftLabel)))
+const rightLabel = computed(() => Boolean(props.rightLabelIcon || !isEmptySlot(slots.rightLabel)))
 const withLabel = computed(() => leftLabel.value || rightLabel.value)
 const innerActive = ref(false)
-const animation = computed(() => hasSlot(slots.animated) && props.animation)
+const animation = computed(() => !isEmptySlot(slots.animated) && props.animation)
 const classes = computed(() => [
   'sui-button',
   animation.value && `animation ${animation.value}`,

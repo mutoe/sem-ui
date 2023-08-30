@@ -3,16 +3,16 @@
     <div class="sui-modal">
       <div v-click-outside="onClickBackdrop" class="container">
         <Button v-if="displayCloseIcon" :icon="faTimes" basic class="close-icon" @click="onClickCloseIcon" />
-        <header class="header">
+        <header v-if="!hasDeclaredEmptySlot(slots.header)" class="header">
           <slot name="header">
             <h2>{{ props.title }}</h2>
           </slot>
         </header>
         <div class="content">
-          <slot v-if="hasSlot(slots.default)" />
+          <slot v-if="!isEmptySlot(slots.default)" />
           <template v-else>{{ props.content }}</template>
         </div>
-        <div class="actions">
+        <div v-if="!hasDeclaredEmptySlot(slots.actions)" class="actions">
           <slot name="actions">
             <Button @click="onCancel">Cancel</Button>
             <Button primary @click="onConfirm">OK</Button>
@@ -29,7 +29,7 @@ import { computed, ref, watchEffect } from 'vue'
 import { faTimes } from '@fortawesome/free-solid-svg-icons'
 import Button from 'src/components/button/Button.vue'
 import vClickOutside from 'src/directives/vClickOutside'
-import { hasSlot } from 'src/utils/has-slot'
+import { hasDeclaredEmptySlot, isEmptySlot } from 'src/utils'
 
 const defaultConfig: Sem.ModalConfig = {
   closeIcon: false,
