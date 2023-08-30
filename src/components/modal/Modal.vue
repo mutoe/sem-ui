@@ -1,6 +1,6 @@
 <template>
-  <Teleport v-if="show" to="body">
-    <div class="sui-modal">
+  <Teleport v-if="show" :to="teleportTo">
+    <div class="sui-modal" v-bind="$attrs">
       <div v-click-outside="onClickBackdrop" class="container">
         <Button v-if="displayCloseIcon" :icon="faTimes" basic class="close-icon" @click="onClickCloseIcon" />
         <header v-if="!hasDeclaredEmptySlot(slots.header)" class="header">
@@ -33,6 +33,7 @@ import { hasDeclaredEmptySlot, isEmptySlot } from 'src/utils'
 
 const defaultConfig: Sem.ModalConfig = {
   closeIcon: false,
+  teleport: 'body',
 }
 const modalConfig: Sem.ModalConfig = Object.assign(defaultConfig, window.__SEM_CONFIG?.modal)
 
@@ -47,6 +48,7 @@ const props = withDefaults(defineProps<{
   dimmerBlurring?: boolean
   /** Whether to show the close icon button in the dialog upper right corner */
   closeIcon?: boolean
+  teleport?: string
 }>(), {
   closeIcon: false,
 })
@@ -63,6 +65,7 @@ const slots = defineSlots<{
   header: (props: object) => VNode[]
   actions: (props: object) => VNode[]
 }>()
+
 defineExpose<Sem.ModalRef>({
   open: () => void (show.value = true),
   close: () => {
@@ -70,6 +73,8 @@ defineExpose<Sem.ModalRef>({
     emit('close', 'call')
   },
 })
+
+const teleportTo = computed(() => props.teleport || modalConfig.teleport)
 
 const show = ref(false)
 
